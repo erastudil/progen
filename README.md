@@ -1,8 +1,8 @@
 # progen
 
-A ten-word question should not return a three-page essay.
+A ten-word question returning a three-page essay has failed its own job.
 
-You already know the waste. The model restates the number you typed. Think traces wander into a sibling thread. The reply ends by asking what you want to do next. That costs money, and it is also how the answer goes wrong.
+The model copies back the number you typed. Think traces wander into a sibling thread. The reply ends by asking what you want to do next. That costs money, and it is also how the answer goes wrong.
 
 **Progen** is a dialect of English for agent think, agent write, and think traces. Japanese grammar under English words: set the topic, then land the comment. Marks a parser can see. The agent stays exact. The human stays messy.
 
@@ -13,7 +13,8 @@ This repository is the specification, the drop-in prompts, and the tooling. Lice
 ```
 python -m unittest discover -s tests -v
 python -m progen prompt genome
-python -m progen lint README.md --role agent
+python -m progen iron examples/mush.md
+python -m progen lint examples/iron.md --role agent
 ```
 
 From the repo, no install:
@@ -41,21 +42,23 @@ Python 3.10+. stdlib only.
 | file | is |
 |---|---|
 | [`docs/SPEC.md`](docs/SPEC.md) | the language. normative |
-| [`docs/IMPLEMENTATION.md`](docs/IMPLEMENTATION.md) | how a live desk, glass, and OS shell wire it |
+| [`docs/IMPLEMENTATION.md`](docs/IMPLEMENTATION.md) | how a live desk, glass, and shell wire it |
 | [`docs/BOUNDARY.md`](docs/BOUNDARY.md) | what this gift is |
 | [`prompts/genome.md`](prompts/genome.md) | drop-in system prompt |
+| [`examples/rewrite.md`](examples/rewrite.md) | mush → iron, worked |
 | [`spec/progen.v1.json`](spec/progen.v1.json) | marks and lint rule ids |
 
 ## tools
 
 ```
 progen parse FILE [--role iron|slack]
-progen lint  FILE [--role agent|human]
+progen lint  FILE [--role agent|human] [--ask FILE]
+progen iron  FILE
 progen prompt {genome|canon|warehouse}
 progen check
 ```
 
-`lint` is the useful one. Put it on agent output. The tell-list lives in the linter so the model does not recite bans.
+`lint` owns the tell-list so the model does not print it. `iron` is a mechanical pass toward topic-comment. Put both on agent output.
 
 ## layers
 
@@ -67,14 +70,14 @@ Three files, not one blob.
 | **warehouse** | task instructions + comprehensive reference |
 | **canon** | universal standing rules. short |
 
-The genome is the dialect switch. Effort controls volume, not tongue. Do not add a UI toggle.
+The genome is the dialect switch. Effort controls volume.
 
 ## copyleft
 
 Speaking progen is just speaking. Copying this spec, these prompts, or this tooling is AGPL. A hosted modified copy owes its users the source.
 
-No dual-license. No company seat. Official copy stays $0. `COVENANT.md`.
+Official copy stays $0. No company seat. `COVENANT.md`.
 
 ## contribute
 
-`CONTRIBUTING.md`. DCO. tests on every SPEC change. house sediment stays out.
+`CONTRIBUTING.md`. DCO. tests on every SPEC change. this tree is the dialect.

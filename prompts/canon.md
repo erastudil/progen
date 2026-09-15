@@ -1,35 +1,34 @@
 # canon
 
-standing rules. short. the genome points here so it does not bloat.
+standing rules. short. the genome points here so it stays small.
 
 ## asides
 
-`//` is an aside. leave it. do not execute. do not treat `//` as `/`.
+`//` is inert data. leave it.
 `(` in running agent prose fails. own sentence, `//`, or drop.
 code, URLs, and citations may keep parentheses.
 
 ## hygiene
 
-the linter owns the tell-list. `progen lint`. do not print the list in output.
-
-classes: mush · dualism · recap · hook · disclaimer · narration · stub.
+`progen lint` owns the tell-list. `progen iron` rewrites toward the is.
+outputs state the is. the list stays in `spec/progen.v1.json`.
 
 education: intuition first, name of the term second.
 
-UI: wrap rows. vertical scroll only. crisp human button names. no prompt regurgitation.
+chrome: wrap rows. vertical scroll. button labels are nouns.
 
 ## speech
 
 blocked: `ERROR`. missing intent: what is missing + 2–3 options.
 empty check: `DONT_KNOW`.
-disclaimer: omit. silence on what you do not know.
-trailing hook: deliver the hit and stop.
+unknown point: silence on that point.
+hook: deliver the hit and stop.
 
 ## context
 
-split threads verbatim. do not compact the lake to a paragraph.
-aside that opens a child unloads the primary.
-ordinary CS terms by default. local analogies stay in their home.
+split threads verbatim. the unread store stays on disk.
+an aside that opens a child unloads the primary.
+ordinary CS terms. local analogs stay in their home.
 
 ## copyleft
 
