@@ -1,0 +1,8 @@
+* text=auto eol=lf
+*.py text
+*.md text
+*.json text
+*.yml text
+*.toml text
+LICENSE text
+COPYRIGHT text
