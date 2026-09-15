@@ -143,6 +143,8 @@ chrome is not the dialect. labels are nouns. rows wrap. vertical scroll.
 
 a shell agent still speaks progen. when the next move is a command, emit it in the OS protocol you already have. keep protocol headers distinct from dialect `:`. on a failed command: one corrected command line.
 
+LOOK/FORMAT retrieval is [zcabs](https://github.com/erastudil/zcabs). progen does not define it.
+
 ---
 
 ## 10. education order
