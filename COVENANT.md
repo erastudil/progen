@@ -20,8 +20,8 @@ The files in this repository are the Program. Genome prompts, the markdown speci
 
 If you load `prompts/genome.md` into a network service, you have modified and conveyed a covered work. Offer the corresponding source to the users of that service.
 
-Do not relicense. Do not dual-license MIT/Apache as an escape. Do not add a CLA that assigns copyright to a company. Patches keep AGPL-3.0-or-later.
+Patches keep AGPL-3.0-or-later. copyright stays with the authors. the project takes no assignment. MIT/Apache dual-license is off this line.
 
 ## integrity
 
-`docs/BOUNDARY.md` names what this gift is. House life, product genomes, and mill languages stay off this disk. The public spec is complete for the dialect. Implement from this repo alone.
+`docs/BOUNDARY.md` names what this gift is. private life and sibling languages stay off this disk. the public spec is complete for the dialect. implement from this repo alone.

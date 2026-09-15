@@ -28,7 +28,21 @@ class Prompts(unittest.TestCase):
         ids = {r["id"] for r in spec["lint_rules"]}
         self.assertEqual(
             ids,
-            {"P001", "P002", "P003", "P004", "P005", "P006", "P007", "P008", "P011"},
+            {
+                "P001",
+                "P002",
+                "P003",
+                "P004",
+                "P005",
+                "P006",
+                "P007",
+                "P008",
+                "P010",
+                "P011",
+                "P012",
+                "P013",
+                "P014",
+            },
         )
 
     def test_license_files_exist(self) -> None:

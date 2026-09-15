@@ -28,4 +28,4 @@ SPEC changes need a fixture. new lint rule needs a fail case and a pass case.
 
 normative text is progen. README may teach in ordinary english first, then name the term.
 
-do not dump house life into this tree. `docs/BOUNDARY.md`.
+this tree is the dialect. `docs/BOUNDARY.md`.

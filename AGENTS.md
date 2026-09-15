@@ -9,22 +9,23 @@ you are in the public progen tree. dialect SoT: `docs/SPEC.md`. license: AGPL-3.
 
 ## law
 
-1. SPEC is the language. do not fork it into a second markdown.
-2. tools prove SPEC. a stub that claims done is a hole.
-3. house sediment stays out. `docs/BOUNDARY.md`.
-4. no license change. no dual-license. no CLA.
+1. SPEC is the language. one markdown.
+2. tools prove SPEC. stub + claim is a hole.
+3. this tree is the dialect. `docs/BOUNDARY.md`.
+4. patches keep AGPL-3.0-or-later. copyright stays with the authors.
 5. write progen. think progen. traces too.
-6. `python -m unittest discover -s tests -v` before claiming parse or lint works.
+6. `python -m progen check` before claiming parse, lint, or iron works.
 
 ## layout
 
 | path | is |
 |---|---|
 | `docs/SPEC.md` | normative language |
-| `docs/IMPLEMENTATION.md` | how a desk, glass, and shell wire it |
+| `docs/IMPLEMENTATION.md` | desk · glass · shell wiring |
 | `docs/BOUNDARY.md` | what this gift is |
 | `prompts/` | drop-in genome and canon |
+| `examples/rewrite.md` | mush → iron |
 | `spec/progen.v1.json` | machine marks + rule ids |
-| `src/progen/` | parse · lint · prompt · cli |
+| `src/progen/` | parse · lint · iron · prompt · cli |
 
-identity: load no house card. this repo is the card.
+identity: this repo is the card.

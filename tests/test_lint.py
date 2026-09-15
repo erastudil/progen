@@ -38,6 +38,18 @@ class LintAgent(unittest.TestCase):
         findings = lint_text(text, role="agent")
         self.assertFalse(any(f.rule == "P005" for f in findings))
 
+    def test_scale_short_ask_wall(self) -> None:
+        ask = "what broke"
+        wall = "word " * 90
+        ids = {f.rule for f in lint_text(wall, role="agent", ask=ask)}
+        self.assertIn("P010", ids)
+
+    def test_scale_ok_when_matched(self) -> None:
+        ask = "what broke"
+        out = "disk : nvme0n1 full.\n"
+        ids = {f.rule for f in lint_text(out, role="agent", ask=ask)}
+        self.assertNotIn("P010", ids)
+
 
 if __name__ == "__main__":
     unittest.main()
