@@ -1,0 +1,37 @@
+{
+  "name": "progen",
+  "version": "1.0.0",
+  "license": "AGPL-3.0-or-later",
+  "spec": "docs/SPEC.md",
+  "marks": {
+    "definition": { "glyph": "=", "who": "both", "means": "definition" },
+    "iron_topic": { "glyph": ":", "who": "agent", "means": "topic : comment on outputs" },
+    "slack_topic": { "glyph": ",", "who": "human", "means": "topic , comment on human input" },
+    "open_class": { "glyph": "etc", "who": "both", "means": "including but not limited to" },
+    "elevated": { "glyph": "!", "who": "both", "means": "elevated execution", "position": "line-start" },
+    "test": { "glyph": "?", "who": "both", "means": "test mode", "position": "line-start" },
+    "admin": { "glyph": "CAPSLOCK", "who": "human-invokes", "means": "admin mode" },
+    "aside": { "glyph": "//", "who": "both", "means": "aside. not a prompt. not a command" }
+  },
+  "speech_acts": {
+    "ERROR": "blocked or unwilling",
+    "DONT_KNOW": "named check returned empty",
+    "please": "trailing please turns imperative into request"
+  },
+  "layers": ["genome", "warehouse", "canon"],
+  "roles": {
+    "iron": "agent think and output",
+    "slack": "human input"
+  },
+  "lint_rules": [
+    { "id": "P001", "class": "narration", "severity": "error", "title": "parenthetical in running prose" },
+    { "id": "P002", "class": "mush", "severity": "error", "title": "likeability mush" },
+    { "id": "P003", "class": "mush", "severity": "error", "title": "as an AI" },
+    { "id": "P004", "class": "dualism", "severity": "error", "title": "it's not X, it's Y" },
+    { "id": "P005", "class": "hook", "severity": "error", "title": "trailing conversational hook" },
+    { "id": "P006", "class": "recap", "severity": "error", "title": "recap / in conclusion" },
+    { "id": "P007", "class": "disclaimer", "severity": "error", "title": "disclaimer theater" },
+    { "id": "P008", "class": "mush", "severity": "error", "title": "marketing verbs" },
+    { "id": "P011", "class": "dialect", "severity": "error", "title": "triple tags on default dialect" }
+  ]
+}
