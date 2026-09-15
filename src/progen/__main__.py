@@ -29,6 +29,17 @@ _DOC_LINT = (
 
 
 def main(argv: list[str] | None = None) -> int:
+    if hasattr(sys.stdout, "reconfigure"):
+        try:
+            sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        except Exception:
+            pass
+    if hasattr(sys.stderr, "reconfigure"):
+        try:
+            sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+        except Exception:
+            pass
+
     parser = argparse.ArgumentParser(
         prog="progen",
         description="progen dialect tools. AGPL-3.0-or-later.",
@@ -119,19 +130,42 @@ def _cmd_iron(args: argparse.Namespace) -> int:
 
 
 def _cmd_check() -> int:
-    import unittest
-
     tests = repo_root() / "tests"
-    loader = unittest.TestLoader()
-    suite = loader.discover(str(tests), pattern="test_*.py")
-    result = unittest.TextTestRunner(verbosity=1).run(suite)
-    rc = 0 if result.wasSuccessful() else 1
-    for rel in _DOC_LINT:
-        path = repo_root() / rel
-        findings = lint_text(path.read_text(encoding="utf-8"), role="agent")
-        if findings:
-            print(format_findings(findings, path=rel))
+    if tests.is_dir():
+        import unittest
+
+        loader = unittest.TestLoader()
+        suite = loader.discover(str(tests), pattern="test_*.py")
+        result = unittest.TextTestRunner(verbosity=1).run(suite)
+        rc = 0 if result.wasSuccessful() else 1
+        for rel in _DOC_LINT:
+            path = repo_root() / rel
+            if path.is_file():
+                findings = lint_text(path.read_text(encoding="utf-8"), role="agent")
+                if findings:
+                    print(format_findings(findings, path=rel))
+                    rc = 1
+        return rc
+
+    rc = 0
+    try:
+        g = load_prompt("genome")
+        if "agents iron" not in g:
+            print("FAIL: prompt missing core marks")
             rc = 1
+        ironed = iron_text("Weather is good.")
+        if "weather : good." not in ironed.lower():
+            print("FAIL: iron rewrite mismatch")
+            rc = 1
+        findings = lint_text("I'd be happy to help!", role="agent")
+        if not any(f.rule == "P002" for f in findings):
+            print("FAIL: linter failed to flag mush")
+            rc = 1
+        if rc == 0:
+            print("PASS (package self-check)")
+    except Exception as e:
+        print(f"FAIL: {e}")
+        rc = 1
     return rc
 
 

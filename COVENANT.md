@@ -2,7 +2,7 @@
 
 Legal: **AGPL-3.0-or-later**. See `LICENSE`.
 
-This repo is a gift line. Same covenant as EasyLM.
+This repository is dedicated to free, un-enclosed developer tooling.
 
 - official copy stays $0 forever
 - donations only
@@ -24,4 +24,4 @@ Patches keep AGPL-3.0-or-later. copyright stays with the authors. the project ta
 
 ## integrity
 
-`docs/BOUNDARY.md` names what this gift is. private life and sibling languages stay off this disk. the public spec is complete for the dialect. implement from this repo alone.
+`docs/BOUNDARY.md` defines what this repository contains. Sibling systems and domain logic belong in their own projects. The public specification is complete for the dialect. Implement from this repository alone.

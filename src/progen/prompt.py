@@ -21,5 +21,13 @@ def load_prompt(name: str) -> str:
     if key not in _NAMES:
         known = ", ".join(sorted(_NAMES))
         raise ValueError(f"unknown prompt {name!r}. known: {known}")
-    path = repo_root() / _NAMES[key]
-    return path.read_text(encoding="utf-8")
+    rel = _NAMES[key]
+    # 1. repo root
+    repo_path = repo_root() / rel
+    if repo_path.is_file():
+        return repo_path.read_text(encoding="utf-8")
+    # 2. package data
+    pkg_path = Path(__file__).resolve().parent / "data" / rel
+    if pkg_path.is_file():
+        return pkg_path.read_text(encoding="utf-8")
+    raise FileNotFoundError(f"prompt file not found for {name!r}")

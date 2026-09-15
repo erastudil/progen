@@ -17,11 +17,11 @@ this gift is the dialect. complete for that job.
 
 `docs/SPEC.md` is the law. tools fail closed against it.
 
-## other homes
+## out of scope
 
-private life. product genomes. machine-control languages. patent dictionaries. judgement pools.
+application business logic, proprietary domain vocabularies, machine control languages, and task-specific datasets.
 
-those jobs have other trees. they are not required to implement progen. a patch that drags them in is off this gift.
+those belong in host application repositories. they are not required to implement progen. pull requests introducing project-specific abstractions are rejected.
 
 ## completeness
 

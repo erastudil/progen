@@ -25,9 +25,18 @@ def _repo_root() -> Path:
     return Path(__file__).resolve().parents[2]
 
 
+def _load_spec_data() -> dict:
+    repo_path = _repo_root() / "spec" / "progen.v1.json"
+    if repo_path.is_file():
+        return json.loads(repo_path.read_text(encoding="utf-8"))
+    pkg_path = Path(__file__).resolve().parent / "data" / "progen.v1.json"
+    if pkg_path.is_file():
+        return json.loads(pkg_path.read_text(encoding="utf-8"))
+    raise FileNotFoundError("spec/progen.v1.json not found")
+
+
 def load_rules() -> list[dict]:
-    path = _repo_root() / "spec" / "progen.v1.json"
-    data = json.loads(path.read_text(encoding="utf-8"))
+    data = _load_spec_data()
     return list(data["lint_rules"])
 
 
@@ -126,7 +135,7 @@ def _will_not(lines: list[str], add) -> None:
 
 
 def _latch(visible: str, add) -> None:
-    data = json.loads((_repo_root() / "spec" / "progen.v1.json").read_text(encoding="utf-8"))
+    data = _load_spec_data()
     body = visible.lower()
     for family, words in data.get("latch_families", {}).items():
         n = 0
