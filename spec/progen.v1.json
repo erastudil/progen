@@ -1,6 +1,6 @@
 {
   "name": "progen",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "license": "AGPL-3.0-or-later",
   "spec": "docs/SPEC.md",
   "marks": {
@@ -30,7 +30,7 @@
     { "id": "P001", "class": "narration", "severity": "error", "title": "parenthetical in running prose" },
     { "id": "P002", "class": "mush", "severity": "error", "title": "likeability mush" },
     { "id": "P003", "class": "mush", "severity": "error", "title": "as an AI" },
-    { "id": "P004", "class": "dualism", "severity": "error", "title": "it's not X, it's Y" },
+    { "id": "P004", "class": "dualism", "severity": "error", "title": "dualism / contrast tell" },
     { "id": "P005", "class": "hook", "severity": "error", "title": "trailing conversational hook" },
     { "id": "P006", "class": "recap", "severity": "error", "title": "recap / in conclusion" },
     { "id": "P007", "class": "disclaimer", "severity": "error", "title": "disclaimer theater" },
@@ -39,6 +39,10 @@
     { "id": "P011", "class": "dialect", "severity": "error", "title": "triple tags on default dialect" },
     { "id": "P012", "class": "recite", "severity": "error", "title": "will-not list" },
     { "id": "P013", "class": "stub", "severity": "error", "title": "placeholder plus done" },
-    { "id": "P014", "class": "latch", "severity": "error", "title": "project analog latched" }
+    { "id": "P014", "class": "latch", "severity": "error", "title": "project analog latched" },
+    { "id": "P015", "class": "dialect", "severity": "error", "title": "iron followed slack length" },
+    { "id": "P016", "class": "restate", "severity": "error", "title": "ask copied back" },
+    { "id": "P101", "class": "code", "severity": "error", "title": "extra-scope rewrite" },
+    { "id": "P102", "class": "code", "severity": "error", "title": "code job claimed done, no proof" }
   ]
 }

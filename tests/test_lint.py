@@ -55,6 +55,55 @@ class LintAgent(unittest.TestCase):
         ids = {f.rule for f in lint_text(out, role="agent", ask=ask)}
         self.assertNotIn("P010", ids)
 
+    def test_split_dualism(self) -> None:
+        text = (FIXTURES / "dualism_split.md").read_text(encoding="utf-8")
+        ids = {f.rule for f in lint_text(text, role="agent")}
+        self.assertIn("P004", ids)
+
+    def test_omit_class(self) -> None:
+        text = (FIXTURES / "omit_class.md").read_text(encoding="utf-8")
+        ids = {f.rule for f in lint_text(text, role="agent")}
+        self.assertIn("P013", ids)
+
+    def test_code_silent(self) -> None:
+        text = (FIXTURES / "code_silent.md").read_text(encoding="utf-8")
+        ids = {f.rule for f in lint_text(text, role="agent")}
+        self.assertIn("P102", ids)
+
+    def test_extra_scope(self) -> None:
+        text = (FIXTURES / "extra_scope.md").read_text(encoding="utf-8")
+        ids = {f.rule for f in lint_text(text, role="agent")}
+        self.assertIn("P101", ids)
+
+    def test_dialect_pull(self) -> None:
+        ask = (FIXTURES / "dialect_ask.md").read_text(encoding="utf-8")
+        out = (FIXTURES / "dialect_essay.md").read_text(encoding="utf-8")
+        ids = {f.rule for f in lint_text(out, role="agent", ask=ask)}
+        self.assertIn("P015", ids)
+
+    def test_dialect_iron_ok(self) -> None:
+        ask = (FIXTURES / "dialect_ask.md").read_text(encoding="utf-8")
+        out = "pre : next token, all tokens.\nmid : same loss, denser diet.\npost : SFT then preference then verifier.\n"
+        ids = {f.rule for f in lint_text(out, role="agent", ask=ask)}
+        self.assertNotIn("P015", ids)
+
+    def test_restate(self) -> None:
+        ask = (FIXTURES / "restate_ask.md").read_text(encoding="utf-8")
+        out = (FIXTURES / "restate_out.md").read_text(encoding="utf-8")
+        ids = {f.rule for f in lint_text(out, role="agent", ask=ask)}
+        self.assertIn("P016", ids)
+
+
+class SpecSync(unittest.TestCase):
+    def test_package_json_matches_spec(self) -> None:
+        from progen.prompt import repo_root
+        import json
+
+        root = repo_root()
+        a = json.loads((root / "spec" / "progen.v1.json").read_text(encoding="utf-8"))
+        b = json.loads((root / "src" / "progen" / "data" / "progen.v1.json").read_text(encoding="utf-8"))
+        self.assertEqual(a, b)
+
 
 if __name__ == "__main__":
     unittest.main()

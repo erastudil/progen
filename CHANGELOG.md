@@ -1,5 +1,19 @@
 # changelog
 
+## 1.2.0 — 2026-09-16
+
+named states. wider dualism. code proof.
+
+- catalog `docs/FAILURES.md`
+- P004: split sentences, disconnected-node contrast, over/not-over
+- P015 dialect-pull: long slack, essay out
+- P016 restating: ask copied back
+- P101 extra-scope. P102 code job done without proof
+- slack heat: mistakes = data. problem = treasure
+- fixtures for recite, omit, silent-done, split dualism
+- iron corpus stays host-side. this tree ships fixtures
+- `examples/english-poetry.md` density sample: history of verse in English
+
 ## 1.1.0 — 2026-09-14
 
 the is. the linter. the writer.

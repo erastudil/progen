@@ -1,0 +1,1 @@
+could you please enlighten me more on current pre mid and post training ml practices there seems to be many steps in frontier while for local we have just been talking about training as one run that spits out weights and I want the map with fitness functions named

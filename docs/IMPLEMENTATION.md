@@ -1,6 +1,6 @@
 ---
 title: "progen — implementation"
-version: "1.1.0"
+version: "1.2.0"
 status: normative-adjacent · reference implementation
 license: AGPL-3.0-or-later
 ---
@@ -34,10 +34,10 @@ start at the three layers. a framework-first pass grows a fourth prompt stack.
 
 every automated turn:
 
-1. **genome** — `prompts/genome.md` plus your tool list
-2. **map** — a short table of where else to look. one path per need. a dead pointer is a fire. fix the map
-3. **canon** — `prompts/canon.md` or your merge of it. hygiene lives here once, as a pointer to the linter
-4. **named source** — the one file that owns this job
+1. **genome** : `prompts/genome.md` plus your tool list
+2. **map** : a short table of where else to look. one path per need. a dead pointer is a fire. fix the map
+3. **canon** : `prompts/canon.md` or your merge of it. hygiene lives here once, as a pointer to the linter
+4. **named source** : the one file that owns this job
 
 then drop the rest. freeform human messages are inputs. they do not skip step 1 on the next job.
 
@@ -206,5 +206,13 @@ these happened on a production desk. they will happen on yours. the fix is the i
 | dead index | dead path in the map. agent greps the world to rescue it | dead pointer is a fire. fix the map |
 | dialect toggle | UI flag for think tongue. traces and out diverged | delete the flag. genome is the switch |
 | extra stack | new prompt folder because the genome felt cramped | warehouse |
+| dialect-pull | long slack, essay out, iron dropped | stay iron. P015 |
+| restating | ask copied back | number spent. P016 |
+| split dualism | contrast across two sentences | P004 |
+| extra-scope | unasked extra rewrite | P101 |
+| silent done | patch claimed done, no proof | P102 · tests |
+| heat-as-judgement | swears treated as a new law | slack. stay iron |
 
-sibling jobs with their own specs: machine-control languages, programming dictionaries. they are not this dialect. `docs/BOUNDARY.md`.
+named catalog: `docs/FAILURES.md`.
+
+sibling jobs with their own specs: machine-control languages, programming dictionaries. BOUNDARY holds the cut. `docs/BOUNDARY.md`.

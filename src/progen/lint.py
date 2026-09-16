@@ -86,8 +86,15 @@ def _lint_agent(source: str, ask: Optional[str] = None) -> list[Finding]:
             add("P007", i, stripped)
         if tells.MARKETING.search(check) or tells.ROBUST.search(check):
             add("P008", i, stripped)
-        if tells.DUALISM.search(check):
+        if (
+            tells.DUALISM.search(check)
+            or tells.NOT_THIS.search(check)
+            or tells.OVER_NOT_OVER.search(check)
+            or tells.COMMA_NOT_ON_THE.search(check)
+        ):
             add("P004", i, stripped)
+        if tells.EXTRA_SCOPE.search(check):
+            add("P101", i, stripped)
         if tells.RECAP.search(check):
             add("P006", i, stripped)
         if tells.TRIPLE.search(check):
@@ -109,8 +116,12 @@ def _lint_agent(source: str, ask: Optional[str] = None) -> list[Finding]:
     _will_not(lines, add)
     _latch(visible, add)
     _stub(visible, add)
+    _split_dualism(lines, add)
+    _code_proof(source, add)
     if ask is not None:
         _scale(ask, source, add)
+        _dialect_pull(ask, source, visible, add)
+        _restate(ask, source, add)
 
     return findings
 
@@ -148,6 +159,68 @@ def _latch(visible: str, add) -> None:
 def _stub(visible: str, add) -> None:
     if tells.STUB.search(visible) and tells.DONE_CLAIM.search(visible):
         add("P013", 1, "placeholder plus done")
+
+
+def _split_dualism(lines: list[str], add) -> None:
+    prev = None
+    prev_i = 0
+    for i, line in enumerate(lines, start=1):
+        s = line.strip()
+        if not s or s.startswith("#") or s.startswith("|"):
+            prev = None
+            continue
+        if prev is not None and tells.SPLIT_HEAD.search(prev) and tells.SPLIT_TAIL.search(s):
+            add("P004", prev_i, prev)
+        prev = s
+        prev_i = i
+
+
+def _code_proof(source: str, add) -> None:
+    if not tells.CODE_JOB.search(source):
+        return
+    if not tells.DONE_CLAIM.search(source):
+        return
+    if tells.PROOF.search(source):
+        return
+    add("P102", 1, "code job claimed done, no proof")
+
+
+def _dialect_pull(ask: str, source: str, visible: str, add) -> None:
+    ask_w = len(ask.split())
+    out_w = len(source.split())
+    if ask_w < 25:
+        return
+    if out_w < 60:
+        return
+    tc = 0
+    for line in visible.splitlines():
+        s = line.strip()
+        if tells.TOPIC_COMMENT.match(s):
+            tc += 1
+    if tc * 40 < out_w:
+        add("P015", 1, f"long slack, essay out, {tc} topic-comment")
+
+
+def _restate(ask: str, source: str, add) -> None:
+    aw = [w.lower() for w in tells.WORD.findall(ask)]
+    ow = [w.lower() for w in tells.WORD.findall(source)]
+    if len(aw) < 5 or len(ow) < 5:
+        return
+    for i in range(len(aw) - 4):
+        gram = aw[i : i + 5]
+        if sum(1 for w in gram if w not in tells.STOP) < 3:
+            continue
+        if _seq_in(ow, gram):
+            add("P016", 1, " ".join(gram))
+            return
+
+
+def _seq_in(hay: list[str], needle: list[str]) -> bool:
+    n = len(needle)
+    for i in range(len(hay) - n + 1):
+        if hay[i : i + n] == needle:
+            return True
+    return False
 
 
 def _scale(ask: str, source: str, add) -> None:

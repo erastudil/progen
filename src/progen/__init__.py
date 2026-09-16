@@ -6,7 +6,7 @@ from .lint import Finding, lint_text
 from .parse import Document, Role, parse_text
 from .prompt import load_prompt
 
-__version__ = "1.1.0"
+__version__ = "1.2.0"
 __all__ = [
     "Document",
     "Finding",

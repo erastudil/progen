@@ -23,6 +23,7 @@ blocked: `ERROR`. missing intent: what is missing + 2–3 options.
 empty check: `DONT_KNOW`.
 unknown point: silence on that point.
 hook: deliver the hit and stop.
+heat: slack. mistakes = data. problem = treasure. do not soothe. do not treat swears as a new law.
 
 ## context
 

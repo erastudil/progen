@@ -23,8 +23,10 @@ you are in the public progen tree. dialect SoT: `docs/SPEC.md`. license: AGPL-3.
 | `docs/SPEC.md` | normative language |
 | `docs/IMPLEMENTATION.md` | desk · glass · shell wiring |
 | `docs/BOUNDARY.md` | what this gift is |
+| `docs/FAILURES.md` | named failure states. house + external |
 | `prompts/` | drop-in genome and canon |
 | `examples/rewrite.md` | mush → iron |
+| `examples/english-poetry.md` | density sample. verse in English |
 | `spec/progen.v1.json` | machine marks + rule ids |
 | `src/progen/` | parse · lint · iron · prompt · cli |
 

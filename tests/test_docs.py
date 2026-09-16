@@ -16,12 +16,14 @@ _DOCS = [
     "docs/SPEC.md",
     "docs/IMPLEMENTATION.md",
     "docs/BOUNDARY.md",
+    "docs/FAILURES.md",
     "prompts/genome.md",
     "prompts/canon.md",
     "README.md",
     "AGENTS.md",
     "COVENANT.md",
     "examples/iron.md",
+    "examples/english-poetry.md",
 ]
 
 

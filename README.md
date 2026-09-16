@@ -6,14 +6,22 @@ When a model restates what was already provided, drifts into unrelated threads, 
 
 **Progen** is a dialect of English designed for agent reasoning, structured output, and thinking traces. It applies Japanese topic-comment grammar structure to English vocabulary: establish the topic first, then deliver the comment. Standardized punctuation marks enable direct syntactic parsing. The agent remains precise; the human may remain informal.
 
-This repository provides the language specification, drop-in prompt templates, and verification tooling. Licensed under **AGPL-3.0-or-later**. See [`LICENSE`](LICENSE) and [`COVENANT.md`](COVENANT.md).
+This repository provides the language specification, drop-in prompt templates, and offline verification tooling. Licensed under AGPL-3.0-or-later. See [`LICENSE`](LICENSE) and [`COVENANT.md`](COVENANT.md).
 
-## Quickstart
+[zcabs](https://github.com/erastudil/zcabs) is how an agent proves execution. [gfc](https://github.com/erastudil/gfc) is how it writes for humans. This is how it thinks.
 
-Run unit tests directly from a repository checkout:
+---
+
+## Quickstart and verification
+
+Execute test suites directly from a local repository clone:
 
 ```bash
+# run standard unit tests
 python -m unittest discover -s tests -v
+
+# run language conformance self-check
+PYTHONPATH=src python -m progen check
 ```
 
 Install as an editable package:
@@ -27,31 +35,13 @@ progen iron examples/mush.md
 progen lint examples/iron.md --role agent
 ```
 
-Run without package installation:
+Requires Python 3.10+ // standard library only.
 
-```bash
-# Unix
-PYTHONPATH=src python -m progen check
+---
 
-# PowerShell
-$env:PYTHONPATH = "src"
-python -m progen check
-```
+## Command line tools
 
-Requires Python 3.10+, standard library only.
-
-## Documentation
-
-| Document | Description |
-|---|---|
-| [`docs/SPEC.md`](docs/SPEC.md) | Normative language specification |
-| [`docs/IMPLEMENTATION.md`](docs/IMPLEMENTATION.md) | Integration guide for agent runtimes, UI shells, and CI pipelines |
-| [`docs/BOUNDARY.md`](docs/BOUNDARY.md) | Technical scope and project boundaries |
-| [`prompts/genome.md`](prompts/genome.md) | Drop-in reference system prompt |
-| [`examples/rewrite.md`](examples/rewrite.md) | Worked example: rewriting verbose outputs into iron |
-| [`spec/progen.v1.json`](spec/progen.v1.json) | Machine-readable marks and linter rule catalog |
-
-## Tooling Reference
+Utilities for analysis, lint checks, and canonical prompt output:
 
 ```bash
 progen parse FILE [--role iron|slack]
@@ -67,6 +57,8 @@ progen check
 - `prompt`: outputs reference system prompts for genomes, project canons, and reference warehouses.
 - `check`: executes conformance suites and self-tests.
 
+---
+
 ## Architecture Layers
 
 System instructions are organized into three distinct layers:
@@ -77,10 +69,19 @@ System instructions are organized into three distinct layers:
 | **Warehouse** | Task-specific documentation and comprehensive reference material. | Loaded on demand |
 | **Canon** | Standing universal rules and operational constraints. | Short and persistent |
 
-## Copyleft & Covenant
+---
 
-Speaking the dialect creates no derivative work. Copying the specification, prompt templates, or tooling into modified works is governed by the AGPL-3.0-or-later. Network services hosting modified versions must provide corresponding source code under AGPL §13. See [`COVENANT.md`](COVENANT.md).
+## Documentation
 
-## Contributing
-
-See [`CONTRIBUTING.md`](CONTRIBUTING.md). Contributions require Developer Certificate of Origin sign-off and tests matching [`docs/SPEC.md`](docs/SPEC.md).
+| Document | Description |
+|---|---|
+| [`docs/SPEC.md`](docs/SPEC.md) | Normative language specification |
+| [`docs/IMPLEMENTATION.md`](docs/IMPLEMENTATION.md) | Integration guide for agent runtimes, UI shells, and CI pipelines |
+| [`docs/BOUNDARY.md`](docs/BOUNDARY.md) | Technical scope and project boundaries |
+| [`docs/FAILURES.md`](docs/FAILURES.md) | Named failure states for prose and code |
+| [`prompts/genome.md`](prompts/genome.md) | Drop-in reference system prompt |
+| [`examples/rewrite.md`](examples/rewrite.md) | Worked example: rewriting verbose outputs into iron |
+| [`examples/english-poetry.md`](examples/english-poetry.md) | Density sample: history of verse in English |
+| [`spec/progen.v1.json`](spec/progen.v1.json) | Machine-readable marks and linter rule catalog |
+| [`CONTRIBUTING.md`](CONTRIBUTING.md) | Patch submission requirements and test verification rules |
+| [`COVENANT.md`](COVENANT.md) | Zero-rent software pledge and copyleft terms |

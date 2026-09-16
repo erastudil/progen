@@ -16,6 +16,31 @@ DUALISM = re.compile(
     r"not a .{1,40}, a )",
     re.IGNORECASE,
 )
+NOT_THIS = re.compile(r"\bis not this\b", re.IGNORECASE)
+OVER_NOT_OVER = re.compile(r"\bover\b.{0,80}\bnot over\b", re.IGNORECASE)
+COMMA_NOT_ON_THE = re.compile(
+    r",\s*not on the (net|weights|architecture|model|base)\b",
+    re.IGNORECASE,
+)
+SPLIT_HEAD = re.compile(r"\b(this is not|it['’]s not)\b", re.IGNORECASE)
+SPLIT_TAIL = re.compile(r"^(it['’]s|it is)\b", re.IGNORECASE)
+TOPIC_COMMENT = re.compile(r"^[^:\n#|]{1,48}:\s+\S")
+EXTRA_SCOPE = re.compile(
+    r"\b(while i was here|drive[- ]by|might as well|also refactored|also cleaned(?: up)?)\b",
+    re.IGNORECASE,
+)
+PROOF = re.compile(
+    r"\b(pytest|unittest|progen check|tests? passed|tool proof|\d+ passing)\b",
+    re.IGNORECASE,
+)
+CODE_JOB = re.compile(
+    r"\b(patch landed|landed the patch|the patch is done|fixed the bug)\b",
+    re.IGNORECASE,
+)
+WORD = re.compile(r"[a-z0-9']+", re.IGNORECASE)
+STOP = frozenset(
+    "the a an of and to for in on is it as at by or we you they this that with from".split()
+)
 HOOK = re.compile(
     r"\b(what should we\b|what would you like\b|want me to\b|shall i\b|"
     r"let me know if\b|anything else i can\b|how can i (help|assist)\b|"
