@@ -117,6 +117,7 @@ def _lint_agent(source: str, ask: Optional[str] = None) -> list[Finding]:
     _latch(visible, add)
     _stub(visible, add)
     _split_dualism(lines, add)
+    _packed_topics(lines, add)
     _code_proof(source, add)
     if ask is not None:
         _scale(ask, source, add)
@@ -159,6 +160,15 @@ def _latch(visible: str, add) -> None:
 def _stub(visible: str, add) -> None:
     if tells.STUB.search(visible) and tells.DONE_CLAIM.search(visible):
         add("P013", 1, "placeholder plus done")
+
+
+def _packed_topics(lines: list[str], add) -> None:
+    for i, line in enumerate(lines, start=1):
+        s = line.strip()
+        if not s or s.startswith("#") or s.startswith("|"):
+            continue
+        if tells.PACKED_TOPICS.search(s):
+            add("P017", i, s)
 
 
 def _split_dualism(lines: list[str], add) -> None:

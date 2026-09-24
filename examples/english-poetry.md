@@ -29,7 +29,7 @@ break : Whitman 1855 and the modernist free-verse turn. meter never dies. it sha
 
 ## 2. engine
 
-english : stress-timed. beat counts more than syllable count. french alexandrine is syllable law. this language is stress law.
+English : stress-timed. beat counts more than syllable count. French alexandrine is syllable law. English is stress law.
 
 | foot | shape | load |
 |---|---|---|
@@ -52,7 +52,7 @@ alliteration : OE structural. later ornamental, then Pound/Hopkins structural ag
 
 stanza stock : couplet; tercet; quatrain; ballad *abcb* or *abab*; rhyme royal *ababbcc*; ottava rima *abababcc*; Spenserian *ababbcbcc*; sonnet; rondeau; villanelle; sestina; canzone; ghazal; pantoum; haiku-influence; prose poem; open field.
 
-sonnet family :
+sonnet family : six primary forms in English.
 
 | kind | scheme | comment |
 |---|---|---|
@@ -61,13 +61,13 @@ sonnet family :
 | Spenserian | *abab bcbc cdcd ee* | chained quatrains |
 | curtal | Hopkins 10½ | *Pied Beauty* |
 | crown | 14 linked + master | Donne *La Corona*; later sequences |
-| American hybrid | mixed | Millay, Frost, Nelson Marilyn |
+| American hybrid | mixed | Millay, Frost, Marilyn Nelson |
 
 blank verse : unrhymed iambic pentameter. Surrey *Aeneid* ~1540. *Gorboduc* 1561. Marlowe mighty line. Shakespeare theatre. Milton *Paradise Lost*. Wordsworth *Prelude*. Tennyson *Ulysses*. Browning talk. Frost speech-tune.
 
 heroic couplet : pentameter pair. Chaucer open. Dryden public. Pope closed, antithesis, zeugma. Keats *Endymion* opens it again. later satire still borrows the snap.
 
-sprung rhythm : Hopkins. count stresses, not syllables. outrides. inscape, instress. published 1918 by Bridges.
+sprung rhythm : Hopkins. stress count over syllable count. outrides. inscape, instress. published 1918 by Bridges.
 
 projective verse : Olson 1950. breath, field, typewriter as score. Black Mountain.
 
@@ -95,21 +95,23 @@ battle : *Brunanburh* 937 in the Chronicle. *Maldon* 991, Byrhtnoth, *ofermod*. 
 
 other : *Judith*; *Phoenix*; *Guthlac*; charms; *Ruin*; *Husband's Message*.
 
-latin shadow : Aldhelm, Bede, Alcuin. English verse keeps the hall.
+Latin shadow : Aldhelm, Bede, Alcuin. English verse keeps the hall.
 
-1066 : prestige flips to French and Latin. English verse thins, does not vanish.
+conquest 1066 : prestige flips to French and Latin. English verse thins, does not vanish.
 
 ## 4. Middle English 1100–1500
 
-early : *Ormulum* ~1175, spelling as phonology. Layamon *Brut* ~1200, alliteration plus rhyme, Galfridian Britain. *Owl and Nightingale* debate couplets. *Ancrene Wisse* is prose, sets a style. Harley 2253 lyrics, *Alysoun*, political songs. Breton lai in English. romances: *Havelok*, *King Horn*, *Sir Orfeo*, *Floris*. *Cursor Mundi*. *Handlyng Synne*.
+early : *Ormulum* ~1175, spelling as phonology. Layamon *Brut* ~1200, alliteration plus rhyme, Galfridian Britain. *Owl and Nightingale* debate couplets. *Ancrene Wisse* is prose, sets a style. Harley 2253 lyrics, *Alysoun*, political songs. Breton lai in English.
+romances : *Havelok*, *King Horn*, *Sir Orfeo*, *Floris*. *Cursor Mundi*. *Handlyng Synne*.
 
-alliterative revival : west and north, 14c. *Winner and Waster*. *Parliament of the Three Ages*. *Alliterative Morte Arthure*. Langland *Piers Plowman*, A/B/C, B ~1377, field of folk, estates satire, Will's search. Pearl-poet, Cheshire: *Pearl*, *Cleanness*, *Patience*, *Sir Gawain and the Green Knight*. bob and wheel. courtesy test, beheading game, pentangle, confession.
+alliterative revival : west and north, 14c. *Winner and Waster*. *Parliament of the Three Ages*. *Alliterative Morte Arthure*. Langland *Piers Plowman*, A/B/C, B ~1377, field of folk, estates satire, Will's search.
+pearl-poet : Cheshire. *Pearl*, *Cleanness*, *Patience*, *Sir Gawain and the Green Knight*. bob and wheel. courtesy test, beheading game, pentangle, confession.
 
-Chaucer, d. 1400 : London, court, Italian and French forms into English. *Book of the Duchess*, *House of Fame*, *Parliament of Fowls*, *Troilus and Criseyde* rhyme royal, *Legend of Good Women*, *Canterbury Tales* unfinished by design of pilgrimage. iambic pentameter / decasyllable as English future. estates, fabliau, saint's life, sermon, beast, parody of romance. narrator as device.
+Chaucer d. 1400 : London, court, Italian and French forms into English. *Book of the Duchess*, *House of Fame*, *Parliament of Fowls*, *Troilus and Criseyde* rhyme royal, *Legend of Good Women*, *Canterbury Tales* unfinished by design of pilgrimage. iambic pentameter / decasyllable as English future. estates, fabliau, saint's life, sermon, beast, parody of romance. narrator as device.
 
 Gower : *Confessio Amantis*, English; also French, Latin. moral frame.
 
-Scotland : Barbour *Bruce* 1375. James I *Kingis Quair*. Henryson *Testament of Cresseid*, fables. Dunbar, flyting, *Lament for the Makaris*. Gavin Douglas *Eneados* 1513, Virgil in Scots. makars keep a northern high style.
+Scots makars : Barbour *Bruce* 1375. James I *Kingis Quair*. Henryson *Testament of Cresseid*, fables. Dunbar, flyting, *Lament for the Makaris*. Gavin Douglas *Eneados* 1513, Virgil in Scots. northern high style.
 
 after Chaucer : Hoccleve, petition and madness. Lydgate, monk of Bury, long and aureate, *Troy Book*, *Fall of Princes*. Capgrave. *Assembly of Ladies*. *Floure and the Leafe*.
 
@@ -145,9 +147,9 @@ Jonson : classic measure, epigram, country-house *To Penshurst*, masque with Jon
 
 Donne : *Songs and Sonnets*, dramatic speaker, conceit as argument, seduction as case-law. satires. *Holy Sonnets*, *Anniversaries*, hymns. from coterie MS to 1633 print.
 
-women : Aemilia Lanyer *Salve Deus Rex Judaeorum* 1611, Cookham as country-house before Jonson's. Mary Wroth *Pamphilia to Amphilanthus*, first English sonnet sequence by a woman, *Urania*. Rachel Speght. Elizabeth Cary closet tragedy.
+women poets : Aemilia Lanyer *Salve Deus Rex Judaeorum* 1611, Cookham as country-house before Jonson's. Mary Wroth *Pamphilia to Amphilanthus*, first English sonnet sequence by a woman, *Urania*. Rachel Speght. Elizabeth Cary closet tragedy.
 
-Herbert : *The Temple* 1633. pattern poems *Easter Wings*, *Altar*. plain style as devotion. George Herbert dies 1633.
+Herbert : *The Temple* 1633 posthumous. pattern poems *Easter Wings*, *The Altar*. plain style as devotion. Bemerton parish.
 
 Vaughan, Crashaw, Traherne : light, Catholic baroque, childhood as epistemology.
 
@@ -155,9 +157,9 @@ Marvell : *Horatian Ode* 1650, Cromwell with a double edge. *Coy Mistress*, *Gar
 
 Cavalier : Herrick *Hesperides* 1648, *Noble Numbers*. Carew, Lovelace, Suckling, Waller. carpe diem, ease, the court as myth after the court falls.
 
-Milton : *Nativity Ode*, *Lycidas* 1637, *Areopagitica* prose. 1645 *Poems*. blindness. *Paradise Lost* 1667 ten books, 1674 twelve. blank verse as republican epic, no rhyme as bondage. Satan's rhetoric, free will, theodicy. *Paradise Regain'd*, *Samson Agonistes* 1671. Latin and Italian too.
+Milton : *Nativity Ode*, *Lycidas* 1637, *Areopagitica* prose. 1645 *Poems*. blindness. *Paradise Lost* 1667 ten books, 1674 twelve. blank verse as republican epic, rhyme dismissed as bondage. Satan's rhetoric, free will, theodicy. *Paradise Regain'd*, *Samson Agonistes* 1671. Latin and Italian too.
 
-Civil War : raw broadsides, psalms, Marvell's public odes, Cavendish *Poems and Fancies* 1653. Katherine Philips Matchless Orinda, coterie, 1664.
+Civil War : raw broadsides, psalms, Marvell's public odes, Margaret Cavendish *Poems and Fancies* 1653. Katherine Philips Matchless Orinda, coterie, 1664.
 
 ## 6. Restoration to 1789
 
@@ -177,21 +179,22 @@ sensibility : Thomson *Seasons* 1730, blank-verse georgic, nature as system. You
 
 ballad revival : Percy's *Reliques* 1765. Child later classifies. Chatterton, Rowley forgeries, suicide 1770, Romantic saint. Macpherson *Ossian* 1760–, fake antiquity, Europe believes. antiquarian hunger feeds Romanticism.
 
-women : Anne Finch, Countess of Winchilsea. Mary Leapor. Ann Yearsley. Anna Laetitia Barbauld. Charlotte Smith *Elegiac Sonnets* 1784, sonnet wakes. Hannah More. Phillis Wheatley *Poems on Various Subjects* 1773 London, first African American book of poems, neoclassical mastery under constraint.
+women poets : Anne Finch Countess of Winchilsea. Mary Leapor. Ann Yearsley. Anna Laetitia Barbauld. Charlotte Smith *Elegiac Sonnets* 1784, sonnet wakes. Hannah More. Phillis Wheatley *Poems on Various Subjects* 1773 London, first African American book of poems, neoclassical mastery under constraint.
 
-Burns : Kilmarnock 1786. Scots as high art, not costume. *Tam o' Shanter*, *Holy Willie's Prayer*, songs with Johnson and Thomson. standard Habbie. kirk, drink, sex, liberty. dies 1796.
+Burns : Kilmarnock 1786. Scots as high art and living speech. *Tam o' Shanter*, *Holy Willie's Prayer*, songs with Johnson and Thomson. standard Habbie. kirk, drink, sex, liberty. dies 1796.
 
 Blake : illuminated printing, text as image. *Songs of Innocence* 1789, *Experience* 1794. *Marriage of Heaven and Hell*. Lambeth books. *Jerusalem*, *Milton*, *Four Zoas*. Los, Urizen, generation vs. creation. no school. later canon.
 
 ## 7. Romantic 1789–1832
 
-Lyrical Ballads 1798, Wordsworth and Coleridge. 1800 Preface: common language, feeling as origin, metre as charm over speech. 1802 expansion. rural poor as subject. *Michael*, *Tintern Abbey*, *Ancient Mariner* in the same book as a fight about what a poem is.
+Lyrical Ballads 1798 : Wordsworth and Coleridge. 1800 Preface sets common language, feeling as origin, metre as charm over speech. 1802 expansion. rural poor as subject. *Michael*, *Tintern Abbey*, *Ancient Mariner* fight over what a poem is.
 
-Wordsworth : *Prelude*, 1799 two-book, 1805, 1850 death-print. growth of a poet's mind. spots of time. *Excursion* 1814. *Ode: Intimations*. late Tory laureate. the early book is the engine.
+Wordsworth : *Prelude*, 1799 two-book, 1805, 1850 death-print. growth of a poet's mind. spots of time. *Excursion* 1814.
+intimations : *Ode*. late Tory laureate. the early book is the engine.
 
 Coleridge : conversation poems, *Eolian Harp*, *Frost at Midnight*. *Kubla Khan*, fragment as form. *Christabel*, new metre. *Rime*. *Biographia Literaria* 1817, imagination vs fancy, practical criticism.
 
-second generation :
+second generation trio : Byron, Shelley, Keats.
 
 | poet | pivot | form-mark |
 |---|---|---|
@@ -209,7 +212,7 @@ Clare : enclosure, asylum, bird, dialect. labourer as eye.
 
 Scott : verse romances *Lay of the Last Minstrel*, *Marmion*, *Lady of the Lake*, then the novel takes the market.
 
-women : Hemans, national household, *Casabianca*. L.E.L. Landon. Joanna Baillie plays. Robinson Mary. years of annuals.
+women poets : Felicia Hemans, national household, *Casabianca*. L.E.L. Landon. Joanna Baillie plays. Mary Robinson. years of annuals.
 
 US start : Bryant *Thanatopsis*. Freneau. Wheatley already done. Barlow *Columbiad*, epic ambition.
 
@@ -227,13 +230,19 @@ Pre-Raphaelite : D.G. Rossetti, *Blessed Damozel*, sonnets *House of Life*. Chri
 
 Hopkins : Jesuit. sprung rhythm. *Wreck of the Deutschland*. terrible sonnets. inscape. unpublished in life. 1918 book remakes modernism's ear.
 
-other : Clough *Amours de Voyage*, hexameter doubt. Patmore *Angel in the House*, later hated. James Thomson B.V. *City of Dreadful Night*. FitzGerald *Rubáiyát* 1859, translation as English poem. Lear, Carroll, nonsense as metric play. Kipling *Barrack-Room Ballads*, empire's vernacular, later recedes in the classroom. Housman *Shropshire Lad* 1896. Hardy, novels then *Wessex Poems* 1898, 20c's first great Victorian.
+other Victorians : Clough *Amours de Voyage*, hexameter doubt. Patmore *Angel in the House*, later hated. James Thomson B.V. *City of Dreadful Night*. FitzGerald *Rubáiyát* 1859, translation as English poem. Lear, Carroll, nonsense as metric play. Kipling *Barrack-Room Ballads*, empire's vernacular, later recedes in the classroom. Housman *Shropshire Lad* 1896. Hardy, novels then *Wessex Poems* 1898, 20c's first great Victorian.
 
-1890s : Rhymers' Club. Yeats early. Dowson, Johnson Lionel. Wilde *Ballad of Reading Gaol*. *Yellow Book*. Symbolist import.
+1890s : Rhymers' Club. Yeats early. Ernest Dowson, Lionel Johnson. Wilde *Ballad of Reading Gaol*. *Yellow Book*. Symbolist import.
 
 ## 9. United States to 1900
 
-Wheatley 1773. Bryant. Emerson verse lesser than essays, yet *Concord Hymn*. Poe: *Raven* 1845, *Philosophy of Composition*, sound before sense, *Annabel Lee*. Longfellow: most-read 19c poet in English, *Hiawatha* trochaic, *Evangeline* dactylic, Dante translation. Whittier, Lowell J.R., Holmes, fireside school. Melville *Battle-Pieces*, *Clarel* 1876, 18,000-line pilgrimage.
+early republic : Wheatley 1773. Bryant *Thanatopsis*. Freneau.
+
+fireside school : Longfellow most-read 19c poet in English, *Hiawatha* trochaic, *Evangeline* dactylic, Dante translation. Whittier, J.R. Lowell, Holmes.
+
+Poe : *Raven* 1845, *Philosophy of Composition*, sound before sense, *Annabel Lee*.
+
+transcendental and skeptic : Emerson verse lesser than essays, yet *Concord Hymn*. Melville *Battle-Pieces*, *Clarel* 1876, 18,000-line pilgrimage.
 
 Whitman : *Leaves of Grass* 1855, then lifelong reissue. long line, catalog, I as nation, body, war *Drum-Taps*, *When Lilacs Last in the Dooryard Bloom'd*. free verse as American claim.
 
@@ -241,13 +250,13 @@ Dickinson : 1,789 poems, fascicles, dashes, common meter from hymns, slant rhyme
 
 Dunbar : dialect and standard, *We Wear the Mask*, two audiences.
 
-Harper Frances E.W. : abolition, *Iola* as novel, poems as platform.
+Frances E.W. Harper : abolition, *Iola* as novel, poems as platform.
 
 ## 10. modernism 1908–1939
 
-little magazines : *Poetry* Chicago 1912, Harriet Monroe. *Egoist*, *Blast* Vorticist 1914–15, *Little Review*, *Dial*, *Criterion* Eliot. institution = magazine + editor, not the laureateship.
+institution : little magazine + editor. court laureateship recedes. *Poetry* Chicago 1912 Harriet Monroe. *Egoist*, *Blast* Vorticist 1914–15, *Little Review*, *Dial*, *Criterion* Eliot.
 
-Imagism 1912–14 : Pound, H.D., Aldington, Flint. direct treatment, no surplus word, musical phrase not metronome. Amy Lowell takes the brand. Hulme's classicism behind it.
+Imagism 1912–14 : Pound, H.D., Aldington, Flint. direct treatment, no surplus word, musical phrase over metronome. Amy Lowell takes the brand. Hulme's classicism behind it.
 
 Pound : *Personae*. *Cathay* 1915, Fenollosa notes, China as English cadence. *Hugh Selwyn Mauberley* 1920. *Cantos*, 1915–1962, unfinished, collage, usury, detention at Pisa, *Pisan Cantos*. make it new. the life stains the book.
 
@@ -255,7 +264,7 @@ Eliot : *Prufrock* 1915. *Waste Land* 1922, Eliot/Pound cut, notes as part of th
 
 Yeats : from Celtic twilight to *Tower*, *Winding Stair*. gyres, masks, 1916, Byzantium, Crazy Jane. Irish nation and occult system. 1923 Nobel. the 20c's most-closed-and-open lyric career.
 
-H.D. : Imagiste then myth. *Trilogy*, *Helen in Egypt*.
+H.D : Imagiste then myth. *Trilogy*, *Helen in Egypt*.
 
 Stevens : *Harmonium* 1923. supreme fiction, Florida, Hartford. *Notes Toward a Supreme Fiction*, *Owl's Clover*, late *Rock*.
 
@@ -265,29 +274,29 @@ Moore : syllabics, quotations as armor, *Poetry*, *Fish*, *Octopus*. editor of *
 
 Frost : English meter, American talk. North of Boston. *Home Burial*, *Design*, *Directive*. 1913 first book in London. four Pulitzers.
 
-Crane Hart : *Bridge* 1930, Brooklyn as myth, dies 1932.
+Hart Crane : *Bridge* 1930, Brooklyn as myth, dies 1932.
 
-Stein : *Tender Buttons*, repetition as cubism. Loy Mina, *Songs to Joannes*, Feminist Manifesto.
+Stein and Loy : Stein *Tender Buttons*, repetition as cubism. Mina Loy, *Songs to Joannes*, Feminist Manifesto.
 
-war : Brooke 1914 sonnets. Sassoon protest. Owen, dies 1918, *Dulce*, pararhyme, pity of war, preface. Rosenberg, Gurney, Jones David *In Parenthesis* 1937 mixed. the trench kills the Georgian garden.
+war : Brooke 1914 sonnets. Sassoon protest. Owen, dies 1918, *Dulce*, pararhyme, pity of war, preface. Rosenberg, Gurney, David Jones *In Parenthesis* 1937 mixed. trench kills Georgian garden.
 
-Irish : Joyce's verse is minor; the prose takes the music. Clarke, Kavanagh *Great Hunger* 1942.
+Irish : Joyce's verse is minor; the prose takes the music. Austin Clarke, Patrick Kavanagh *Great Hunger* 1942.
 
-Scots : MacDiarmid *A Drunk Man Looks at the Thistle* 1926, synthetic Scots, modernism north.
+Scots : Hugh MacDiarmid *A Drunk Man Looks at the Thistle* 1926, synthetic Scots, modernism north.
 
-Thomas Dylan : *18 Poems*, *Deaths and Entrances*, radio, *Fern Hill*, sound before argument.
+Dylan Thomas : *18 Poems*, *Deaths and Entrances*, radio, *Fern Hill*, sound before argument.
 
 Auden : 1930 *Poems*. 1930s public, then US 1939. forms held while subjects modernize. *Musée des Beaux Arts*, *In Memory of W.B. Yeats*, *September 1, 1939* later disowned. *Age of Anxiety*.
 
-Harlem : McKay sonnets. Cullen. Hughes *Weary Blues* 1926, jazz and blues as form. Toomer *Cane* 1923 mixed. Spencer, Bennett, Grimké.
+Harlem Renaissance : McKay sonnets. Cullen. Hughes *Weary Blues* 1926, jazz and blues as form. Toomer *Cane* 1923 mixed. Spencer, Bennett, Grimké.
 
 ## 11. mid to late 20c
 
 Movement : Larkin, Amis, Davie, Gunn early. English distrust of myth. Larkin *Less Deceived* 1955, *Whitsun Weddings* 1964, *High Windows* 1974. provincial, death, hired boxes, withheld last line.
 
-Hughes Ted : *Hawk in the Rain*, *Crow* 1970, *Birthday Letters* 1998. nature as violence. laureate 1984.
+Ted Hughes : *Hawk in the Rain*, *Crow* 1970, *Birthday Letters* 1998. nature as violence. laureate 1984.
 
-Thomas R.S. : Wales in English, God-absence, hill farm.
+R.S. Thomas : Wales in English, God-absence, hill farm.
 
 Heaney : *Death of a Naturalist* 1966, *North* 1975, bog bodies as Troubles allegory, *Field Work*, Beowulf trans. 1999. 1995 Nobel. Derry to Dublin to world English.
 
@@ -309,33 +318,34 @@ New York School : O'Hara *lunch poems*, personism. Ashbery *Some Trees*, *Self-P
 
 Black Mountain : Olson *Maximus*. Creeley. Duncan. Levertov. field composition.
 
-Language : 1970s–90s. Silliman, Hejinian *My Life*, Bernstein, Howe Susan. word as material, reference loosened. *L=A=N=G=U=A=G=E* magazine.
+Language : 1970s–90s. Silliman, Hejinian *My Life*, Bernstein, Susan Howe. word as material, reference loosened. *L=A=N=G=U=A=G=E* magazine.
 
-New Formalism : 1980s reaction. Gioia, Hacker, Gunn already there. metre as option, not jail.
+New Formalism : 1980s reaction. Gioia, Hacker, Gunn already there. metre as chosen instrument.
 
-Caribbean : Walcott *Omeros* 1990, Homeric St Lucia, 1992 Nobel. Brathwaite, nation language, tidalectics. Goodison. Senior. LKJ dub, *Inglan is a Bitch*. Nichols *Fat Black Woman*. Bennett Louise, Jamaican.
+Caribbean : Walcott *Omeros* 1990, Homeric St Lucia, 1992 Nobel. Brathwaite, nation language, tidalectics. Goodison. Senior. LKJ dub, *Inglan is a Bitch*. Nichols *Fat Black Woman*. Louise Bennett, Jamaican.
 
 Africa in English : Soyinka, Okigbo, Clark, Brutus, Mapanje, Marechera, later Mpe, etc. Soyinka 1986 Nobel, plays first.
 
-South Asia : Kolatkar *Jejuri*. Ramanujan. Ezekiel. Das Kamala. later Seth *Golden Gate* Onegin stanzas in California. Ali Agha Shahid, ghazal.
+South Asia : Kolatkar *Jejuri*. Ramanujan. Ezekiel. Kamala Das. later Vikram Seth *Golden Gate* Onegin stanzas in California. Agha Shahid Ali, ghazal.
 
-Australia / NZ : Wright Judith. Murray Les. Harwood. Curnow. Tuwhare. Frame's verse lesser than prose.
+Australia / NZ : Judith Wright. Les Murray. Harwood. Curnow. Tuwhare. Frame's verse lesser than prose.
 
-Canada : Pratt. Layton. Atwood. Ondaatje. Carson Anne, *Autobiography of Red*, classicist hybrid.
+Canada : Pratt. Layton. Atwood. Ondaatje. Anne Carson, *Autobiography of Red*, classicist hybrid.
 
 translation as English poetry : Golding *Metamorphoses*. Chapman Homer. KJV 1611 as rhythm school. Dryden, Pope. FitzGerald. Pound *Cathay*. Logue *War Music*. Heaney *Beowulf*. Carson *If Not, Winter*. the target language writes a new poem.
 
 ## 12. now ~1970–2026
 
-institutions : MFA Iowa 1936 onward, workshop lyric. Faber, Cape, Bloodaxe, Carcanet, Norton, Penguin. prizes: King's/Queen's Gold Medal, T.S. Eliot Prize, Pulitzer, National Book Award, Griffin. *Poetry*, *PN Review*, *London Review* verse pages. recording, YouTube, Instagram line-break. slam, Def Poetry, spoken word as parallel canon.
+institutions : MFA Iowa 1936 onward, workshop lyric. Faber, Cape, Bloodaxe, Carcanet, Norton, Penguin.
+prizes : King's/Queen's Gold Medal, T.S. Eliot Prize, Pulitzer, National Book Award, Griffin. *Poetry*, *PN Review*, *London Review* verse pages. recording, YouTube, Instagram line-break. slam, Def Poetry, spoken word as parallel canon.
 
-Britain : Motion, Armitage, Duffy first woman laureate 2009, Cope, Fenton, Raine, Muldoon Irish-US, Carson Ciaran, McGuckian, Boland *Object Lessons*, Oswald *Dart* 2002 river as voice, *Memorial*. Paterson. Burnside. Kay Jackie. Agbabi. Tempest Kae. Nichols, Sissay, Zephaniah. Nagra. Minhinnick. Jamie. Robertson Robin. Maxwell. the island is many Englishes.
+Britain : Motion, Armitage, Duffy first woman laureate 2009, Cope, Fenton, Raine, Muldoon Irish-US, Ciaran Carson, McGuckian, Boland *Object Lessons*, Oswald *Dart* 2002 river as voice, *Memorial*. Paterson. Burnside. Jackie Kay. Agbabi. Kae Tempest. Nichols, Sissay, Zephaniah. Nagra. Minhinnick. Jamie. Robin Robertson. Maxwell. island is many Englishes.
 
-Ireland after Heaney : Muldoon, Carson, McGuckian, Boland, Ni Chuilleanain, Meehan, later Kennelly already, Flynn Leontia, Morrissey, Connolly.
+Ireland after Heaney : Muldoon, Carson, McGuckian, Boland, Ní Chuilleanáin, Meehan, later Kennelly already, Leontia Flynn, Morrissey, Connolly.
 
-US late : Glück 2020 Nobel. Graham Jorie. Wright C.D. Bidart. Pinsky. Hass. Olds. Rich, politics as form, *Diving into the Wreck*. Lorde. Dove. Komunyakaa. Trethewey. Rankine *Citizen* 2014, lyric essay as racial form. Hayes *Lighthead*, *American Sonnets*. Nelson *The Argonauts* hybrid. Vuong. Kaminsky *Deaf Republic*. conceptual Goldsmith, Place, controversy as method. digital, Flarf, erasure M. NourbeSe Philip *Zong!*.
+US late : Glück 2020 Nobel. Jorie Graham. C.D. Wright. Bidart. Pinsky. Hass. Olds. Rich, politics as form, *Diving into the Wreck*. Lorde. Dove. Komunyakaa. Trethewey. Rankine *Citizen* 2014, lyric essay as racial form. Hayes *Lighthead*, *American Sonnets*. Nelson *The Argonauts* hybrid. Vuong. Kaminsky *Deaf Republic*. conceptual Goldsmith, Place, controversy as method. digital, Flarf, erasure M. NourbeSe Philip *Zong!*.
 
-performance / hip-hop : rhyme systems, internal chain, flow as meter. not always "poetry" in the prize sense. already the widest English verse audience. slam bridges the two rooms.
+performance / hip-hop : rhyme systems, internal chain, flow as meter. oral lineage outside prize-committee gatekeeping. widest English verse audience. slam bridges page and stage.
 
 children / light : Stevenson *Child's Garden*. Milne. de la Mare. Nash. Belloc cautionary. Cope *Making Cocoa for Kingsley Amis*. Rosen. the light lyric trains the ear the epic forgets.
 
@@ -347,7 +357,7 @@ print : Caxton 1476. Tottel 1557. Stationers' Company. quarto play-text vs. foli
 
 anthology as canon : *Reliques* 1765. Palgrave *Golden Treasury* 1861. Quiller-Couch *Oxford Book of English Verse* 1900. Yeats *Oxford Book* 1936. Alvarez *New Poetry* 1962. *Norton* as US classroom state. *Penguin Book of English Verse*. *Rattle*, *Best American*. each book is a politics.
 
-criticism that changes writing : Sidney *Defence*. Dryden prefaces. Johnson *Lives*. Wordsworth Preface. Coleridge *Biographia*. Shelley *Defence*. Poe *Composition*. Arnold touchstones. Eliot essays. Leavis *New Bearings*, *Revaluation*. New Criticism, Brooks, Wimsatt, the text as object. Empson *Seven Types of Ambiguity* 1930. Davie *Purity of Diction*. Vendler on lyric. Culler, Stewart, Jackson Virginia on lyricization. the academy writes the syllabus that writes the next poem.
+criticism that changes writing : Sidney *Defence*. Dryden prefaces. Johnson *Lives*. Wordsworth Preface. Coleridge *Biographia*. Shelley *Defence*. Poe *Composition*. Arnold touchstones. Eliot essays. Leavis *New Bearings*, *Revaluation*. New Criticism, Brooks, Wimsatt, the text as object. Empson *Seven Types of Ambiguity* 1930. Davie *Purity of Diction*. Vendler on lyric. Culler, Stewart, Virginia Jackson on lyricization. the academy writes the syllabus that writes the next poem.
 
 recovery : 1970s– feminist reprints, Gilbert/Gubar, *Norton Women*. Black canon wars, Gates, *Norton African American*. lost 17c women, Greer et al. *Kissing the Rod*. Clare restored. Hopkins delay. Dickinson fascicles. the past grows.
 
@@ -406,10 +416,10 @@ etc : the class is the language. new members arrive.
 
 ## 17. dates worth the token
 
-657–680 Cædmon. ~1000 *Beowulf* MS. 1377 Langland B. 1400 Chaucer dies. 1476 Caxton. 1513 Douglas *Eneados*. 1557 Tottel. 1579 *Shepheardes Calender*. 1590 *FQ* I–III. 1609 *Sonnets*. 1633 Herbert, Donne print. 1667 *Paradise Lost*. 1711 *Essay on Criticism*. 1751 Gray *Elegy*. 1773 Wheatley. 1786 Burns. 1789 *Innocence*. 1798 *Lyrical Ballads*. 1819 Keats odes. 1850 *In Memoriam*, *Prelude* print, Tennyson laureate. 1855 *Leaves of Grass*, *Men and Women*. 1862 *Goblin Market*. 1890 Dickinson first book. 1912 *Poetry* Chicago. 1915 *Cathay*, *Prufrock*. 1918 Owen dead, Hopkins book. 1922 *Waste Land*, *Ulysses* prose, *Harmonium* 1923. 1955 Larkin, Dickinson Johnson ed. 1956 *Howl*. 1959 *Life Studies*. 1965 *Ariel*. 1975 *North*. 1990 *Omeros*. 1995 Heaney Nobel. 1999 Heaney *Beowulf*. 2014 *Citizen*. 2020 Glück Nobel.
+dates : 657–680 Cædmon. ~1000 *Beowulf* MS. 1377 Langland B. 1400 Chaucer dies. 1476 Caxton. 1513 Douglas *Eneados*. 1557 Tottel. 1579 *Shepheardes Calender*. 1590 *FQ* I–III. 1609 *Sonnets*. 1633 Herbert, Donne print. 1667 *Paradise Lost*. 1711 *Essay on Criticism*. 1751 Gray *Elegy*. 1773 Wheatley. 1786 Burns. 1789 *Innocence*. 1798 *Lyrical Ballads*. 1819 Keats odes. 1850 *In Memoriam*, *Prelude* print, Tennyson laureate. 1855 *Leaves of Grass*, *Men and Women*. 1862 *Goblin Market*. 1890 Dickinson first book. 1912 *Poetry* Chicago. 1915 *Cathay*, *Prufrock*. 1918 Owen dead, Hopkins book. 1922 *Waste Land*, *Ulysses* prose, *Harmonium* 1923. 1955 Larkin, Dickinson Johnson ed. 1956 *Howl*. 1959 *Life Studies*. 1965 *Ariel*. 1975 *North*. 1990 *Omeros*. 1995 Heaney Nobel. 1999 Heaney *Beowulf*. 2014 *Citizen*. 2020 Glück Nobel.
 
 ## 18. method of this file
 
-topic first. comment earns the line. tables hold dates and schemes. `etc` keeps the class open. no recap. the living poets named are specimens of a branch, not a prize list.
+method : topic first. comment earns the line. tables hold dates and schemes. `etc` keeps the class open. no recap. living poets named are specimens of a branch, open class.
 
 further : *Cambridge History of English Poetry*; *Oxford Book* in any edition as a politics; Brogan *New Princeton Encyclopedia of Poetry and Poetics*; Attridge *Rhythms of English Poetry*; Preminger/Brogan; *Norton* with its omissions read as data.

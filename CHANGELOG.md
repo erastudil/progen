@@ -1,5 +1,24 @@
 # changelog
 
+## 1.3.0 — 2026-09-24
+
+zero-rent database engine, dewey taxonomy, and sqlite fts triggers.
+
+- `src/progen/db.py`: `ProgenDB` zero-rent relational store (WAL mode, memory PRAGMAs, FTS5 sync triggers)
+- `src/progen/dewey.py`: Dewey Decimal classification taxonomy and hierarchical indexer
+- `progen db` CLI: init, ingest, query, get, put, delete, dewey, export, stats
+- `docs/DATABASE.md`: database engine specification and schema documentation
+- full test coverage: `tests/test_db.py`
+
+## 1.2.1 — 2026-09-20
+
+layout: one topic-comment per line.
+
+- CLI out: blank line between units
+- packing two units onto one line is a failure
+- P017 packed line
+- fixture `tests/fixtures/packed_line.md`
+
 ## 1.2.0 — 2026-09-16
 
 named states. wider dualism. code proof.

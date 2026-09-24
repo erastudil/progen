@@ -25,6 +25,9 @@ COMMA_NOT_ON_THE = re.compile(
 SPLIT_HEAD = re.compile(r"\b(this is not|it['’]s not)\b", re.IGNORECASE)
 SPLIT_TAIL = re.compile(r"^(it['’]s|it is)\b", re.IGNORECASE)
 TOPIC_COMMENT = re.compile(r"^[^:\n#|]{1,48}:\s+\S")
+PACKED_TOPICS = re.compile(
+    r"^[^:\n#|]{1,48}:\s+\S.*?\.\s+[A-Za-z][A-Za-z0-9][^:\n]{0,47}:\s+\S"
+)
 EXTRA_SCOPE = re.compile(
     r"\b(while i was here|drive[- ]by|might as well|also refactored|also cleaned(?: up)?)\b",
     re.IGNORECASE,

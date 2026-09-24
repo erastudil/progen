@@ -1,6 +1,6 @@
 ---
 title: "progen — named failure states"
-version: "1.2.0"
+version: "1.2.1"
 status: catalog
 license: "AGPL-3.0-or-later"
 ---
@@ -27,6 +27,7 @@ heat on the human channel is slack. mistakes = data. problem = treasure. iron do
 | latch | project analog becomes house tongue | P014 | post |
 | dialect-pull | slack length infects iron | P015 | post |
 | restating | ask copied back | P016 | post |
+| packed line | two topic-comments on one line | P017 | post |
 | verbose think | traces recatalog. sibling drag | harness | context |
 | ether-mining blindness | dump treated as a ticket queue | harness | context |
 | status quo bias | persistence as pardon | diet | pre/post |

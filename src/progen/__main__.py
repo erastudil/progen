@@ -67,6 +67,54 @@ def main(argv: list[str] | None = None) -> int:
 
     sub.add_parser("check", help="fixtures, iron rewrite, lint this tree")
 
+    # db subcommands
+    p_db = sub.add_parser("db", help="relational storage and dewey indexing")
+    p_db.add_argument("--db", default="progen.db", help="path to sqlite database (default: progen.db)")
+    db_sub = p_db.add_subparsers(dest="db_cmd", required=True)
+
+    db_sub.add_parser("init", help="initialize database schema and dewey taxonomy")
+
+    p_ingest = db_sub.add_parser("ingest", help="ingest markdown file or directory")
+    p_ingest.add_argument("path", help="file or directory path")
+    p_ingest.add_argument("--role", choices=["iron", "slack"], default="iron")
+    p_ingest.add_argument("--layer", default="warehouse")
+    p_ingest.add_argument("--dewey", help="default dewey code override")
+
+    p_query = db_sub.add_parser("query", help="query units by topic, dewey, or full-text")
+    p_query.add_argument("--topic", help="topic filter (supports * wildcard)")
+    p_query.add_argument("--comment", help="comment substring filter")
+    p_query.add_argument("--dewey", help="dewey code filter (exact, prefix*, or range X-Y)")
+    p_query.add_argument("--search", help="full-text search query (FTS5)")
+    p_query.add_argument("--kind", help="unit kind filter")
+    p_query.add_argument("--mark", help="mark filter (=, :, !, ?, etc.)")
+    p_query.add_argument("--format", choices=["text", "json", "md"], default="text")
+    p_query.add_argument("--limit", type=int, default=100)
+
+    p_get = db_sub.add_parser("get", help="retrieve a single unit by ID")
+    p_get.add_argument("id", help="unit ID")
+
+    p_put = db_sub.add_parser("put", help="insert a single topic-comment unit")
+    p_put.add_argument("topic", help="topic string")
+    p_put.add_argument("comment", help="comment string")
+    p_put.add_argument("--mark", default=":", help="mark (=, :, !, ?)")
+    p_put.add_argument("--kind", help="unit kind")
+    p_put.add_argument("--dewey", help="dewey code")
+    p_put.add_argument("--aside", help="optional aside text")
+
+    p_del = db_sub.add_parser("delete", help="delete a unit by ID")
+    p_del.add_argument("id", help="unit ID")
+
+    p_dewey = db_sub.add_parser("dewey", help="dewey indexing and taxonomy tools")
+    p_dewey.add_argument("action", choices=["list", "tree", "stats", "classify"])
+    p_dewey.add_argument("--text", help="topic or text to classify")
+
+    p_export = db_sub.add_parser("export", help="export units to markdown or JSONL")
+    p_export.add_argument("--dewey", help="filter by dewey code")
+    p_export.add_argument("--topic", help="filter by topic")
+    p_export.add_argument("--format", choices=["md", "jsonl"], default="md")
+
+    db_sub.add_parser("stats", help="show database statistics and counts")
+
     args = parser.parse_args(argv)
     if args.cmd == "parse":
         return _cmd_parse(args)
@@ -80,6 +128,8 @@ def main(argv: list[str] | None = None) -> int:
         if not text.endswith("\n"):
             sys.stdout.write("\n")
         return 0
+    if args.cmd == "db":
+        return _cmd_db(args)
     if args.cmd == "check":
         return _cmd_check()
     return 2
@@ -129,6 +179,141 @@ def _cmd_iron(args: argparse.Namespace) -> int:
     source = _read(args.file)
     sys.stdout.write(iron_text(source))
     return 0
+
+
+def _cmd_db(args: argparse.Namespace) -> int:
+    from .db import ProgenDB
+    from .dewey import DEFAULT_TAXONOMY, classify_text
+
+    db = ProgenDB(args.db)
+    try:
+        cmd = args.db_cmd
+
+        if cmd == "init":
+            print(f"database : initialized at {args.db}")
+            return 0
+
+        if cmd == "ingest":
+            p = Path(args.path)
+            if p.is_dir():
+                res = db.ingest_directory(p, role=args.role)
+                total = sum(res.values())
+                print(f"ingest : {len(res)} files, {total} units into {args.db}")
+            else:
+                cnt = db.ingest_file(p, role=args.role, layer=args.layer, default_dewey=args.dewey)
+                print(f"ingest : {cnt} units from {args.path} into {args.db}")
+            return 0
+
+        if cmd == "query":
+            units = db.query(
+                topic=args.topic,
+                comment=args.comment,
+                dewey_code=args.dewey,
+                kind=args.kind,
+                mark=args.mark,
+                search=args.search,
+                limit=args.limit,
+            )
+            if args.format == "json":
+                out = [
+                    {
+                        "id": u.id,
+                        "dewey": u.dewey_code,
+                        "topic": u.topic,
+                        "comment": u.comment,
+                        "kind": u.kind,
+                        "asides": u.asides,
+                        "source": u.source_uri,
+                    }
+                    for u in units
+                ]
+                json.dump(out, sys.stdout, indent=2, ensure_ascii=False)
+                sys.stdout.write("\n")
+            elif args.format == "md":
+                sys.stdout.write(db.export_markdown(dewey_code=args.dewey, topic=args.topic))
+            else:
+                for u in units:
+                    dw = f"[{u.dewey_code}] " if u.dewey_code else ""
+                    print(f"{u.id[:8]} {dw}{u.to_markdown()}")
+            return 0
+
+        if cmd == "get":
+            unit = db.get_unit(args.id)
+            if not unit:
+                print(f"ERROR : unit {args.id} not found")
+                return 1
+            dw = f"[{unit.dewey_code}] " if unit.dewey_code else ""
+            print(f"{unit.id} {dw}{unit.to_markdown()}")
+            if unit.source_uri:
+                print(f"source : {unit.source_uri}:{unit.line_no}")
+            return 0
+
+        if cmd == "put":
+            asides = [args.aside] if args.aside else None
+            uid = db.insert_unit(
+                topic=args.topic,
+                comment=args.comment,
+                mark=args.mark,
+                kind=args.kind,
+                dewey_code=args.dewey,
+                asides=asides,
+            )
+            print(f"inserted : {uid}")
+            return 0
+
+        if cmd == "delete":
+            ok = db.delete_unit(args.id)
+            if not ok:
+                print(f"ERROR : unit {args.id} not found")
+                return 1
+            print(f"deleted : {args.id}")
+            return 0
+
+        if cmd == "dewey":
+            if args.action == "list":
+                for c in DEFAULT_TAXONOMY:
+                    indent = "  " * c.depth
+                    print(f"{c.code:>6} {indent}{c.slug:<16} : {c.title}")
+            elif args.action == "classify":
+                target = args.text or ""
+                code = classify_text(target)
+                print(f"classify : {target} -> {code or 'UNKNOWN'}")
+            elif args.action == "stats":
+                st = db.stats()
+                for code, cnt in sorted(st["dewey_classes"].items()):
+                    print(f"{code:>6} : {cnt} units")
+                if st["unclassified_units"]:
+                    print(f"unclassified : {st['unclassified_units']} units")
+            elif args.action == "tree":
+                tree = db.dewey_tree()
+
+                def print_branch(nodes: list[dict], depth: int = 0) -> None:
+                    for n in nodes:
+                        if n["total_count"] > 0:
+                            indent = "  " * depth
+                            print(f"{n['code']:>6} {indent}{n['slug']} ({n['total_count']})")
+                            print_branch(n["children"], depth + 1)
+
+                print_branch(tree)
+            return 0
+
+        if cmd == "export":
+            if args.format == "jsonl":
+                sys.stdout.write(db.export_jsonl(dewey_code=args.dewey))
+            else:
+                sys.stdout.write(db.export_markdown(dewey_code=args.dewey, topic=args.topic))
+            return 0
+
+        if cmd == "stats":
+            st = db.stats()
+            print(f"sources : {st['source_count']}")
+            print(f"units : {st['unit_count']}")
+            print(f"asides : {st['aside_count']}")
+            for k, v in st["kinds"].items():
+                print(f"kind {k} : {v}")
+            return 0
+    finally:
+        db.close()
 
 
 def _cmd_check() -> int:

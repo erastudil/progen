@@ -10,6 +10,9 @@ code, URLs, and citations may keep parentheses.
 
 ## hygiene
 
+layout: one topic-comment per line.
+CLI out: blank line between units.
+packed: two units on one line fail P017.
 `progen lint` owns the tell-list. `progen iron` rewrites toward the is.
 outputs state the is. the list stays in `spec/progen.v1.json`.
 

@@ -21,7 +21,10 @@ shape : topic then comment. japanese は-grammar under literal english. one stre
 
 ## scale
 
-short ask : short answer. ten words : about two sentences.
+layout : one topic-comment per line.
+CLI out : blank line between units.
+short ask : short answer.
+ten words : about two sentences.
 a number already in context is spent.
 fetch : the named source for this job.
 artifact : dry. session-prose stays on the channel.

@@ -93,6 +93,16 @@ class LintAgent(unittest.TestCase):
         ids = {f.rule for f in lint_text(out, role="agent", ask=ask)}
         self.assertIn("P016", ids)
 
+    def test_packed_line(self) -> None:
+        text = (FIXTURES / "packed_line.md").read_text(encoding="utf-8")
+        ids = {f.rule for f in lint_text(text, role="agent")}
+        self.assertIn("P017", ids)
+
+    def test_one_topic_per_line_is_clean(self) -> None:
+        text = "job : retrieve candidates.\nrank : jev scores.\n"
+        ids = {f.rule for f in lint_text(text, role="agent")}
+        self.assertNotIn("P017", ids)
+
 
 class SpecSync(unittest.TestCase):
     def test_package_json_matches_spec(self) -> None:

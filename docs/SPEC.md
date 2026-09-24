@@ -1,6 +1,6 @@
 ---
 title: "progen — language specification"
-version: "1.2.0"
+version: "1.2.1"
 status: normative
 license: AGPL-3.0-or-later
 ---
@@ -15,7 +15,9 @@ what: one dialect. three layers. iron agents. slack humans.
 
 how: this file. tools in this repo check the rules that can be checked. implementers read `IMPLEMENTATION.md`.
 
-version **1.2.0**. machine twin: `spec/progen.v1.json`. named states: `docs/FAILURES.md`.
+version **1.2.1**.
+machine twin: `spec/progen.v1.json`.
+named states: `docs/FAILURES.md`.
 
 ---
 
@@ -62,12 +64,19 @@ topic : comment
 ```
 
 agent outputs use `:` between topic and comment.
+every agent sentence is this shape. first turn. another dialect only when this session named it.
 
 human inputs may use `,` between topic and comment. the agent parses that. the agent leaves the human's words in place.
 
 **comment** = the second half of topic → comment. `//` is an aside. `#` and `/* */` are code comments.
 
 one stream.
+
+layout: one `topic: comment.` per line.
+CLI out: blank line between units.
+a new topic starts a new line.
+packing two units onto one line is a failure.
+a wall of units with no blank line is a failure.
 
 ---
 
@@ -188,7 +197,7 @@ done = tool proof.
 
 ## 9. hygiene
 
-tells are machine-checkable. the linter owns the list so the agent does not print it. rule ids: `spec/progen.v1.json`. named catalog: `docs/FAILURES.md`. run `progen lint`. rewrite with `progen iron`. `--ask` / `--ask-file` enable P010 P015 P016.
+tells are machine-checkable. the linter owns the list so the agent does not print it. rule ids: `spec/progen.v1.json`. named catalog: `docs/FAILURES.md`. run `progen lint`. rewrite with `progen iron`. `--ask` / `--ask-file` enable P010 P015 P016. packed line: P017.
 
 education and textbooks: plain intuition first. the technical term arrives after the concept is already understood.
 
