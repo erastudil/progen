@@ -16,6 +16,23 @@ from typing import Generator, Iterable, Optional
 from . import dewey
 from .parse import Document, Role, parse_text
 
+# Letters, digits, and single spaces. A fact is this alphabet on both sides.
+_FACT_TEXT = re.compile(r"[A-Za-z0-9]+(?: [A-Za-z0-9]+)*\Z")
+
+
+def is_fact_text(text: str) -> bool:
+    """True when the string is alphanumeric words."""
+    return _FACT_TEXT.fullmatch(text.strip()) is not None
+
+
+def fact_line(topic: str, comment: str) -> str:
+    """Return one `topic: comment` line. Both sides are alphanumeric words."""
+    topic_s = topic.strip()
+    comment_s = comment.strip()
+    if not is_fact_text(topic_s) or not is_fact_text(comment_s):
+        raise ValueError("fact is alphanumeric words")
+    return f"{topic_s}: {comment_s}"
+
 
 @dataclass
 class UnitRecord:
@@ -73,6 +90,7 @@ class ProgenDB:
         )
         self.conn.row_factory = sqlite3.Row
         self._has_fts = False
+        self._facts: dict[str, Optional[str]] | None = None
         self._init_db()
 
     def _init_db(self) -> None:
@@ -319,7 +337,7 @@ class ProgenDB:
         cur.execute("SELECT COUNT(*) as cnt FROM units WHERE source_id = ?;", (source_id,))
         cnt = cur.fetchone()["cnt"]
         cur.execute("UPDATE sources SET unit_count = ?, updated_at = ? WHERE id = ?;", (cnt, now, source_id))
-
+        self._cache_topic(topic.strip())
         return unit_id
 
     def get_unit(self, unit_id: str) -> Optional[UnitRecord]:
@@ -359,6 +377,89 @@ class ProgenDB:
             asides=asides,
         )
 
+    def fact(self, topic: str) -> Optional[str]:
+        """Return one alphanumeric fact as `topic: comment`, or None.
+
+        The first call for a topic reads the sqlite index. Later calls read a process hash.
+        """
+        raw = topic.strip()
+        key = raw.casefold()
+        if not key or not is_fact_text(raw):
+            return None
+        if self._facts is not None and key in self._facts:
+            return self._facts[key]
+        line = self._read_fact(raw)
+        if self._facts is None:
+            self._facts = {}
+        self._facts[key] = line
+        return line
+
+    def _read_fact(self, topic: str) -> Optional[str]:
+        """Index read for one topic. The last alphanumeric row wins."""
+        cur = self.conn.execute(
+            """
+            SELECT topic, comment FROM units
+            WHERE topic = ? COLLATE NOCASE
+            ORDER BY updated_at ASC, rowid ASC;
+            """,
+            (topic,),
+        )
+        found: Optional[str] = None
+        for row in cur:
+            if is_fact_text(row["topic"]) and is_fact_text(row["comment"]):
+                found = f"{row['topic']}: {row['comment']}"
+        return found
+
+    def put_fact(self, topic: str, comment: str) -> str:
+        """Store one alphanumeric fact. The same topic replaces the previous line."""
+        topic_s = topic.strip()
+        comment_s = comment.strip()
+        line = fact_line(topic_s, comment_s)
+        cur = self.conn.cursor()
+        cur.execute(
+            """
+            SELECT id, topic, comment FROM units
+            WHERE topic = ? COLLATE NOCASE
+            ORDER BY updated_at ASC, rowid ASC;
+            """,
+            (topic_s,),
+        )
+        rows = [
+            r for r in cur.fetchall()
+            if is_fact_text(r["topic"]) and is_fact_text(r["comment"])
+        ]
+        if not rows:
+            uid = self.insert_unit(topic=topic_s, comment=comment_s)
+        else:
+            uid = rows[-1]["id"]
+            for extra in rows[:-1]:
+                self.delete_unit(extra["id"])
+            self.update_unit(uid, topic=topic_s, comment=comment_s)
+        if self._facts is None:
+            self._facts = {}
+        self._facts[topic_s.casefold()] = line
+        return uid
+
+    def _cache_topic(self, topic: str) -> None:
+        """Refresh one topic in the hash. A cold hash stays cold."""
+        if self._facts is None:
+            return
+        key = topic.strip().casefold()
+        if not key:
+            return
+        self._facts.pop(key, None)
+        cur = self.conn.execute(
+            """
+            SELECT topic, comment FROM units
+            WHERE topic = ? COLLATE NOCASE
+            ORDER BY updated_at ASC, rowid ASC;
+            """,
+            (topic.strip(),),
+        )
+        for row in cur:
+            if is_fact_text(row["topic"]) and is_fact_text(row["comment"]):
+                self._facts[row["topic"].casefold()] = f"{row['topic']}: {row['comment']}"
+
     def update_unit(
         self,
         unit_id: str,
@@ -373,6 +474,7 @@ class ProgenDB:
         if not existing:
             return False
 
+        old_topic = existing.topic
         new_topic = topic.strip() if topic is not None else existing.topic
         new_comment = comment.strip() if comment is not None else existing.comment
         new_mark = mark if mark is not None else existing.mark
@@ -389,16 +491,20 @@ class ProgenDB:
             """,
             (new_topic, new_comment, new_mark, new_kind, new_dewey, now, unit_id),
         )
+        self._cache_topic(old_topic)
+        if new_topic.casefold() != old_topic.casefold():
+            self._cache_topic(new_topic)
         return True
 
     def delete_unit(self, unit_id: str) -> bool:
         """Delete a unit by ID."""
         cur = self.conn.cursor()
-        cur.execute("SELECT source_id FROM units WHERE id = ?;", (unit_id,))
+        cur.execute("SELECT source_id, topic FROM units WHERE id = ?;", (unit_id,))
         row = cur.fetchone()
         if not row:
             return False
         source_id = row["source_id"]
+        topic = row["topic"]
 
         cur.execute("DELETE FROM units WHERE id = ?;", (unit_id,))
 
@@ -406,6 +512,7 @@ class ProgenDB:
         cur.execute("SELECT COUNT(*) as cnt FROM units WHERE source_id = ?;", (source_id,))
         cnt = cur.fetchone()["cnt"]
         cur.execute("UPDATE sources SET unit_count = ?, updated_at = ? WHERE id = ?;", (cnt, now, source_id))
+        self._cache_topic(topic)
         return True
 
     def delete_source(self, uri: str) -> bool:
@@ -418,6 +525,7 @@ class ProgenDB:
         source_id = row["id"]
 
         cur.execute("DELETE FROM sources WHERE id = ?;", (source_id,))
+        self._facts = None
         return True
 
     # --- Ingestion & Sync ---
@@ -498,6 +606,7 @@ class ProgenDB:
 
             cur.execute("UPDATE sources SET unit_count = ? WHERE id = ?;", (unit_count, source_id))
 
+        self._facts = None
         return unit_count
 
     def ingest_file(

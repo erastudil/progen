@@ -3,7 +3,9 @@
 
 from __future__ import annotations
 
+import contextlib
 import io
+import json
 from pathlib import Path
 import tempfile
 import unittest
@@ -155,6 +157,49 @@ class TestProgenDB(unittest.TestCase):
         findings = lint_text(exported, role="agent")
         self.assertEqual(findings, [])
 
+    def test_fact_is_one_alphanumeric_line(self) -> None:
+        self.db.put_fact("boiling point", "100 C")
+        self.assertEqual(self.db.fact("BOILING POINT"), "boiling point: 100 C")
+        self.db.put_fact("boiling point", "373 K")
+        self.assertEqual(self.db.fact("boiling point"), "boiling point: 373 K")
+        self.assertEqual(len(self.db.query(topic="boiling point")), 1)
+        with self.assertRaises(ValueError):
+            self.db.put_fact("boiling point", "100 C.")
+        self.assertEqual(self.db.fact("boiling point"), "boiling point: 373 K")
+        self.db.insert_unit(topic="note", comment="has a period.")
+        self.assertIsNone(self.db.fact("note"))
+        self.assertIsNone(self.db.fact("missing topic"))
+        line = self.db.fact("boiling point")
+        assert line is not None
+        blob = json.dumps(
+            {"topic": "boiling point", "comment": "373 K"},
+            separators=(",", ":"),
+        )
+        self.assertLess(len(line.encode("utf-8")), len(blob.encode("utf-8")))
+
+    def test_warm_fact_reads_the_hash(self) -> None:
+        self.db.put_fact("iron count", "14")
+        seen: list[str] = []
+        self.db.conn.set_trace_callback(seen.append)
+        self.assertEqual(self.db.fact("iron count"), "iron count: 14")
+        del seen[:]
+        for _ in range(1000):
+            self.assertEqual(self.db.fact("iron count"), "iron count: 14")
+        self.assertEqual(seen, [])
+
+    def test_fact_reopens_and_survives_ingest(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            path = Path(tmpdir) / "facts.db"
+            db = ProgenDB(path)
+            db.put_fact("boiling point", "100 C")
+            self.assertEqual(db.fact("boiling point"), "boiling point: 100 C")
+            db.ingest_text("sqlite : embedded store.\n", uri="other.md")
+            self.assertEqual(db.fact("boiling point"), "boiling point: 100 C")
+            db.close()
+            again = ProgenDB(path)
+            self.assertEqual(again.fact("boiling point"), "boiling point: 100 C")
+            again.close()
+
 
 class TestProgenDBCLI(unittest.TestCase):
     def test_cli_ingest_and_query(self) -> None:
@@ -184,6 +229,28 @@ class TestProgenDBCLI(unittest.TestCase):
             # Dewey tree
             rc = main(["db", "--db", str(db_path), "dewey", "tree"])
             self.assertEqual(rc, 0)
+
+    def test_cli_fact_stdout_is_the_line(self) -> None:
+        from progen.__main__ import main
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            db_path = str(Path(tmpdir) / "facts.db")
+            with contextlib.redirect_stdout(io.StringIO()):
+                rc = main(["db", "--db", db_path, "put", "boiling point", "100 C", "--fact"])
+            self.assertEqual(rc, 0)
+            fact_buf = io.StringIO()
+            with contextlib.redirect_stdout(fact_buf):
+                rc = main(["db", "--db", db_path, "fact", "boiling point"])
+            self.assertEqual(rc, 0)
+            self.assertEqual(fact_buf.getvalue(), "boiling point: 100 C\n")
+            miss = io.StringIO()
+            with contextlib.redirect_stdout(miss):
+                rc = main(["db", "--db", db_path, "fact", "missing topic"])
+            self.assertEqual(rc, 1)
+            self.assertIn("ERROR", miss.getvalue())
+            with contextlib.redirect_stdout(io.StringIO()):
+                rc = main(["db", "--db", db_path, "put", "boiling point", "100 C.", "--fact"])
+            self.assertEqual(rc, 1)
 
 
 if __name__ == "__main__":

@@ -1,10 +1,18 @@
 # changelog
 
+## 1.3.1 — 2026-09-24
+
+exact alphanumeric fact lookup with index-then-hash retrieval.
+
+- `ProgenDB.fact` and `put_fact`: one alphanumeric line. the first read uses the topic index. later reads of that topic use a process hash. CLI commands `progen db fact` and `progen db put --fact`.
+- `docs/DATABASE.md`: fact lookup interface and specification.
+- full test coverage: `tests/test_db.py`
+
 ## 1.3.0 — 2026-09-24
 
 zero-rent database engine, dewey taxonomy, and sqlite fts triggers.
 
-- `src/progen/db.py`: `ProgenDB` zero-rent relational store (WAL mode, memory PRAGMAs, FTS5 sync triggers)
+- `src/progen/db.py`: `ProgenDB` zero-rent relational store // WAL mode, memory PRAGMAs, FTS5 sync triggers
 - `src/progen/dewey.py`: Dewey Decimal classification taxonomy and hierarchical indexer
 - `progen db` CLI: init, ingest, query, get, put, delete, dewey, export, stats
 - `docs/DATABASE.md`: database engine specification and schema documentation

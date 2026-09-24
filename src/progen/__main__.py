@@ -100,6 +100,10 @@ def main(argv: list[str] | None = None) -> int:
     p_put.add_argument("--kind", help="unit kind")
     p_put.add_argument("--dewey", help="dewey code")
     p_put.add_argument("--aside", help="optional aside text")
+    p_put.add_argument("--fact", action="store_true", help="store one alphanumeric fact")
+
+    p_fact = db_sub.add_parser("fact", help="print one alphanumeric fact line")
+    p_fact.add_argument("topic", help="fact topic")
 
     p_del = db_sub.add_parser("delete", help="delete a unit by ID")
     p_del.add_argument("id", help="unit ID")
@@ -249,6 +253,14 @@ def _cmd_db(args: argparse.Namespace) -> int:
             return 0
 
         if cmd == "put":
+            if args.fact:
+                try:
+                    uid = db.put_fact(args.topic, args.comment)
+                except ValueError as exc:
+                    print(f"ERROR : {exc}")
+                    return 1
+                print(f"inserted : {uid}")
+                return 0
             asides = [args.aside] if args.aside else None
             uid = db.insert_unit(
                 topic=args.topic,
@@ -259,6 +271,14 @@ def _cmd_db(args: argparse.Namespace) -> int:
                 asides=asides,
             )
             print(f"inserted : {uid}")
+            return 0
+
+        if cmd == "fact":
+            line = db.fact(args.topic)
+            if line is None:
+                print("ERROR : fact not found")
+                return 1
+            sys.stdout.write(line + "\n")
             return 0
 
         if cmd == "delete":

@@ -59,6 +59,19 @@ progen check
 
 ---
 
+## Fact lookup
+
+A fact is letters, digits, and single spaces. The call returns one line for a model to read.
+
+```bash
+progen db put "boiling point" "100 C" --fact --db knowledge.db
+progen db fact "boiling point" --db knowledge.db
+```
+
+Stdout is `boiling point: 100 C`. The first lookup reads that topic from the local sqlite file and keeps the line in a hash. A later lookup of the same topic reads the hash. The line carries the topic once, then the comment. A JSON object repeats both key names on every fact the model reads.
+
+---
+
 ## Architecture Layers
 
 System instructions are organized into three distinct layers:

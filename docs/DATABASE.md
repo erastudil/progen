@@ -160,4 +160,29 @@ with ProgenDB("knowledge.db") as db:
 
     # export
     markdown = db.export_markdown(dewey_code="005*")
+
+    # one alphanumeric fact, returned as a single line
+    db.put_fact("boiling point", "100 C")
+    line = db.fact("boiling point")
 ```
+
+---
+
+## 4. fact lookup
+
+a fact is letters, digits, and single spaces on the topic and on the comment. the call returns one line.
+
+```bash
+progen db put "boiling point" "100 C" --fact --db knowledge.db
+progen db fact "boiling point" --db knowledge.db
+```
+
+stdout is the line:
+
+```text
+boiling point: 100 C
+```
+
+a call reads that topic from the sqlite index and keeps the line in a process hash. a later call for the same topic reads the hash. a parsed JSON object is the same kind of later lookup. the line carries the topic once, then the comment, so a model reads the fact with the key names left in the table.
+
+punctuation stays valid dialect text. fact lookup leaves those rows alone.

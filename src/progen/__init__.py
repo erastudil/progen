@@ -8,7 +8,7 @@ from .lint import Finding, lint_text
 from .parse import Document, Role, parse_text
 from .prompt import load_prompt
 
-__version__ = "1.3.0"
+__version__ = "1.3.1"
 __all__ = [
     "DeweyClass",
     "Document",
