@@ -1,20 +1,36 @@
 # progen
 
-A ten-word question returning a three-page essay has failed its own job.
+progen = dialect of english for agent think, agent write, and think traces.
 
-When a model restates what was already provided, drifts into unrelated threads, or ends by prompting the user for the next action, it consumes tokens and degrades accuracy.
+shape : japanese topic-comment grammar under english vocabulary.
 
-**Progen** is a dialect of English designed for agent reasoning, structured output, and thinking traces. It applies Japanese topic-comment grammar structure to English vocabulary: establish the topic first, then deliver the comment. Standardized punctuation marks enable direct syntactic parsing. The agent remains precise; the human may remain informal.
+rule : topic first, comment second.
 
-This repository provides the language specification, drop-in prompt templates, and offline verification tooling. Licensed under AGPL-3.0-or-later. See [`LICENSE`](LICENSE) and [`COVENANT.md`](COVENANT.md).
+purpose : tokens cost. // mush costs more
 
-[zcabs](https://github.com/erastudil/zcabs) is how an agent proves execution. [gfc](https://github.com/erastudil/gfc) is how it writes for humans. This is how it thinks.
+premise : ten-word ask returning three-page essay failed its own job.
+
+problem : copied context and unasked trailing questions waste attention.
+
+iron : agent think and output hold marks.
+
+slack : human input keeps informal freedom.
+
+repo : language specification, drop-in prompt templates, and offline verification tools.
+
+license : AGPL-3.0-or-later. // see [`LICENSE`](LICENSE) and [`COVENANT.md`](COVENANT.md)
+
+ecosystem : [zcabs](https://github.com/erastudil/zcabs) proves execution.
+
+voice : [gfc](https://github.com/erastudil/gfc) writes for humans.
+
+mind : progen thinks.
 
 ---
 
-## Quickstart and verification
+## quickstart and verification
 
-Execute test suites directly from a local repository clone:
+tests : run suites directly from local clone.
 
 ```bash
 # run standard unit tests
@@ -24,7 +40,7 @@ python -m unittest discover -s tests -v
 PYTHONPATH=src python -m progen check
 ```
 
-Install as an editable package:
+install : editable package via pip.
 
 ```bash
 python -m pip install -e .
@@ -35,13 +51,28 @@ progen iron examples/mush.md
 progen lint examples/iron.md --role agent
 ```
 
-Requires Python 3.10+ // standard library only.
+runtime : python 3.10+. // standard library only
 
 ---
 
-## Command line tools
+## marks
 
-Utilities for analysis, lint checks, and canonical prompt output:
+| mark | means | who |
+|---|---|---|
+| `=` | definition | both |
+| `:` | topic : comment on outputs | agent iron |
+| `,` | topic , comment on human input | human slack |
+| `etc` | open class. infer rest of members | both |
+| `!` | elevated execution | both |
+| `?` | test mode | both |
+| **CAPSLOCK** | admin mode | human invokes. agent matches intensity |
+| `//` | aside. inert | both |
+
+---
+
+## command line tools
+
+tools : utilities for parse analysis, lint hygiene, and prompt emission.
 
 ```bash
 progen parse FILE [--role iron|slack]
@@ -51,50 +82,68 @@ progen prompt {genome|canon|warehouse}
 progen check
 ```
 
-- `parse`: extracts topic-comment units, asides, and operational mode flags into structured JSON.
-- `lint`: checks agent outputs against language rules and anti-patterns; exits with non-zero on error.
-- `iron`: applies automated rewriting to transform unstructured prose into topic-comment statements.
-- `prompt`: outputs reference system prompts for genomes, project canons, and reference warehouses.
-- `check`: executes conformance suites and self-tests.
+parse : extract topic-comment units, asides, and operational mode flags into structured json.
+
+lint : check agent output against language rules and anti-patterns. // exits non-zero on finding
+
+iron : rewrite unstructured prose toward topic-comment statements.
+
+prompt : emit reference system prompt for genome, canon, or warehouse.
+
+check : run unit tests and doc conformance suites.
 
 ---
 
-## Fact lookup
+## fact lookup
 
-A fact is letters, digits, and single spaces. The call returns one line for a model to read.
+fact = letters, digits, and single spaces.
+
+call : return one line for model to read.
 
 ```bash
 progen db put "boiling point" "100 C" --fact --db knowledge.db
 progen db fact "boiling point" --db knowledge.db
 ```
 
-Stdout is `boiling point: 100 C`. The first lookup reads that topic from the local sqlite file and keeps the line in a hash. A later lookup of the same topic reads the hash. The line carries the topic once, then the comment. A JSON object repeats both key names on every fact the model reads.
+stdout : return topic and comment.
+
+```
+boiling point: 100 C
+```
+
+lookup : first call reads sqlite and caches line in hash.
+
+repeat : subsequent lookup reads memory hash directly.
+
+economy : line carries topic once before comment without json key repetition.
 
 ---
 
-## Architecture Layers
+## layers
 
-System instructions are organized into three distinct layers:
+system : prompt organized into three distinct layers.
 
-| Layer | Function | Scope |
+| layer | function | scope |
 |---|---|---|
-| **Genome** | Primary system prompt: defines role, active tools, and dialect marks. | Short and persistent |
-| **Warehouse** | Task-specific documentation and comprehensive reference material. | Loaded on demand |
-| **Canon** | Standing universal rules and operational constraints. | Short and persistent |
+| **genome** | primary system prompt. role, tools, dialect marks | short and persistent |
+| **warehouse** | task documentation and reference material | loaded on demand |
+| **canon** | universal rules and operational constraints | short and persistent |
 
 ---
 
-## Documentation
+## documentation
 
-| Document | Description |
+sources : primary references in this tree.
+
+| document | description |
 |---|---|
-| [`docs/SPEC.md`](docs/SPEC.md) | Normative language specification |
-| [`docs/IMPLEMENTATION.md`](docs/IMPLEMENTATION.md) | Integration guide for agent runtimes, UI shells, and CI pipelines |
-| [`docs/BOUNDARY.md`](docs/BOUNDARY.md) | Technical scope and project boundaries |
-| [`docs/FAILURES.md`](docs/FAILURES.md) | Named failure states for prose and code |
-| [`prompts/genome.md`](prompts/genome.md) | Drop-in reference system prompt |
-| [`examples/rewrite.md`](examples/rewrite.md) | Worked example: rewriting verbose outputs into iron |
-| [`examples/english-poetry.md`](examples/english-poetry.md) | Density sample: history of verse in English |
-| [`spec/progen.v1.json`](spec/progen.v1.json) | Machine-readable marks and linter rule catalog |
-| [`CONTRIBUTING.md`](CONTRIBUTING.md) | Patch submission requirements and test verification rules |
-| [`COVENANT.md`](COVENANT.md) | Zero-rent software pledge and copyleft terms |
+| [`docs/SPEC.md`](docs/SPEC.md) | normative language specification |
+| [`docs/IMPLEMENTATION.md`](docs/IMPLEMENTATION.md) | integration guide for agent runtimes, ui shells, and ci pipelines |
+| [`docs/BOUNDARY.md`](docs/BOUNDARY.md) | technical scope and project boundaries |
+| [`docs/FAILURES.md`](docs/FAILURES.md) | named failure states for prose and code |
+| [`prompts/genome.md`](prompts/genome.md) | drop-in reference system prompt |
+| [`examples/rewrite.md`](examples/rewrite.md) | worked example. rewriting verbose outputs into iron |
+| [`examples/english-poetry.md`](examples/english-poetry.md) | density sample. history of verse in english |
+| [`spec/progen.v1.json`](spec/progen.v1.json) | machine-readable marks and linter rule catalog |
+| [`CONTRIBUTING.md`](CONTRIBUTING.md) | patch submission requirements and test verification rules |
+| [`COVENANT.md`](COVENANT.md) | zero-rent software pledge and copyleft terms |
