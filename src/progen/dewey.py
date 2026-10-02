@@ -37,6 +37,7 @@ DEFAULT_TAXONOMY: tuple[DeweyClass, ...] = (
     DeweyClass("150", "100", "psychology", "Cognition, memory, behavior, perception", 1),
     DeweyClass("160", "100", "logic", "Formal logic, deduction, inference", 1),
     DeweyClass("170", "100", "ethics", "Ethics, moral philosophy, governance", 1),
+    DeweyClass("181", "100", "tao_te_ching", "Tao Te Ching, Eastern philosophy, & classical texts", 1),
 
     # 200: Religion
     DeweyClass("200", None, "religion", "Comparative religion, mythology, sacred traditions", 0),
@@ -106,7 +107,8 @@ _LEXICAL_RULES: list[tuple[re.Pattern, str]] = [
     (re.compile(r"\b(logic|deduction|premise|syllogism|tautology)\b", re.IGNORECASE), "160"),
     (re.compile(r"\b(psychology|cognition|brain|perception|behavior|attention)\b", re.IGNORECASE), "150"),
     (re.compile(r"\b(epistemology|truth|knowledge|belief|justification)\b", re.IGNORECASE), "120"),
-    (re.compile(r"\b(philosophy|ontology|metaphysics|tao|zen|wu wei)\b", re.IGNORECASE), "100"),
+    (re.compile(r"\b(laozi|lao tzu|tao te ching|daodejing|wu wei|yin yang|ziran|uncarved block)\b", re.IGNORECASE), "181"),
+    (re.compile(r"\b(philosophy|ontology|metaphysics|tao|zen)\b", re.IGNORECASE), "100"),
 
     # Social sciences, Law, Finance
     (re.compile(r"\b(law|legal|statute|jurisprudence|contract|license|court)\b", re.IGNORECASE), "340"),
