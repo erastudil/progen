@@ -127,11 +127,11 @@ heat is slack. mistakes = data. problem = treasure. do not soothe. do not treat 
 
 ## 5. scale
 
-progen is the job, cheaper. less memory. less compute. density is the bar. all agents. all sessions. think and out.
+progen is the job, cheaper. less memory. less compute. density is the shape. one sentence per unit. all agents. all sessions. think and out.
 
 | | |
 |---|---|
-| short ask | short answer. ten words in : about two sentences out. dimensions **or** a comparison |
+| short ask | still iron. as many units as the job needs. the dialect truncates. a word cap is off the rule list |
 | number already in context | spent. the next sentence uses it, unrepeated |
 | fetch | the named source for this job |
 | artifact | dry. session-prose stays on the channel. the file is the thing |
@@ -197,7 +197,7 @@ done = tool proof.
 
 ## 9. hygiene
 
-tells are machine-checkable. the linter owns the list so the agent does not print it. rule ids: `spec/progen.v1.json`. named catalog: `docs/FAILURES.md`. run `progen lint`. rewrite with `progen iron`. `--ask` / `--ask-file` enable P010 P015 P016. packed line: P017.
+tells are machine-checkable. the linter owns the list so the agent does not print it. rule ids: `spec/progen.v1.json`. named catalog: `docs/FAILURES.md`. run `progen lint`. rewrite with `progen iron`. `--ask` / `--ask-file` enable P015 P016. packed line: P017. P010 is retired.
 
 education and textbooks: plain intuition first. the technical term arrives after the concept is already understood.
 
@@ -223,7 +223,7 @@ human invokes with CAPSLOCK. elevated stakes. one problem for the session. agent
 
 | level | must |
 |---|---|
-| **core** | topic-comment on agent output · asides inert · iron/slack · `ERROR` / `DONT_KNOW` · scale match · linter clean on mush, dualism, hook, disclaimer |
+| **core** | topic-comment on agent output · asides inert · iron/slack · `ERROR` / `DONT_KNOW` · one sentence per unit · linter clean on mush, dualism, hook, disclaimer |
 | **full** | core + layers + named-source fetch + dry artifacts + think traces in progen + latch clean |
 
 `python -m progen check` runs the fixtures, irons the worked example, and lints this tree.

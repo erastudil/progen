@@ -43,17 +43,10 @@ class LintAgent(unittest.TestCase):
         findings = lint_text(text, role="agent")
         self.assertFalse(any(f.rule == "P005" for f in findings))
 
-    def test_scale_short_ask_wall(self) -> None:
+    def test_short_ask_long_iron_is_clean(self) -> None:
         ask = "what broke"
-        wall = "word " * 90
-        ids = {f.rule for f in lint_text(wall, role="agent", ask=ask)}
-        self.assertIn("P010", ids)
-
-    def test_scale_ok_when_matched(self) -> None:
-        ask = "what broke"
-        out = "disk : nvme0n1 full.\n"
-        ids = {f.rule for f in lint_text(out, role="agent", ask=ask)}
-        self.assertNotIn("P010", ids)
+        out = "".join(f"part{i} : sector {i} failed.\n\n" for i in range(40))
+        self.assertEqual(lint_text(out, role="agent", ask=ask), [])
 
     def test_split_dualism(self) -> None:
         text = (FIXTURES / "dualism_split.md").read_text(encoding="utf-8")

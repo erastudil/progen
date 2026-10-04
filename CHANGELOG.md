@@ -1,5 +1,13 @@
 # changelog
 
+## 1.3.2 — 2026-10-04
+
+P010 retired. word count is not a lint rule.
+
+- a short ask may take as many topic-comment units as the job needs
+- style checks stay: one unit per line, mush, dualism, hooks, P015 essay-without-iron, P016 restating
+- genome scale lines that said "ten words : about two sentences" are gone
+
 ## 1.3.1 — 2026-09-24
 
 exact alphanumeric fact lookup with index-then-hash retrieval.

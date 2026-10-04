@@ -1,6 +1,6 @@
 [project]
 name = "progen-dialect"
-version = "1.3.1"
+version = "1.3.2"
 description = "progen dialect specification and tooling"
 readme = "README.md"
 license = { text = "AGPL-3.0-or-later" }

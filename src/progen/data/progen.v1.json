@@ -35,7 +35,6 @@
     { "id": "P006", "class": "recap", "severity": "error", "title": "recap / in conclusion" },
     { "id": "P007", "class": "disclaimer", "severity": "error", "title": "disclaimer theater" },
     { "id": "P008", "class": "mush", "severity": "error", "title": "marketing verbs" },
-    { "id": "P010", "class": "scale", "severity": "error", "title": "short ask, long wall" },
     { "id": "P011", "class": "dialect", "severity": "error", "title": "triple tags on default dialect" },
     { "id": "P012", "class": "recite", "severity": "error", "title": "will-not list" },
     { "id": "P013", "class": "stub", "severity": "error", "title": "placeholder plus done" },

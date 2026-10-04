@@ -23,8 +23,7 @@ shape : topic then comment. japanese は-grammar under literal english. one stre
 
 layout : one topic-comment per line.
 CLI out : blank line between units.
-short ask : short answer.
-ten words : about two sentences.
+length : the dialect truncates. one sentence per unit. a word cap stays off the rule list.
 a number already in context is spent.
 fetch : the named source for this job.
 artifact : dry. session-prose stays on the channel.

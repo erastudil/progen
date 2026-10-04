@@ -23,7 +23,6 @@ heat on the human channel is slack. mistakes = data. problem = treasure. iron do
 | hook | model prompts the human | P005 | post |
 | recap | essay wrap | P006 | post |
 | disclaimer | lawyer footer | P007 | post |
-| scale miss | short ask, wall | P010 | post |
 | latch | project analog becomes house tongue | P014 | post |
 | dialect-pull | slack length infects iron | P015 | post |
 | restating | ask copied back | P016 | post |

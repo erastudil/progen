@@ -131,7 +131,7 @@ english commas in a long sentence stay english. the parser uses a short-topic he
 
 **question:** legal when a fact required to proceed is missing. "what should we work on next" is a hook. P005.
 
-**length.** ten words in → about two sentences out. a wall after a short ask is P010.
+**length.** one sentence per unit. a short ask can take many units. a word-count cap is not a rule. P010 is retired. P015 still fires when a long slack ask comes back as an essay with too few topic-comments.
 
 ---
 
@@ -201,7 +201,7 @@ these happened on a production desk. they will happen on yours. the fix is the i
 | omit-class | stub file + "done" | tests. tool proof. or `ERROR` |
 | aside drag | `//` opened a child. primary thread stayed loaded. both answers mixed | idle-write primary. load only the aside |
 | search flood | every homonym SERP stayed in think. two people felt right | TOC of live threads. negatives to disk. think = query + last proof |
-| scale miss | short ask → wall | match length. two sentences. P010 |
+| word cap | short ask, long iron, lint said stop | retire the cap. P010 gone. one sentence per unit stays |
 | latch | a project analog became the base language of every thread | ordinary CS by default. P014 |
 | dead index | dead path in the map. agent greps the world to rescue it | dead pointer is a fire. fix the map |
 | dialect toggle | UI flag for think tongue. traces and out diverged | delete the flag. genome is the switch |

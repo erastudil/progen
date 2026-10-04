@@ -56,7 +56,7 @@ def main(argv: list[str] | None = None) -> int:
     p_lint = sub.add_parser("lint", help="check agent output against SPEC hygiene")
     p_lint.add_argument("file")
     p_lint.add_argument("--role", choices=["agent", "human"], default="agent")
-    p_lint.add_argument("--ask", help="original ask, for scale check")
+    p_lint.add_argument("--ask", help="original ask, for dialect-pull and restate checks")
     p_lint.add_argument("--ask-file", help="file containing the original ask")
 
     p_iron = sub.add_parser("iron", help="mechanical pass toward topic-comment")

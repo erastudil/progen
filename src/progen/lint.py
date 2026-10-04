@@ -120,7 +120,6 @@ def _lint_agent(source: str, ask: Optional[str] = None) -> list[Finding]:
     _packed_topics(lines, add)
     _code_proof(source, add)
     if ask is not None:
-        _scale(ask, source, add)
         _dialect_pull(ask, source, visible, add)
         _restate(ask, source, add)
 
@@ -231,13 +230,6 @@ def _seq_in(hay: list[str], needle: list[str]) -> bool:
         if hay[i : i + n] == needle:
             return True
     return False
-
-
-def _scale(ask: str, source: str, add) -> None:
-    aw = max(1, len(ask.split()))
-    ow = len(source.split())
-    if aw <= 20 and ow > max(80, aw * 8):
-        add("P010", 1, f"ask {aw} words, out {ow} words")
 
 
 def _paren_allowed(inner: str, line: str) -> bool:
