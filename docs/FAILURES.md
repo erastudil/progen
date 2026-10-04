@@ -24,7 +24,7 @@ heat on the human channel is slack. mistakes = data. problem = treasure. iron do
 | recap | essay wrap | P006 | post |
 | disclaimer | lawyer footer | P007 | post |
 | latch | project analog becomes house tongue | P014 | post |
-| dialect-pull | slack length infects iron | P015 | post |
+| dialect-pull | slack length infects iron | P015 retired, no word count checks | post |
 | restating | ask copied back | P016 | post |
 | packed line | two topic-comments on one line | P017 | post |
 | verbose think | traces recatalog. sibling drag | harness | context |
@@ -34,7 +34,7 @@ heat on the human channel is slack. mistakes = data. problem = treasure. iron do
 | search flood | homonyms stay in think | harness | context |
 | zcahc miss | guess when FOUND empty | `DONT_KNOW` | runtime |
 | hallucination | confident void | `DONT_KNOW` · canary | runtime |
-| sycophancy | agree with heat or with the corpus | P015 · diet | post |
+| sycophancy | agree with heat or with the corpus | diet | post |
 | reward hacking | pairwise winner fights the job | diet | post |
 | schema violation | marks dropped | parse | runtime |
 | infinite loop | retry with no progress | host | runtime |
@@ -54,7 +54,7 @@ P004 also hits split sentences and `is not this`. specimens live in `tests/fixtu
 | hint-anchor | user speculation becomes the plan | harness | runtime |
 | package hallucination | import that does not exist | host | runtime |
 | plausible-patch | PR tests pass. intent fails | host full suite | runtime |
-| constraint violation | standing rule dropped over a long session | P015 · genome | post |
+| constraint violation | standing rule dropped over a long session | genome | post |
 | tool misuse | bad args. ignore tool out | host | runtime |
 
 ungrounded and package-fake need a resolver. this repo names them. the host proves them.

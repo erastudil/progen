@@ -197,7 +197,7 @@ done = tool proof.
 
 ## 9. hygiene
 
-tells are machine-checkable. the linter owns the list so the agent does not print it. rule ids: `spec/progen.v1.json`. named catalog: `docs/FAILURES.md`. run `progen lint`. rewrite with `progen iron`. `--ask` / `--ask-file` enable P015 P016. packed line: P017. P010 is retired.
+tells are machine-checkable. the linter owns the list so the agent does not print it. rule ids: `spec/progen.v1.json`. named catalog: `docs/FAILURES.md`. run `progen lint`. rewrite with `progen iron`. `--ask` / `--ask-file` enable P016. packed line: P017. P010 and P015 are retired.
 
 education and textbooks: plain intuition first. the technical term arrives after the concept is already understood.
 

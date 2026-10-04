@@ -46,7 +46,6 @@ class Prompts(unittest.TestCase):
                 "P012",
                 "P013",
                 "P014",
-                "P015",
                 "P016",
                 "P017",
                 "P101",

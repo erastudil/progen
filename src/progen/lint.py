@@ -120,7 +120,6 @@ def _lint_agent(source: str, ask: Optional[str] = None) -> list[Finding]:
     _packed_topics(lines, add)
     _code_proof(source, add)
     if ask is not None:
-        _dialect_pull(ask, source, visible, add)
         _restate(ask, source, add)
 
     return findings
@@ -192,22 +191,6 @@ def _code_proof(source: str, add) -> None:
     if tells.PROOF.search(source):
         return
     add("P102", 1, "code job claimed done, no proof")
-
-
-def _dialect_pull(ask: str, source: str, visible: str, add) -> None:
-    ask_w = len(ask.split())
-    out_w = len(source.split())
-    if ask_w < 25:
-        return
-    if out_w < 60:
-        return
-    tc = 0
-    for line in visible.splitlines():
-        s = line.strip()
-        if tells.TOPIC_COMMENT.match(s):
-            tc += 1
-    if tc * 40 < out_w:
-        add("P015", 1, f"long slack, essay out, {tc} topic-comment")
 
 
 def _restate(ask: str, source: str, add) -> None:

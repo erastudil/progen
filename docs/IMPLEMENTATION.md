@@ -131,7 +131,7 @@ english commas in a long sentence stay english. the parser uses a short-topic he
 
 **question:** legal when a fact required to proceed is missing. "what should we work on next" is a hook. P005.
 
-**length.** one sentence per unit. a short ask can take many units. a word-count cap is not a rule. P010 is retired. P015 still fires when a long slack ask comes back as an essay with too few topic-comments.
+**length.** one sentence per unit. a short ask can take many units. a word-count cap is not a rule. P010 and P015 are retired. the linter does not check word count at all; the terse, information dense dialect compresses output token count on its own without forcing an arbitrary count.
 
 ---
 
@@ -206,7 +206,7 @@ these happened on a production desk. they will happen on yours. the fix is the i
 | dead index | dead path in the map. agent greps the world to rescue it | dead pointer is a fire. fix the map |
 | dialect toggle | UI flag for think tongue. traces and out diverged | delete the flag. genome is the switch |
 | extra stack | new prompt folder because the genome felt cramped | warehouse |
-| dialect-pull | long slack, essay out, iron dropped | stay iron. P015 |
+| dialect-pull | long slack, essay out, iron dropped | stay iron. P015 retired, no word count checks |
 | restating | ask copied back | number spent. P016 |
 | split dualism | contrast across two sentences | P004 |
 | extra-scope | unasked extra rewrite | P101 |

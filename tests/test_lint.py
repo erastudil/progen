@@ -68,11 +68,11 @@ class LintAgent(unittest.TestCase):
         ids = {f.rule for f in lint_text(text, role="agent")}
         self.assertIn("P101", ids)
 
-    def test_dialect_pull(self) -> None:
+    def test_no_word_count_check(self) -> None:
         ask = (FIXTURES / "dialect_ask.md").read_text(encoding="utf-8")
         out = (FIXTURES / "dialect_essay.md").read_text(encoding="utf-8")
         ids = {f.rule for f in lint_text(out, role="agent", ask=ask)}
-        self.assertIn("P015", ids)
+        self.assertNotIn("P015", ids)
 
     def test_dialect_iron_ok(self) -> None:
         ask = (FIXTURES / "dialect_ask.md").read_text(encoding="utf-8")

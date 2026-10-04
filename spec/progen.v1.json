@@ -39,7 +39,6 @@
     { "id": "P012", "class": "recite", "severity": "error", "title": "will-not list" },
     { "id": "P013", "class": "stub", "severity": "error", "title": "placeholder plus done" },
     { "id": "P014", "class": "latch", "severity": "error", "title": "project analog latched" },
-    { "id": "P015", "class": "dialect", "severity": "error", "title": "iron followed slack length" },
     { "id": "P016", "class": "restate", "severity": "error", "title": "ask copied back" },
     { "id": "P017", "class": "layout", "severity": "error", "title": "two topic-comments on one line" },
     { "id": "P101", "class": "code", "severity": "error", "title": "extra-scope rewrite" },
