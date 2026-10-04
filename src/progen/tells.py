@@ -98,4 +98,8 @@ TOPIC_IS = re.compile(
     r"^(?:The |A |An )?([A-Za-z][\w. `'-]{0,40}?) (is|are) (.+)$",
     re.IGNORECASE,
 )
+COPULA_LEAD = re.compile(
+    r"^[^:\n#|*>-]{1,48}:\s+(?:is|are|was|were)\b",
+    re.IGNORECASE,
+)
 LATCH_THRESHOLD = 3

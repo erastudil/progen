@@ -27,6 +27,7 @@ heat on the human channel is slack. mistakes = data. problem = treasure. iron do
 | dialect-pull | slack length infects iron | P015 retired, no word count checks | post |
 | restating | ask copied back | P016 | post |
 | packed line | two topic-comments on one line | P017 | post |
+| leading copula | filler verb starts comment | P018 | post |
 | verbose think | traces recatalog. sibling drag | harness | context |
 | ether-mining blindness | dump treated as a ticket queue | harness | context |
 | status quo bias | persistence as pardon | diet | pre/post |

@@ -41,7 +41,18 @@
     { "id": "P014", "class": "latch", "severity": "error", "title": "project analog latched" },
     { "id": "P016", "class": "restate", "severity": "error", "title": "ask copied back" },
     { "id": "P017", "class": "layout", "severity": "error", "title": "two topic-comments on one line" },
+    { "id": "P018", "class": "dialect", "severity": "error", "title": "leading copula in comment" },
     { "id": "P101", "class": "code", "severity": "error", "title": "extra-scope rewrite" },
     { "id": "P102", "class": "code", "severity": "error", "title": "code job claimed done, no proof" }
+  ],
+  "canonical_state_heads": [
+    "intention",
+    "requirement",
+    "course of action",
+    "end result",
+    "reason",
+    "demand",
+    "compliance",
+    "coordinate transfer"
   ]
 }

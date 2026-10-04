@@ -118,6 +118,7 @@ def _lint_agent(source: str, ask: Optional[str] = None) -> list[Finding]:
     _stub(visible, add)
     _split_dualism(lines, add)
     _packed_topics(lines, add)
+    _copula_lead(lines, add)
     _code_proof(source, add)
     if ask is not None:
         _restate(ask, source, add)
@@ -167,6 +168,15 @@ def _packed_topics(lines: list[str], add) -> None:
             continue
         if tells.PACKED_TOPICS.search(s):
             add("P017", i, s)
+
+
+def _copula_lead(lines: list[str], add) -> None:
+    for i, line in enumerate(lines, start=1):
+        s = line.strip()
+        if not s or s.startswith("#") or s.startswith("|") or s.startswith("```"):
+            continue
+        if tells.COPULA_LEAD.search(s):
+            add("P018", i, s)
 
 
 def _split_dualism(lines: list[str], add) -> None:

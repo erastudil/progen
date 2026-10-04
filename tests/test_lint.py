@@ -96,6 +96,16 @@ class LintAgent(unittest.TestCase):
         ids = {f.rule for f in lint_text(text, role="agent")}
         self.assertNotIn("P017", ids)
 
+    def test_copula_lead(self) -> None:
+        text = "status : is failing.\n"
+        ids = {f.rule for f in lint_text(text, role="agent")}
+        self.assertIn("P018", ids)
+
+    def test_zero_copula_clean(self) -> None:
+        text = "status : failing.\n"
+        ids = {f.rule for f in lint_text(text, role="agent")}
+        self.assertNotIn("P018", ids)
+
 
 class SpecSync(unittest.TestCase):
     def test_package_json_matches_spec(self) -> None:
