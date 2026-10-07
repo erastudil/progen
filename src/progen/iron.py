@@ -34,6 +34,7 @@ def iron_text(source: str) -> str:
             asides.extend(lifted)
             text = _positive(text)
             text = _topic_comment(text)
+            text = _zero_copula(text)
             text = _tidy(text)
             if text:
                 kept.append(text)
@@ -117,6 +118,16 @@ def _topic_comment(s: str) -> str:
     if len(topic.split()) > 6:
         return s
     return f"{topic} : {comment}."
+
+
+def _zero_copula(s: str) -> str:
+    m = tells.COPULA_LEAD.match(s)
+    if not m:
+        return s
+    rest = s[m.end() :].lstrip()
+    if not rest[:1].isalnum():
+        return s
+    return m.group(1) + rest
 
 
 def _tidy(s: str) -> str:
