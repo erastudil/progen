@@ -10,6 +10,7 @@ if str(_SRC) not in sys.path:
     sys.path.insert(0, str(_SRC))
 
 from progen.iron import iron_text
+from progen.lint import lint_text
 from progen.prompt import repo_root
 
 
@@ -38,6 +39,22 @@ class Iron(unittest.TestCase):
 
     def test_leaves_existing_iron(self) -> None:
         src = "parse : marks a parser can see.\n"
+        self.assertEqual(iron_text(src), src)
+
+    def test_strips_leading_copula_when_predicate_remains(self) -> None:
+        self.assertEqual(iron_text("status : is failing.\n"), "status : failing.\n")
+        self.assertEqual(iron_text("gates : were open.\n"), "gates : open.\n")
+        self.assertEqual(iron_text("files : are ready\n"), "files : ready.\n")
+        out = iron_text("status : is failing.\n")
+        self.assertNotIn("P018", {f.rule for f in lint_text(out, role="agent")})
+
+    def test_bare_copula_stays_and_still_lints(self) -> None:
+        src = "status : is.\n"
+        self.assertEqual(iron_text(src), src)
+        self.assertIn("P018", {f.rule for f in lint_text(iron_text(src), role="agent")})
+
+    def test_mid_comment_copula_stays(self) -> None:
+        src = "verification : tests are passing.\n"
         self.assertEqual(iron_text(src), src)
 
 
