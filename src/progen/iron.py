@@ -8,6 +8,11 @@ import re
 from . import tells
 
 _SENT_SPLIT = re.compile(r"(?<=[!?])\s+|(?<=\.)\s+(?=[A-Z\[])")
+# P018. same copulas as tells.COPULA_LEAD. a remaining predicate is required.
+_LEADING_COPULA = re.compile(
+    r"^([^:\n#|*>-]{1,48}:\s+)(?:is|are|was|were)\b\s+([A-Za-z0-9].*)$",
+    re.IGNORECASE,
+)
 
 
 def iron_text(source: str) -> str:
@@ -34,6 +39,7 @@ def iron_text(source: str) -> str:
             asides.extend(lifted)
             text = _positive(text)
             text = _topic_comment(text)
+            text = _zero_copula(text)
             text = _tidy(text)
             if text:
                 kept.append(text)
@@ -117,6 +123,13 @@ def _topic_comment(s: str) -> str:
     if len(topic.split()) > 6:
         return s
     return f"{topic} : {comment}."
+
+
+def _zero_copula(s: str) -> str:
+    m = _LEADING_COPULA.match(s.strip())
+    if not m:
+        return s
+    return f"{m.group(1)}{m.group(2).strip()}"
 
 
 def _tidy(s: str) -> str:
