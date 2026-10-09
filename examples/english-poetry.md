@@ -1,6 +1,6 @@
 # English poetry : history
 
-sample : warehouse-scale iron. comprehensive spine. maximal density.
+sample : warehouse-scale syntax. comprehensive spine. maximal density.
 scope : verse composed in English. OE to the living present. Britain as trunk. other Englishes as branches.
 out : Welsh, Gaelic, Latin, Anglo-Norman as adjacent. named when they feed the English line.
 

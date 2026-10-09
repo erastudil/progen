@@ -12,7 +12,7 @@ premise : ten-word ask returning three-page essay failed its own job.
 
 problem : copied context and unasked trailing questions waste attention.
 
-iron : agent think and output hold marks.
+syntax : agent think and output hold marks.
 
 slack : human input keeps informal freedom.
 
@@ -22,7 +22,7 @@ license : AGPL-3.0-or-later. // see [`LICENSE`](LICENSE) and [`COVENANT.md`](COV
 
 ecosystem : [zcabs](https://github.com/erastudil/zcabs) proves execution.
 
-voice : [gfc](https://github.com/erastudil/gfc) writes for humans.
+voice : [gfc](https://github.com/erastudil/gfc) writes for humans when the session names gfc.
 
 mind : progen thinks.
 
@@ -47,8 +47,8 @@ python -m pip install -e .
 
 progen check
 progen prompt genome
-progen iron examples/mush.md
-progen lint examples/iron.md --role agent
+progen syntax examples/mush.md
+progen lint examples/syntax.md --role agent
 ```
 
 runtime : python 3.10+. // standard library only
@@ -60,7 +60,7 @@ runtime : python 3.10+. // standard library only
 | mark | means | who |
 |---|---|---|
 | `=` | definition | both |
-| `:` | topic : comment on outputs | agent iron |
+| `:` | topic : comment on outputs | agent syntax |
 | `,` | topic , comment on human input | human slack |
 | `etc` | open class. infer rest of members | both |
 | `!` | elevated execution | both |
@@ -75,9 +75,9 @@ runtime : python 3.10+. // standard library only
 tools : utilities for parse analysis, lint hygiene, and prompt emission.
 
 ```bash
-progen parse FILE [--role iron|slack]
+progen parse FILE [--role syntax|slack]
 progen lint  FILE [--role agent|human] [--ask FILE]
-progen iron  FILE
+progen syntax FILE
 progen prompt {genome|canon|warehouse}
 progen check
 ```
@@ -86,7 +86,7 @@ parse : extract topic-comment units, asides, and operational mode flags into str
 
 lint : check agent output against language rules and anti-patterns. // exits non-zero on finding
 
-iron : rewrite unstructured prose toward topic-comment statements.
+syntax : rewrite unstructured prose toward topic-comment statements.
 
 prompt : emit reference system prompt for genome, canon, or warehouse.
 
@@ -138,11 +138,12 @@ sources : primary references in this tree.
 | document | description |
 |---|---|
 | [`docs/SPEC.md`](docs/SPEC.md) | normative language specification |
+| [`docs/INSTRUCT.md`](docs/INSTRUCT.md) | normative instruct subdialect specification for agents and task contracts |
 | [`docs/IMPLEMENTATION.md`](docs/IMPLEMENTATION.md) | integration guide for agent runtimes, ui shells, and ci pipelines |
 | [`docs/BOUNDARY.md`](docs/BOUNDARY.md) | technical scope and project boundaries |
 | [`docs/FAILURES.md`](docs/FAILURES.md) | named failure states for prose and code |
 | [`prompts/genome.md`](prompts/genome.md) | drop-in reference system prompt |
-| [`examples/rewrite.md`](examples/rewrite.md) | worked example. rewriting verbose outputs into iron |
+| [`examples/rewrite.md`](examples/rewrite.md) | worked example. rewriting verbose outputs into syntax |
 | [`examples/english-poetry.md`](examples/english-poetry.md) | density sample. history of verse in english |
 | [`spec/progen.v1.json`](spec/progen.v1.json) | machine-readable marks and linter rule catalog |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | patch submission requirements and test verification rules |

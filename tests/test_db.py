@@ -178,13 +178,13 @@ class TestProgenDB(unittest.TestCase):
         self.assertLess(len(line.encode("utf-8")), len(blob.encode("utf-8")))
 
     def test_warm_fact_reads_the_hash(self) -> None:
-        self.db.put_fact("iron count", "14")
+        self.db.put_fact("unit count", "14")
         seen: list[str] = []
         self.db.conn.set_trace_callback(seen.append)
-        self.assertEqual(self.db.fact("iron count"), "iron count: 14")
+        self.assertEqual(self.db.fact("unit count"), "unit count: 14")
         del seen[:]
         for _ in range(1000):
-            self.assertEqual(self.db.fact("iron count"), "iron count: 14")
+            self.assertEqual(self.db.fact("unit count"), "unit count: 14")
         self.assertEqual(seen, [])
 
     def test_fact_reopens_and_survives_ingest(self) -> None:

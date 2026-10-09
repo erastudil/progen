@@ -24,7 +24,7 @@ progen is the counterweight:
 - a genome short enough to stay in the window
 - a warehouse that holds the long reference so the genome stays short
 - a linter that owns the tell-list so the model states the is
-- `progen iron` for a mechanical pass toward that is
+- `progen syntax` for a mechanical pass toward topic-comment statements
 
 start at the three layers. a framework-first pass grows a fourth prompt stack.
 
@@ -35,7 +35,7 @@ start at the three layers. a framework-first pass grows a fourth prompt stack.
 every automated turn:
 
 1. **genome** : `prompts/genome.md` plus your tool list
-2. **map** : a short table of where else to look. one path per need. a dead pointer is a fire. fix the map
+2. **map** : a short table of where else to look. one path per need. a dead pointer causes execution failure. fix the map
 3. **canon** : `prompts/canon.md` or your merge of it. hygiene lives here once, as a pointer to the linter
 4. **named source** : the one file that owns this job
 
@@ -174,7 +174,7 @@ your-project/
 python -m pip install -e .
 progen prompt genome
 progen lint path/to/agent-output.md --role agent
-progen iron path/to/mush.md
+progen syntax path/to/mush.md
 progen parse path/to/human-input.md --role slack
 progen check
 ```
@@ -201,17 +201,17 @@ these happened on a production desk. they will happen on yours. the fix is the i
 | omit-class | stub file + "done" | tests. tool proof. or `ERROR` |
 | aside drag | `//` opened a child. primary thread stayed loaded. both answers mixed | idle-write primary. load only the aside |
 | search flood | every homonym SERP stayed in think. two people felt right | TOC of live threads. negatives to disk. think = query + last proof |
-| word cap | short ask, long iron, lint said stop | retire the cap. P010 gone. one sentence per unit stays |
+| word cap | short ask, long syntax output, lint said stop | retire the cap. P010 gone. one sentence per unit stays |
 | latch | a project analog became the base language of every thread | ordinary CS by default. P014 |
-| dead index | dead path in the map. agent greps the world to rescue it | dead pointer is a fire. fix the map |
+| dead index | dead path in the map. agent greps the world to rescue it | dead pointer causes execution failure. fix the map |
 | dialect toggle | UI flag for think tongue. traces and out diverged | delete the flag. genome is the switch |
 | extra stack | new prompt folder because the genome felt cramped | warehouse |
-| dialect-pull | long slack, essay out, iron dropped | stay iron. P015 retired, no word count checks |
+| dialect-pull | long slack, essay out, syntax dropped | stay in syntax. P015 retired, no word count checks |
 | restating | ask copied back | number spent. P016 |
 | split dualism | contrast across two sentences | P004 |
 | extra-scope | unasked extra rewrite | P101 |
 | silent done | patch claimed done, no proof | P102 · tests |
-| heat-as-judgement | swears treated as a new law | slack. stay iron |
+| heat-as-judgement | emotional input treated as a new law | slack. stay in syntax |
 
 named catalog: `docs/FAILURES.md`.
 

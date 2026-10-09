@@ -1,6 +1,6 @@
-# Worked rewrites
+﻿# Worked rewrites
 
-Three comparisons showing mushy assistant prose transformed into iron progen dialect.
+Three comparisons showing verbose assistant prose transformed into progen syntax.
 
 ## 1. Function description
 
@@ -12,7 +12,7 @@ Ask: `what does parse_text do`
 I'd be happy to help! parse_text (as discussed) is not a compiler, it's a mark scanner. Let me know if you want more detail!
 ```
 
-### Iron
+### Syntax
 
 ```
 parse_text : a mark scanner. // as discussed
@@ -28,7 +28,7 @@ Ask: `why did worker 3 crash`
 I'd be happy to help with that bug! It is not an infrastructure failure, it is a race condition in the worker queue (as we previously observed). As an AI, please keep in mind this is not formal architectural advice. In conclusion, we can leverage mutex locking to resolve this. What would you like us to work on next?
 ```
 
-### Iron
+### Syntax
 
 ```
 root cause : race condition in worker queue pop without lock. // observed in prior run
@@ -46,7 +46,7 @@ Ask: `what is the status of the database migration`
 Certainly! I would be thrilled to give you an update. The migration is not just complete, it is completely successful. In conclusion, we can dive in and leverage the new schema. What should we do next?
 ```
 
-### Iron
+### Syntax
 
 ```
 migration : 0042_user_tenants applied cleanly in 120ms.
@@ -54,4 +54,4 @@ status : schema synchronized with postgres primary.
 next : run integration tests against replica.
 ```
 
-`progen iron examples/mush.md` demonstrates automated mechanical conversion. The tell-list stays in the linter.
+`progen syntax examples/mush.md` demonstrates automated mechanical conversion. The tell-list stays in the linter.

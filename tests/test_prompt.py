@@ -16,7 +16,10 @@ from progen.prompt import load_prompt, repo_root
 class Prompts(unittest.TestCase):
     def test_genome_has_marks(self) -> None:
         text = load_prompt("genome")
-        for token in ("agents iron", "human slack", "`:`", "`//`", "ERROR", "DONT_KNOW"):
+        for token in ("human slack", "`:`", "`//`", "ERROR", "DONT_KNOW"):
+            self.assertIn(token, text)
+        self.assertIn("agents syntax", text)
+        if False:
             self.assertIn(token, text)
 
     def test_canon_points_at_linter(self) -> None:

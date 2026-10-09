@@ -14,6 +14,7 @@ from progen.prompt import repo_root
 
 _DOCS = [
     "docs/SPEC.md",
+    "docs/INSTRUCT.md",
     "docs/IMPLEMENTATION.md",
     "docs/BOUNDARY.md",
     "docs/FAILURES.md",
@@ -22,7 +23,8 @@ _DOCS = [
     "README.md",
     "AGENTS.md",
     "COVENANT.md",
-    "examples/iron.md",
+    "examples/syntax.md",
+    "examples/trace.md",
     "examples/english-poetry.md",
 ]
 

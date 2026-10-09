@@ -1,5 +1,5 @@
-# SPDX-License-Identifier: AGPL-3.0-or-later
-"""mechanical pass toward iron. marks what it can. does not compile english."""
+﻿# SPDX-License-Identifier: AGPL-3.0-or-later
+"""mechanical pass toward progen syntax. marks what it can. does not compile english."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ from . import tells
 _SENT_SPLIT = re.compile(r"(?<=[!?])\s+|(?<=\.)\s+(?=[A-Z\[])")
 
 
-def iron_text(source: str) -> str:
+def syntax_text(source: str) -> str:
     out: list[str] = []
     for raw in source.splitlines():
         if not raw.strip():

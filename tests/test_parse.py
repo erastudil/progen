@@ -14,9 +14,9 @@ from progen.parse import Role, parse_text
 FIXTURES = Path(__file__).resolve().parent / "fixtures"
 
 
-class ParseIron(unittest.TestCase):
+class ParseSyntax(unittest.TestCase):
     def test_topic_comment(self) -> None:
-        doc = parse_text("scale : ten words get two sentences.\n", Role.IRON)
+        doc = parse_text("scale : ten words get two sentences.\n", Role.SYNTAX)
         units = [u for u in doc.units if u.kind == "topic_comment"]
         self.assertEqual(len(units), 1)
         self.assertEqual(units[0].topic, "scale")
@@ -24,27 +24,27 @@ class ParseIron(unittest.TestCase):
         self.assertIn("two sentences", units[0].comment or "")
 
     def test_aside_not_unit(self) -> None:
-        doc = parse_text("leave it. // not a command.\n", Role.IRON)
+        doc = parse_text("leave it. // not a command.\n", Role.SYNTAX)
         self.assertEqual(len(doc.asides), 1)
         self.assertEqual(doc.asides[0].text, "not a command.")
         self.assertTrue(doc.flags.get("has_asides"))
 
     def test_url_is_not_aside(self) -> None:
-        doc = parse_text("see https://example.com/path\n", Role.IRON)
+        doc = parse_text("see https://example.com/path\n", Role.SYNTAX)
         self.assertEqual(doc.asides, [])
 
     def test_definition(self) -> None:
-        doc = parse_text("progen = a dialect of english\n", Role.IRON)
+        doc = parse_text("progen = a dialect of english\n", Role.SYNTAX)
         defs = [u for u in doc.units if u.kind == "definition"]
         self.assertEqual(len(defs), 1)
         self.assertEqual(defs[0].topic, "progen")
 
     def test_open_class(self) -> None:
-        doc = parse_text("logs, diffs, greps, etc.\n", Role.IRON)
+        doc = parse_text("logs, diffs, greps, etc.\n", Role.SYNTAX)
         self.assertTrue(doc.flags.get("open_class"))
 
     def test_elevated_and_test(self) -> None:
-        doc = parse_text("! ship it\n? dry run only\n", Role.IRON)
+        doc = parse_text("! ship it\n? dry run only\n", Role.SYNTAX)
         kinds = [u.kind for u in doc.units]
         self.assertIn("elevated", kinds)
         self.assertIn("test", kinds)
@@ -52,13 +52,13 @@ class ParseIron(unittest.TestCase):
         self.assertTrue(doc.flags.get("test"))
 
     def test_protocol_headers(self) -> None:
-        doc = parse_text("CMD, ls -l\nLOOK: /etc/os-release\n", Role.IRON)
+        doc = parse_text("CMD, ls -l\nLOOK: /etc/os-release\n", Role.SYNTAX)
         kinds = [u.kind for u in doc.units]
         self.assertIn("protocol", kinds)
 
     def test_good_fixture(self) -> None:
         text = (FIXTURES / "good_agent.md").read_text(encoding="utf-8")
-        doc = parse_text(text, Role.IRON)
+        doc = parse_text(text, Role.SYNTAX)
         self.assertGreaterEqual(len(doc.asides), 1)
         self.assertTrue(any(u.kind == "topic_comment" for u in doc.units))
 

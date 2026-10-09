@@ -5,7 +5,7 @@
 P010 retired. word count is not a lint rule.
 
 - a short ask may take as many topic-comment units as the job needs
-- style checks stay: one unit per line, mush, dualism, hooks, P015 essay-without-iron, P016 restating
+- style checks stay: one unit per line, mush, dualism, hooks, P015 essay check, P016 restating
 - genome scale lines that said "ten words : about two sentences" are gone
 
 ## 1.3.1 — 2026-09-24
@@ -46,7 +46,7 @@ named states. wider dualism. code proof.
 - P101 extra-scope. P102 code job done without proof
 - slack heat: mistakes = data. problem = treasure
 - fixtures for recite, omit, silent-done, split dualism
-- iron corpus stays host-side. this tree ships fixtures
+- syntax corpus stays host-side. this tree ships fixtures
 - `examples/english-poetry.md` density sample: history of verse in English
 
 ## 1.1.0 — 2026-09-14
@@ -54,10 +54,10 @@ named states. wider dualism. code proof.
 the is. the linter. the writer.
 
 - genome states the is. bans live in `spec/progen.v1.json` + `src/progen/tells.py`
-- `progen iron` mechanical pass toward topic-comment
+- `progen syntax` mechanical pass toward topic-comment
 - lint: scale P010, will-not P012, stub P013, latch P014
 - SPEC shows は-grammar. terms in §0. unread store instead of house analog
-- `examples/rewrite.md` worked mush → iron
+- `examples/rewrite.md` worked mush → syntax
 - `progen check` lints this tree
 - IMPLEMENTATION keeps production holes as takeable fixes
 

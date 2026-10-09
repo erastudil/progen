@@ -44,6 +44,7 @@ DEFAULT_TAXONOMY: tuple[DeweyClass, ...] = (
 
     # 300: Social sciences
     DeweyClass("300", None, "sociology", "Social structures, culture, anthropology", 0),
+    DeweyClass("302.23", "300", "media", "Media, social platforms, and information disorders", 1),
     DeweyClass("320", "300", "civics", "Civics, political science, constitutions, rights", 1),
     DeweyClass("330", "300", "finance", "Economics, finance, value, markets, risk", 1),
     DeweyClass("340", "300", "law", "Law, jurisprudence, procedure, contracts", 1),

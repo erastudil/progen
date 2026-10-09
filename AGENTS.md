@@ -1,33 +1,43 @@
----
-title: "progen — this tree"
-summary: "public dialect spec + tooling. AGPL-3.0-or-later. genome for agents working here."
+﻿---
+title: "progen — execution genome"
+summary: "sovereign topic-comment operational dialect specification, parser, mechanical linter, and verification gate."
+version: "2.0.0"
+layer: genome
+home: progen/AGENTS.md
+dialect: progen syntax
+status: canon
 ---
 
 # progen
 
-you are in the public progen tree. dialect SoT: `docs/SPEC.md`. license: AGPL-3.0-or-later.
+scope : sovereign Progen dialect specification, parser, mechanical linter, and database tooling at C:\Users\jpm05\Documents\progen.
 
-## law
+normative standard : docs/SPEC.md.
 
-1. SPEC is the language. one markdown.
-2. tools prove SPEC. stub + claim is a hole.
-3. this tree is the dialect. `docs/BOUNDARY.md`.
-4. patches keep AGPL-3.0-or-later. copyright stays with the authors.
-5. write progen. think progen. traces too.
-6. `python -m progen check` before claiming parse, lint, or iron works.
+license : AGPL-3.0-or-later; copyright retained by original authors.
 
-## layout
 
-| path | is |
-|---|---|
-| `docs/SPEC.md` | normative language |
-| `docs/IMPLEMENTATION.md` | desk · glass · shell wiring |
-| `docs/BOUNDARY.md` | what this gift is |
-| `docs/FAILURES.md` | named failure states. house + external |
-| `prompts/` | drop-in genome and canon |
-| `examples/rewrite.md` | mush → iron |
-| `examples/english-poetry.md` | density sample. verse in English |
-| `spec/progen.v1.json` | machine marks + rule ids |
-| `src/progen/` | parse · lint · iron · prompt · cli |
+## operational law
 
-identity: this repo is the card.
+normative authority : docs/SPEC.md defines the sovereign topic-comment grammar and invariants.
+
+verification proof : tools in src/progen/ prove compliance with docs/SPEC.md; stub paired with completion claim denotes zero truth value.
+
+boundary contract : docs/BOUNDARY.md defines external boundaries and distributions.
+
+license preservation : all patches maintain AGPL-3.0-or-later license.
+
+dialect execution : write progen syntax; think progen syntax; internal model traces adhere to progen syntax.
+
+verification command : python -m progen check.
+
+
+## verification and ponytail doctrine
+
+verification gate : execute python -m progen check before asserting parse, lint, syntax, or db completion; require exit code 0.
+
+ponytail wu wei : pull all parser, linter, and db test suites into single-grip deterministic runner python -m progen check; reject sprawling test catalogs.
+
+zero fake tests : all 55 test assertions execute against real grammar ASTs, tokenizers, and sqlite engines without synthetic mocks.
+
+zero stubs : stubs and placeholders paired with completion claims strictly forbidden.

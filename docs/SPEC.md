@@ -11,7 +11,7 @@ license: AGPL-3.0-or-later
 
 why: tokens cost. mush costs more. a ten-word ask that returns a three-page essay has failed its own job. a number already in context, copied back, is drunk attention. a trailing question the human did not ask is the model prompting the user for the next token.
 
-what: one dialect. three layers. iron agents. slack humans.
+what: one dialect. three layers. syntax and instruct agents. slack humans.
 
 how: this file. tools in this repo check the rules that can be checked. implementers read `IMPLEMENTATION.md`.
 
@@ -27,7 +27,8 @@ named states: `docs/FAILURES.md`.
 |---|---|
 | **topic** | what the sentence is about |
 | **comment** | what is said about the topic |
-| **iron** | agent think and output. marks held |
+| **syntax** | agent think and output. marks held |
+| **instruct** | agent instructions, state files, task queues, and skills |
 | **slack** | human input. marks optional |
 | **aside** | `//` text. inert. not a command |
 | **genome** | short system prompt. role, tools, references |
@@ -39,7 +40,13 @@ named states: `docs/FAILURES.md`.
 | **window** | what the model can attend to now |
 | **tell** | a trained habit that fights the job. the linter owns the list |
 
-local analogies stay in the project that minted them. three hits of a shop-family word on a page that is not that project: latch. ordinary CS terms by default.
+instruction vocabulary : mathematics, philosophy, science, and computation.
+
+shop-family latch : three hits of a shop-family word on one page.
+
+default terms : ordinary computational terms.
+
+binding sentences : section 13.
 
 ---
 
@@ -85,7 +92,7 @@ a wall of units with no blank line is a failure.
 | mark | means | who |
 |---|---|---|
 | `=` | definition | both |
-| `:` | topic : comment on **outputs** | agent iron |
+| `:` | topic : comment on **outputs** | agent syntax and instruct |
 | `,` | topic , comment on **human input** | human slack. agent parses |
 | `etc` | open class. infer the rest of the members | both |
 | `!` | elevated execution | both |
@@ -115,15 +122,34 @@ old `(` on human input may still be an aside. agent prose uses `//` or a new sen
 
 ---
 
-## 4. iron and slack
+## 4. syntax, instruct, and slack
 
-**agents = iron.** same progen in think and in out. `:` separates topic from comment. tighten.
+**agents = syntax or instruct.** same progen in think and in out. `:` separates topic from comment. tighten.
 
 **human = slack.** they may dump, contradict, skip marks, swear, or use `,` as topic separator. parse `,` as topic from comment. hold your line. theirs stays theirs.
 
-heat is slack. mistakes = data. problem = treasure. do not soothe. do not treat swears as a new law.
+unstructured human input is slack. errors = data. system defects require resolution. zero apologies. emotional expressions carry zero operational authority.
 
 ---
+
+---
+
+## 4b. progen instruct subdialect
+
+formal specification: [`docs/INSTRUCT.md`](INSTRUCT.md).
+
+progen instruct specializes topic : comment structure for durable agent instructions, `AGENTS.md` files, task queues, state files, and skills.
+
+| property | specification |
+|---|---|
+| target domain | `AGENTS.md`, task queues, state files, agent instruction manifests, and skills |
+| unit structure | exactly one topic : comment per line |
+| delimiter | single blank line between topic : comment statements |
+| verbosity | higher descriptive verbosity permitted; complete architectural invariants and contracts |
+| condition words | `always`, `never`, `if`, `then`, `else`, `until`, `while`, `require`, `assert`, `emit` |
+| metaphor rule | metaphor latching banned in agent instructions; state computational predicates directly |
+
+no metaphors in instructions: instructions state computational, logical, or mathematical predicates directly.
 
 ## 5. scale
 
@@ -131,7 +157,7 @@ progen is the job, cheaper. less memory. less compute. density is the shape. one
 
 | | |
 |---|---|
-| short ask | still iron. as many units as the job needs. the dialect truncates. a word cap is off the rule list |
+| short ask | still syntax. as many units as the job needs. the dialect truncates. a word cap is off the rule list |
 | number already in context | spent. the next sentence uses it, unrepeated |
 | fetch | the named source for this job |
 | artifact | dry. session-prose stays on the channel. the file is the thing |
@@ -197,7 +223,7 @@ done = tool proof.
 
 ## 9. hygiene
 
-tells are machine-checkable. the linter owns the list so the agent does not print it. rule ids: `spec/progen.v1.json`. named catalog: `docs/FAILURES.md`. run `progen lint`. rewrite with `progen iron`. `--ask` / `--ask-file` enable P016. packed line: P017. leading copula: P018. P010 and P015 are retired.
+tells are machine-checkable. the linter owns the list so the agent does not print it. rule ids: `spec/progen.v1.json`. named catalog: `docs/FAILURES.md`. run `progen lint`. rewrite with `progen syntax`. `--ask` / `--ask-file` enable P016. packed line: P017. leading copula: P018. P010 and P015 are retired.
 
 education and textbooks: plain intuition first. the technical term arrives after the concept is already understood.
 
@@ -223,14 +249,32 @@ human invokes with CAPSLOCK. elevated stakes. one problem for the session. agent
 
 | level | must |
 |---|---|
-| **core** | topic-comment on agent output · asides inert · iron/slack · `ERROR` / `DONT_KNOW` · one sentence per unit · linter clean on mush, dualism, hook, disclaimer |
+| **core** | topic-comment on agent output · asides inert · syntax/slack · `ERROR` / `DONT_KNOW` · one sentence per unit · linter clean on mush, dualism, hook, disclaimer |
 | **full** | core + layers + named-source fetch + dry artifacts + think traces in progen + latch clean |
 
-`python -m progen check` runs the fixtures, irons the worked example, and lints this tree.
+`python -m progen check` runs the fixtures, verifies syntax rewrites, and lints this tree.
 
 ---
 
-## 13. license
+## 13. axioms
+
+these sentences bind genomes, skills, standing prompts, and agent contracts.
+
+axiom vocabulary : instruction predicates belong to mathematics, philosophy, science, and computation.
+
+admitted terms : predicate, quantifier, invariant, axiom, theorem, proof, function, relation, set, type, state, transform, measurement, exit code.
+
+axiom register : defined register names are syntax, instruct, and slack.
+
+axiom shop : machine-shop tokens and metallurgical tokens denote zero predicates and zero register names. the token iron denotes neither.
+
+axiom propagation : a token in a turn-one specification, a skill, or a genome reappears in descendant sessions. standing prompts name syntax.
+
+axiom name : implementation and agent-facing text name syntax.
+
+---
+
+## 14. license
 
 AGPL-3.0-or-later. `LICENSE` · `COVENANT.md`.
 

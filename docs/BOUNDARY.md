@@ -1,18 +1,18 @@
 # boundary
 
-this gift is the dialect. complete for that job.
+progen defines the dialect. complete for that job.
 
 ## ships
 
 | | |
 |---|---|
-| language | topic-comment english. japanese grammar shape. marks. iron and slack. scale. think + write + traces |
+| language | topic-comment english. japanese grammar shape. marks. syntax, instruct, and slack. scale. think + write + traces |
 | architecture | genome / warehouse / canon |
 | speech acts | `ERROR` · `DONT_KNOW` · trailing `please` · `etc` as open class |
 | hygiene | machine-checkable tells. linter owns the list |
-| writer | `progen iron` mechanical pass toward the is |
+| writer | `progen syntax` mechanical pass toward topic-comment statements |
 | prompts | drop-in genome and canon. warehouse is per project |
-| tools | parse · lint · iron · prompt emit · check |
+| tools | parse · lint · syntax · prompt emit · check |
 | license | AGPL-3.0-or-later. covenant in `COVENANT.md` |
 
 `docs/SPEC.md` is the law. tools fail closed against it.

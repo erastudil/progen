@@ -43,7 +43,7 @@ class LintAgent(unittest.TestCase):
         findings = lint_text(text, role="agent")
         self.assertFalse(any(f.rule == "P005" for f in findings))
 
-    def test_short_ask_long_iron_is_clean(self) -> None:
+    def test_short_ask_long_syntax_is_clean(self) -> None:
         ask = "what broke"
         out = "".join(f"part{i} : sector {i} failed.\n\n" for i in range(40))
         self.assertEqual(lint_text(out, role="agent", ask=ask), [])
@@ -74,7 +74,7 @@ class LintAgent(unittest.TestCase):
         ids = {f.rule for f in lint_text(out, role="agent", ask=ask)}
         self.assertNotIn("P015", ids)
 
-    def test_dialect_iron_ok(self) -> None:
+    def test_dialect_syntax_ok(self) -> None:
         ask = (FIXTURES / "dialect_ask.md").read_text(encoding="utf-8")
         out = "pre : next token, all tokens.\nmid : same loss, denser diet.\npost : SFT then preference then verifier.\n"
         ids = {f.rule for f in lint_text(out, role="agent", ask=ask)}

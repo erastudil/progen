@@ -14,7 +14,8 @@ from typing import Optional
 
 
 class Role(str, Enum):
-    IRON = "iron"
+    SYNTAX = "syntax"
+    INSTRUCT = "instruct"
     SLACK = "slack"
 
 
@@ -52,7 +53,7 @@ class Document:
 
 _ASIDE = re.compile(r"//")
 _SLACK_TOPIC = re.compile(r"^([^,]{1,40}?),\s+(\S.*)$")
-_IRON_TOPIC = re.compile(r"^([^:]{1,80}?):\s+(\S.*)$")
+_SYNTAX_TOPIC = re.compile(r"^([^:]{1,80}?):\s+(\S.*)$")
 _DEFINITION = re.compile(r"^([^=\n]{1,80}?)\s+=\s+(\S.*)$")
 _OPEN_CLASS = re.compile(r"\betc\.?\b", re.IGNORECASE)
 _ADMIN_LINE = re.compile(r"^[A-Z0-9][A-Z0-9 ,.'\-!]{2,}[A-Z0-9.!?]$")
@@ -60,7 +61,7 @@ _PROTOCOL = re.compile(r"^(LOOK|FORMAT):")
 _CMD = re.compile(r"^CMD,")
 
 
-def parse_text(source: str, role: Role | str = Role.IRON) -> Document:
+def parse_text(source: str, role: Role | str = Role.SYNTAX) -> Document:
     role = Role(role)
     doc = Document(role=role, source=source)
     offset = 0
@@ -145,8 +146,8 @@ def _unit(body: str, role: Role, line_start: int, line_no: int) -> Unit:
             comment=m.group(2).strip(),
             mark="=",
         )
-    if role is Role.IRON:
-        m = _IRON_TOPIC.match(stripped)
+    if role in (Role.SYNTAX, Role.INSTRUCT):
+        m = _SYNTAX_TOPIC.match(stripped)
         if m and _topic_ok(m.group(1)):
             return Unit(
                 kind="topic_comment",
@@ -173,7 +174,7 @@ def _unit(body: str, role: Role, line_start: int, line_no: int) -> Unit:
                 comment=m.group(2).strip(),
                 mark=",",
             )
-        m = _IRON_TOPIC.match(stripped)
+        m = _SYNTAX_TOPIC.match(stripped)
         if m and _topic_ok(m.group(1)):
             return Unit(
                 kind="topic_comment",

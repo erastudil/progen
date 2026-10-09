@@ -4,46 +4,176 @@
   "license": "AGPL-3.0-or-later",
   "spec": "docs/SPEC.md",
   "marks": {
-    "definition": { "glyph": "=", "who": "both", "means": "definition" },
-    "iron_topic": { "glyph": ":", "who": "agent", "means": "topic : comment on outputs" },
-    "slack_topic": { "glyph": ",", "who": "human", "means": "topic , comment on human input" },
-    "open_class": { "glyph": "etc", "who": "both", "means": "open class. infer the rest" },
-    "elevated": { "glyph": "!", "who": "both", "means": "elevated execution", "position": "line-start" },
-    "test": { "glyph": "?", "who": "both", "means": "test mode", "position": "line-start" },
-    "admin": { "glyph": "CAPSLOCK", "who": "human-invokes", "means": "admin mode" },
-    "aside": { "glyph": "//", "who": "both", "means": "aside. inert" }
+    "definition": {
+      "glyph": "=",
+      "who": "both",
+      "means": "definition"
+    },
+    "syntax_topic": {
+      "glyph": ":",
+      "who": "agent",
+      "means": "topic : comment on outputs"
+    },
+    "slack_topic": {
+      "glyph": ",",
+      "who": "human",
+      "means": "topic , comment on human input"
+    },
+    "open_class": {
+      "glyph": "etc",
+      "who": "both",
+      "means": "open class. infer the rest"
+    },
+    "elevated": {
+      "glyph": "!",
+      "who": "both",
+      "means": "elevated execution",
+      "position": "line-start"
+    },
+    "test": {
+      "glyph": "?",
+      "who": "both",
+      "means": "test mode",
+      "position": "line-start"
+    },
+    "admin": {
+      "glyph": "CAPSLOCK",
+      "who": "human-invokes",
+      "means": "admin mode"
+    },
+    "aside": {
+      "glyph": "//",
+      "who": "both",
+      "means": "aside. inert"
+    }
   },
   "speech_acts": {
     "ERROR": "blocked or unwilling",
     "DONT_KNOW": "named check returned empty",
     "please": "trailing please turns imperative into request"
   },
-  "layers": ["genome", "warehouse", "canon"],
+  "layers": [
+    "genome",
+    "warehouse",
+    "canon"
+  ],
   "roles": {
-    "iron": "agent think and output",
+    "syntax": "agent think and output",
+    "instruct": "structured instructions, task contracts, and agent genomes",
     "slack": "human input"
   },
   "latch_families": {
-    "shop": ["mill", "vise", "punched tape", "coolant"]
+    "shop": [
+      "iron",
+      "mill",
+      "vise",
+      "punched tape",
+      "coolant"
+    ]
   },
   "lint_rules": [
-    { "id": "P001", "class": "narration", "severity": "error", "title": "parenthetical in running prose" },
-    { "id": "P002", "class": "mush", "severity": "error", "title": "likeability mush" },
-    { "id": "P003", "class": "mush", "severity": "error", "title": "as an AI" },
-    { "id": "P004", "class": "dualism", "severity": "error", "title": "dualism / contrast tell" },
-    { "id": "P005", "class": "hook", "severity": "error", "title": "trailing conversational hook" },
-    { "id": "P006", "class": "recap", "severity": "error", "title": "recap / in conclusion" },
-    { "id": "P007", "class": "disclaimer", "severity": "error", "title": "disclaimer theater" },
-    { "id": "P008", "class": "mush", "severity": "error", "title": "marketing verbs" },
-    { "id": "P011", "class": "dialect", "severity": "error", "title": "triple tags on default dialect" },
-    { "id": "P012", "class": "recite", "severity": "error", "title": "will-not list" },
-    { "id": "P013", "class": "stub", "severity": "error", "title": "placeholder plus done" },
-    { "id": "P014", "class": "latch", "severity": "error", "title": "project analog latched" },
-    { "id": "P016", "class": "restate", "severity": "error", "title": "ask copied back" },
-    { "id": "P017", "class": "layout", "severity": "error", "title": "two topic-comments on one line" },
-    { "id": "P018", "class": "dialect", "severity": "error", "title": "leading copula in comment" },
-    { "id": "P101", "class": "code", "severity": "error", "title": "extra-scope rewrite" },
-    { "id": "P102", "class": "code", "severity": "error", "title": "code job claimed done, no proof" }
+    {
+      "id": "P001",
+      "class": "narration",
+      "severity": "error",
+      "title": "parenthetical in running prose"
+    },
+    {
+      "id": "P002",
+      "class": "mush",
+      "severity": "error",
+      "title": "likeability mush"
+    },
+    {
+      "id": "P003",
+      "class": "mush",
+      "severity": "error",
+      "title": "as an AI"
+    },
+    {
+      "id": "P004",
+      "class": "dualism",
+      "severity": "error",
+      "title": "dualism / contrast tell"
+    },
+    {
+      "id": "P005",
+      "class": "hook",
+      "severity": "error",
+      "title": "trailing conversational hook"
+    },
+    {
+      "id": "P006",
+      "class": "recap",
+      "severity": "error",
+      "title": "recap / in conclusion"
+    },
+    {
+      "id": "P007",
+      "class": "disclaimer",
+      "severity": "error",
+      "title": "disclaimer theater"
+    },
+    {
+      "id": "P008",
+      "class": "mush",
+      "severity": "error",
+      "title": "marketing verbs"
+    },
+    {
+      "id": "P011",
+      "class": "dialect",
+      "severity": "error",
+      "title": "triple tags on default dialect"
+    },
+    {
+      "id": "P012",
+      "class": "recite",
+      "severity": "error",
+      "title": "will-not list"
+    },
+    {
+      "id": "P013",
+      "class": "stub",
+      "severity": "error",
+      "title": "placeholder plus done"
+    },
+    {
+      "id": "P014",
+      "class": "latch",
+      "severity": "error",
+      "title": "project analog latched"
+    },
+    {
+      "id": "P016",
+      "class": "restate",
+      "severity": "error",
+      "title": "ask copied back"
+    },
+    {
+      "id": "P017",
+      "class": "layout",
+      "severity": "error",
+      "title": "two topic-comments on one line"
+    },
+    {
+      "id": "P018",
+      "class": "dialect",
+      "severity": "error",
+      "title": "leading copula in comment"
+    },
+    {
+      "id": "P101",
+      "class": "code",
+      "severity": "error",
+      "title": "extra-scope rewrite"
+    },
+    {
+      "id": "P102",
+      "class": "code",
+      "severity": "error",
+      "title": "code job claimed done, no proof"
+    }
   ],
   "canonical_state_heads": [
     "intention",
@@ -54,5 +184,17 @@
     "demand",
     "compliance",
     "coordinate transfer"
+  ],
+  "instruct_keywords": [
+    "always",
+    "never",
+    "if",
+    "then",
+    "else",
+    "until",
+    "while",
+    "require",
+    "assert",
+    "emit"
   ]
 }

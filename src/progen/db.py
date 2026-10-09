@@ -110,7 +110,7 @@ class ProgenDB:
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 uri TEXT UNIQUE NOT NULL,
                 hash TEXT NOT NULL,
-                role TEXT NOT NULL DEFAULT 'iron',
+                role TEXT NOT NULL DEFAULT 'syntax',
                 layer TEXT NOT NULL DEFAULT 'warehouse',
                 unit_count INTEGER NOT NULL DEFAULT 0,
                 created_at TEXT NOT NULL,
@@ -305,7 +305,7 @@ class ProgenDB:
                 cur.execute(
                     """
                     INSERT INTO sources (uri, hash, role, layer, unit_count, created_at, updated_at)
-                    VALUES ('default', '0', 'iron', 'warehouse', 0, ?, ?);
+                    VALUES ('default', '0', 'syntax', 'warehouse', 0, ?, ?);
                     """,
                     (now, now),
                 )
@@ -534,12 +534,12 @@ class ProgenDB:
         self,
         source_text: str,
         uri: str = "inline",
-        role: str = "iron",
+        role: str = "syntax",
         layer: str = "warehouse",
         default_dewey: Optional[str] = None,
     ) -> int:
         """Parse and ingest a Progen document, returning count of units inserted."""
-        doc = parse_text(source_text, role=Role(role))
+        doc = parse_text(source_text, role=Role(role) if role in Role._value2member_map_ else Role.SYNTAX)
         now = self._now()
         content_hash = hashlib.sha256(source_text.encode("utf-8")).hexdigest()
 
@@ -612,7 +612,7 @@ class ProgenDB:
     def ingest_file(
         self,
         path: str | Path,
-        role: str = "iron",
+        role: str = "syntax",
         layer: str = "warehouse",
         default_dewey: Optional[str] = None,
     ) -> int:
@@ -633,7 +633,7 @@ class ProgenDB:
         self,
         dir_path: str | Path,
         pattern: str = "*.md",
-        role: str = "iron",
+        role: str = "syntax",
     ) -> dict[str, int]:
         """Ingest all matching markdown files in a directory tree."""
         root = Path(dir_path)

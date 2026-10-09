@@ -1,26 +1,25 @@
-# SPDX-License-Identifier: AGPL-3.0-or-later
-"""progen dialect: parse, lint, prompt emit."""
+﻿# SPDX-License-Identifier: AGPL-3.0-or-later
+"""progen: dialect of English for agent think, agent write, and think traces."""
 
-from .db import ProgenDB, SourceRecord, UnitRecord
-from .dewey import DeweyClass, classify_text
-from .iron import iron_text
-from .lint import Finding, lint_text
-from .parse import Document, Role, parse_text
+from __future__ import annotations
+
+from .syntax import syntax_text
+from .lint import Finding, lint_text, load_rules
+from .parse import Aside, Document, Role, Span, Unit, parse_text
 from .prompt import load_prompt
 
-__version__ = "1.3.2"
+__version__ = "1.2.1"
+
 __all__ = [
-    "DeweyClass",
+    "Aside",
     "Document",
     "Finding",
-    "ProgenDB",
     "Role",
-    "SourceRecord",
-    "UnitRecord",
-    "classify_text",
-    "iron_text",
+    "Span",
+    "Unit",
     "lint_text",
     "load_prompt",
+    "load_rules",
     "parse_text",
-    "__version__",
+    "syntax_text",
 ]

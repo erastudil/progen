@@ -1,6 +1,6 @@
 ---
 title: "progenitor dialogue — smacx canonical source"
-summary: "curated canonical dialogue corpus from sid meier alien crossfire progenitor factions. foundational source material for progen iron topic-comment grammar."
+summary: "curated canonical dialogue corpus from sid meier alien crossfire progenitor factions. foundational source material for progen syntax topic-comment grammar."
 dialect: progen
 status: source
 ---
