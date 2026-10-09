@@ -76,7 +76,7 @@ tools : utilities for parse analysis, lint hygiene, and prompt emission.
 
 ```bash
 progen parse FILE [--role iron|slack]
-progen lint  FILE [--role agent|human] [--ask FILE]
+progen lint  FILE [--role agent|human] [--ask TEXT] [--ask-file FILE]
 progen iron  FILE
 progen prompt {genome|canon|warehouse}
 progen check
