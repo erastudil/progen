@@ -20,6 +20,6 @@ jobs:
       - name: cli check
         run: PYTHONPATH=src python -m progen check
       - name: genome emits
-        run: PYTHONPATH=src python -m progen prompt genome | grep -q "agents iron"
-      - name: iron writes
-        run: PYTHONPATH=src python -m progen iron examples/mush.md | grep -q "mark scanner"
+        run: PYTHONPATH=src python -m progen prompt genome | grep -q "agents syntax"
+      - name: syntax writes
+        run: PYTHONPATH=src python -m progen syntax examples/mush.md | grep -q "mark scanner"
