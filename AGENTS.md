@@ -32,11 +32,11 @@ dialect execution : write progen syntax; think progen syntax; internal model tra
 verification command : python -m progen check.
 
 
-## verification and ponytail doctrine
+## verification and wuwei doctrine
 
 verification gate : execute python -m progen check before asserting parse, lint, syntax, or db completion; require exit code 0.
 
-ponytail wu wei : pull all parser, linter, and db test suites into single-grip deterministic runner python -m progen check; reject sprawling test catalogs.
+wuwei wu wei : pull all parser, linter, and db test suites into single-grip deterministic runner python -m progen check; reject sprawling test catalogs.
 
 zero fake tests : all 55 test assertions execute against real grammar ASTs, tokenizers, and sqlite engines without synthetic mocks.
 
