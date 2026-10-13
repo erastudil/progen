@@ -1,4 +1,4 @@
-﻿# SPDX-License-Identifier: AGPL-3.0-or-later
+# SPDX-License-Identifier: AGPL-3.0-or-later
 from __future__ import annotations
 
 import sys
@@ -9,8 +9,9 @@ _SRC = Path(__file__).resolve().parents[1] / "src"
 if str(_SRC) not in sys.path:
     sys.path.insert(0, str(_SRC))
 
-from progen.syntax import syntax_text
+from progen.lint import lint_text
 from progen.prompt import repo_root
+from progen.syntax import syntax_text
 
 
 class Syntax(unittest.TestCase):
@@ -38,6 +39,22 @@ class Syntax(unittest.TestCase):
 
     def test_leaves_existing_syntax(self) -> None:
         src = "parse : marks a parser can see.\n"
+        self.assertEqual(syntax_text(src), src)
+
+    def test_strips_leading_copula(self) -> None:
+        samples = {
+            "status : is failing.\n": "status : failing.\n",
+            "verification : are tests passing.\n": "verification : tests passing.\n",
+            "result : was updated.\n": "result : updated.\n",
+            "coords : were moved.\n": "coords : moved.\n",
+        }
+        for src, expect in samples.items():
+            out = syntax_text(src)
+            self.assertEqual(out, expect)
+            self.assertEqual(lint_text(out, role="agent"), [])
+
+    def test_bare_copula_stays(self) -> None:
+        src = "status : is.\n"
         self.assertEqual(syntax_text(src), src)
 
 
