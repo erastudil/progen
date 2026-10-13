@@ -47,14 +47,21 @@ class Syntax(unittest.TestCase):
             "verification : are tests passing.\n": "verification : tests passing.\n",
             "result : was updated.\n": "result : updated.\n",
             "coords : were moved.\n": "coords : moved.\n",
+            "gates : were open.\n": "gates : open.\n",
+            "files : are ready\n": "files : ready.\n",
         }
         for src, expect in samples.items():
             out = syntax_text(src)
             self.assertEqual(out, expect)
             self.assertEqual(lint_text(out, role="agent"), [])
 
-    def test_bare_copula_stays(self) -> None:
+    def test_bare_copula_stays_and_still_lints(self) -> None:
         src = "status : is.\n"
+        self.assertEqual(syntax_text(src), src)
+        self.assertIn("P018", {f.rule for f in lint_text(syntax_text(src), role="agent")})
+
+    def test_mid_comment_copula_stays(self) -> None:
+        src = "verification : tests are passing.\n"
         self.assertEqual(syntax_text(src), src)
 
 
