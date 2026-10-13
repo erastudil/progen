@@ -58,8 +58,8 @@ def main(argv: list[str] | None = None) -> int:
     p_lint = sub.add_parser("lint", help="check agent output against SPEC hygiene")
     p_lint.add_argument("file")
     p_lint.add_argument("--role", choices=["agent", "human"], default="agent")
-    p_lint.add_argument("--ask", help="original ask, for dialect-pull and restate checks")
-    p_lint.add_argument("--ask-file", help="file containing the original ask")
+    p_lint.add_argument("--ask", help="original ask text. enables P016")
+    p_lint.add_argument("--ask-file", help="file with the original ask. enables P016")
 
     p_syntax = sub.add_parser("syntax", help="mechanical pass toward topic-comment")
     p_syntax.add_argument("file")
