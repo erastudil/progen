@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 from __future__ import annotations
 
+import ast
 import sys
 import unittest
 from pathlib import Path
@@ -35,6 +36,13 @@ class DocsLint(unittest.TestCase):
         for rel in _DOCS:
             findings = lint_text((root / rel).read_text(encoding="utf-8"), role="agent")
             self.assertEqual(findings, [], msg=f"{rel}: {findings}")
+
+    def test_package_sources_parse(self) -> None:
+        root = repo_root() / "src" / "progen"
+        paths = sorted(root.rglob("*.py"))
+        self.assertTrue(paths)
+        for path in paths:
+            ast.parse(path.read_bytes(), filename=str(path))
 
 
 class Traces(unittest.TestCase):
