@@ -28,6 +28,14 @@ class TestProgenDB(unittest.TestCase):
         self.assertEqual(st["unit_count"], 0)
         self.assertEqual(st["aside_count"], 0)
 
+    def test_package_exports_the_engine(self) -> None:
+        import progen
+
+        self.assertIs(progen.ProgenDB, ProgenDB)
+        with progen.ProgenDB(":memory:") as db:
+            db.put_fact("boiling point", "100 C")
+            self.assertEqual(db.fact("boiling point"), "boiling point: 100 C")
+
     def test_crud_unit(self) -> None:
         # Insert
         uid = self.db.insert_unit(

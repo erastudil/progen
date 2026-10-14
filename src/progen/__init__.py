@@ -7,6 +7,7 @@ from .syntax import syntax_text
 from .lint import Finding, lint_text, load_rules
 from .parse import Aside, Document, Role, Span, Unit, parse_text
 from .prompt import load_prompt
+from .db import ProgenDB
 
 __version__ = "1.3.2"
 
@@ -14,6 +15,7 @@ __all__ = [
     "Aside",
     "Document",
     "Finding",
+    "ProgenDB",
     "Role",
     "Span",
     "Unit",
