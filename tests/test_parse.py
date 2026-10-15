@@ -85,5 +85,81 @@ class ParseSlack(unittest.TestCase):
         self.assertTrue(doc.flags.get("admin"))
 
 
+class TestStreamingTokenizer(unittest.TestCase):
+    def test_incremental_chunks_and_asides(self) -> None:
+        from progen.stream import StreamingProgenTokenizer, UnitType
+
+        tok = StreamingProgenTokenizer(role="syntax")
+        self.assertEqual(tok.feed("scale : ten words "), [])
+        events = tok.feed("get two sentences. // fast\n")
+        self.assertEqual(len(events), 2)
+        self.assertEqual(events[0].unit_type, UnitType.TOPIC_COMMENT)
+        self.assertEqual(events[0].topic, "scale")
+        self.assertEqual(events[0].comment, "ten words get two sentences.")
+        self.assertEqual(events[0].warnings, [])
+        self.assertEqual(events[1].unit_type, UnitType.ASIDE)
+        self.assertEqual(events[1].text, "fast")
+
+    def test_code_fence_and_copula_warning(self) -> None:
+        from progen.stream import StreamingProgenTokenizer, UnitType
+
+        tok = StreamingProgenTokenizer(role="syntax")
+        events = tok.feed(
+            "```python\n"
+            "inside : fence ignored\n"
+            "```\n"
+            "status : is failing.\n"
+            "! rotate keys\n"
+            "progen = dialect of english"
+        )
+        events.extend(tok.flush())
+        self.assertEqual(len(events), 3)
+        self.assertEqual(events[0].unit_type, UnitType.TOPIC_COMMENT)
+        self.assertIn("P018: leading copula in comment", events[0].warnings)
+        self.assertEqual(events[1].unit_type, UnitType.ELEVATED)
+        self.assertEqual(events[1].comment, "rotate keys")
+        self.assertEqual(events[2].unit_type, UnitType.DEFINITION)
+        self.assertEqual(events[2].topic, "progen")
+
+    def test_slack_role_comma_topic(self) -> None:
+        from progen.stream import StreamingProgenTokenizer, UnitType
+
+        tok = StreamingProgenTokenizer(role="slack")
+        events = tok.feed("deploy pipeline, restart workers now\n")
+        self.assertEqual(len(events), 1)
+        self.assertEqual(events[0].unit_type, UnitType.TOPIC_COMMENT)
+        self.assertEqual(events[0].topic, "deploy pipeline")
+        self.assertEqual(events[0].comment, "restart workers now")
+
+
+class TestProgenSearchIndex(unittest.TestCase):
+    def test_bm25_ranking_and_kind_filter(self) -> None:
+        from progen.search import ProgenSearchIndex
+
+        idx = ProgenSearchIndex()
+        count = idx.index_text(
+            "sqlite : embedded relational database engine.\n"
+            "neural network : transformer weights for inference.\n"
+            "progen = dialect for agent thinking.\n",
+            doc_id="notes.md",
+        )
+        self.assertEqual(count, 3)
+        hits = idx.search("relational database sqlite")
+        self.assertGreaterEqual(len(hits), 1)
+        self.assertEqual(hits[0].unit.topic, "sqlite")
+        self.assertEqual(hits[0].doc_id, "notes.md")
+
+        def_hits = idx.search("dialect agent", kind="definition")
+        self.assertEqual(len(def_hits), 1)
+        self.assertEqual(def_hits[0].unit.topic, "progen")
+
+    def test_all_package_modules_compile(self) -> None:
+        import py_compile
+
+        pkg_dir = _SRC / "progen"
+        for py_file in sorted(pkg_dir.glob("*.py")):
+            py_compile.compile(str(py_file), doraise=True)
+
+
 if __name__ == "__main__":
     unittest.main()
