@@ -69,20 +69,33 @@ def main(argv: list[str] | None = None) -> int:
 
     sub.add_parser("check", help="fixtures, syntax rewrite, lint this tree")
 
-    # db subcommands
-    p_db = sub.add_parser("db", help="relational storage and dewey indexing")
-    p_db.add_argument("--db", default="progen.db", help="path to sqlite database (default: progen.db)")
+    # db subcommands. --db is legal before the verb and after it.
+    # the verb parser uses SUPPRESS so its default does not wipe a parent path.
+    db_opt = "path to sqlite database (default: progen.db)"
+    db_before = argparse.ArgumentParser(add_help=False)
+    db_before.add_argument("--db", default="progen.db", help=db_opt)
+    db_after = argparse.ArgumentParser(add_help=False)
+    db_after.add_argument("--db", default=argparse.SUPPRESS, help=db_opt)
+
+    p_db = sub.add_parser(
+        "db",
+        help="relational storage and dewey indexing",
+        parents=[db_before],
+    )
     db_sub = p_db.add_subparsers(dest="db_cmd", required=True)
 
-    db_sub.add_parser("init", help="initialize database schema and dewey taxonomy")
+    def db_parser(name: str, **kwargs):
+        return db_sub.add_parser(name, parents=[db_after], **kwargs)
 
-    p_ingest = db_sub.add_parser("ingest", help="ingest markdown file or directory")
+    db_parser("init", help="initialize database schema and dewey taxonomy")
+
+    p_ingest = db_parser("ingest", help="ingest markdown file or directory")
     p_ingest.add_argument("path", help="file or directory path")
     p_ingest.add_argument("--role", choices=["syntax", "instruct", "slack"], default="syntax")
     p_ingest.add_argument("--layer", default="warehouse")
     p_ingest.add_argument("--dewey", help="default dewey code override")
 
-    p_query = db_sub.add_parser("query", help="query units by topic, dewey, or full-text")
+    p_query = db_parser("query", help="query units by topic, dewey, or full-text")
     p_query.add_argument("--topic", help="topic filter (supports * wildcard)")
     p_query.add_argument("--comment", help="comment substring filter")
     p_query.add_argument("--dewey", help="dewey code filter (exact, prefix*, or range X-Y)")
@@ -92,10 +105,10 @@ def main(argv: list[str] | None = None) -> int:
     p_query.add_argument("--format", choices=["text", "json", "md"], default="text")
     p_query.add_argument("--limit", type=int, default=100)
 
-    p_get = db_sub.add_parser("get", help="retrieve a single unit by ID")
+    p_get = db_parser("get", help="retrieve a single unit by ID")
     p_get.add_argument("id", help="unit ID")
 
-    p_put = db_sub.add_parser("put", help="insert a single topic-comment unit")
+    p_put = db_parser("put", help="insert a single topic-comment unit")
     p_put.add_argument("topic", help="topic string")
     p_put.add_argument("comment", help="comment string")
     p_put.add_argument("--mark", default=":", help="mark (=, :, !, ?)")
@@ -104,22 +117,22 @@ def main(argv: list[str] | None = None) -> int:
     p_put.add_argument("--aside", help="optional aside text")
     p_put.add_argument("--fact", action="store_true", help="store one alphanumeric fact")
 
-    p_fact = db_sub.add_parser("fact", help="print one alphanumeric fact line")
+    p_fact = db_parser("fact", help="print one alphanumeric fact line")
     p_fact.add_argument("topic", help="fact topic")
 
-    p_del = db_sub.add_parser("delete", help="delete a unit by ID")
+    p_del = db_parser("delete", help="delete a unit by ID")
     p_del.add_argument("id", help="unit ID")
 
-    p_dewey = db_sub.add_parser("dewey", help="dewey indexing and taxonomy tools")
+    p_dewey = db_parser("dewey", help="dewey indexing and taxonomy tools")
     p_dewey.add_argument("action", choices=["list", "tree", "stats", "classify"])
     p_dewey.add_argument("--text", help="topic or text to classify")
 
-    p_export = db_sub.add_parser("export", help="export units to markdown or JSONL")
+    p_export = db_parser("export", help="export units to markdown or JSONL")
     p_export.add_argument("--dewey", help="filter by dewey code")
     p_export.add_argument("--topic", help="filter by topic")
     p_export.add_argument("--format", choices=["md", "jsonl"], default="md")
 
-    db_sub.add_parser("stats", help="show database statistics and counts")
+    db_parser("stats", help="show database statistics and counts")
 
     args = parser.parse_args(argv)
     if args.cmd == "parse":

@@ -260,6 +260,22 @@ class TestProgenDBCLI(unittest.TestCase):
                 rc = main(["db", "--db", db_path, "put", "boiling point", "100 C.", "--fact"])
             self.assertEqual(rc, 1)
 
+    def test_cli_db_flag_follows_the_readme(self) -> None:
+        from progen.__main__ import main
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            db_path = str(Path(tmpdir) / "knowledge.db")
+            with contextlib.redirect_stdout(io.StringIO()):
+                rc = main(
+                    ["db", "put", "boiling point", "100 C", "--fact", "--db", db_path]
+                )
+            self.assertEqual(rc, 0)
+            fact_buf = io.StringIO()
+            with contextlib.redirect_stdout(fact_buf):
+                rc = main(["db", "fact", "boiling point", "--db", db_path])
+            self.assertEqual(rc, 0)
+            self.assertEqual(fact_buf.getvalue(), "boiling point: 100 C\n")
+
 
 if __name__ == "__main__":
     unittest.main()
