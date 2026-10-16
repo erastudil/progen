@@ -153,6 +153,25 @@ class TestProgenSearchIndex(unittest.TestCase):
         self.assertEqual(len(def_hits), 1)
         self.assertEqual(def_hits[0].unit.topic, "progen")
 
+    def test_topic_and_comment_share_one_count(self) -> None:
+        from progen.search import ProgenSearchIndex
+
+        idx = ProgenSearchIndex()
+        idx.index_text("alpha : beta.\ngamma : alpha.\n")
+        hits = idx.search("alpha")
+        self.assertEqual({h.unit.topic for h in hits}, {"alpha", "gamma"})
+        self.assertEqual(len(hits), 2)
+        self.assertEqual(hits[0].score, hits[1].score)
+
+    def test_prose_line_stays_searchable(self) -> None:
+        from progen.search import ProgenSearchIndex
+
+        idx = ProgenSearchIndex()
+        self.assertEqual(idx.index_text("plain prose about rust lifetimes.\n"), 1)
+        hits = idx.search("lifetimes")
+        self.assertEqual(len(hits), 1)
+        self.assertEqual(hits[0].unit.kind, "prose")
+
     def test_all_package_modules_compile(self) -> None:
         import py_compile
 
