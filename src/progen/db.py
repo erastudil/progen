@@ -837,9 +837,15 @@ class ProgenDB:
         self,
         dewey_code: Optional[str] = None,
         source_uri: Optional[str] = None,
+        topic: Optional[str] = None,
     ) -> str:
         """Export database units as JSON Lines."""
-        units = self.query(dewey_code=dewey_code, source_uri=source_uri, limit=10000)
+        units = self.query(
+            dewey_code=dewey_code,
+            source_uri=source_uri,
+            topic=topic,
+            limit=10000,
+        )
         out = []
         for u in units:
             payload = {

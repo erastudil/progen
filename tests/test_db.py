@@ -265,6 +265,38 @@ class TestProgenDBCLI(unittest.TestCase):
                 rc = main(["db", "--db", db_path, "put", "boiling point", "100 C.", "--fact"])
             self.assertEqual(rc, 1)
 
+    def test_cli_jsonl_export_honors_topic(self) -> None:
+        from progen.__main__ import main
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            db_path = str(Path(tmpdir) / "notes.db")
+            with contextlib.redirect_stdout(io.StringIO()):
+                self.assertEqual(
+                    main(["db", "--db", db_path, "put", "sqlite", "embedded engine."]),
+                    0,
+                )
+                self.assertEqual(
+                    main(["db", "--db", db_path, "put", "agent", "model runner."]),
+                    0,
+                )
+            buf = io.StringIO()
+            with contextlib.redirect_stdout(buf):
+                rc = main(
+                    [
+                        "db",
+                        "--db",
+                        db_path,
+                        "export",
+                        "--topic",
+                        "sqlite",
+                        "--format",
+                        "jsonl",
+                    ]
+                )
+            self.assertEqual(rc, 0)
+            rows = [json.loads(line) for line in buf.getvalue().splitlines() if line]
+            self.assertEqual([row["topic"] for row in rows], ["sqlite"])
+
     def test_cli_db_flag_follows_the_readme(self) -> None:
         from progen.__main__ import main
 
