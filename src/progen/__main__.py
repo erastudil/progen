@@ -334,7 +334,9 @@ def _cmd_db(args: argparse.Namespace) -> int:
 
         if cmd == "export":
             if args.format == "jsonl":
-                sys.stdout.write(db.export_jsonl(dewey_code=args.dewey))
+                sys.stdout.write(
+                    db.export_jsonl(dewey_code=args.dewey, topic=args.topic)
+                )
             else:
                 sys.stdout.write(db.export_markdown(dewey_code=args.dewey, topic=args.topic))
             return 0
