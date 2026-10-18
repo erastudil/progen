@@ -9,6 +9,7 @@ import re
 from typing import List, Optional
 
 from .parse import _ADMIN_LINE, _split_asides, _topic_ok, _looks_like_heading
+from .tells import COPULA_LEAD
 
 
 class UnitType(str, Enum):
@@ -48,7 +49,6 @@ class StreamingProgenTokenizer:
         self.line_no = 0
         self.offset = 0
         self.in_code_block = False
-        self.copula_pattern = re.compile(r"^(?:is|are|was|were|being)\b", re.IGNORECASE)
         if role == "slack":
             self.topic_pattern = re.compile(r"^([^,]{1,40}?),\s+(\S.*)$")
         else:
@@ -187,7 +187,7 @@ class StreamingProgenTokenizer:
             if m_topic and _topic_ok(m_topic.group(1)):
                 topic = m_topic.group(1).strip()
                 comment = m_topic.group(2).strip()
-                if self.copula_pattern.search(comment):
+                if COPULA_LEAD.search(stripped):
                     warnings.append("P018: leading copula in comment")
                 return StreamEvent(
                     unit_type=UnitType.TOPIC_COMMENT,

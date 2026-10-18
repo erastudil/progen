@@ -121,6 +121,20 @@ class TestStreamingTokenizer(unittest.TestCase):
         self.assertEqual(events[2].unit_type, UnitType.DEFINITION)
         self.assertEqual(events[2].topic, "progen")
 
+    def test_copula_warning_follows_p018(self) -> None:
+        from progen.stream import StreamingProgenTokenizer
+
+        tok = StreamingProgenTokenizer(role="syntax")
+        events = tok.feed(
+            "status : being careful.\n"
+            "verification : tests are passing.\n"
+            "result : was updated.\n"
+        )
+        self.assertEqual(
+            [e.warnings for e in events],
+            [[], [], ["P018: leading copula in comment"]],
+        )
+
     def test_slack_role_comma_topic(self) -> None:
         from progen.stream import StreamingProgenTokenizer, UnitType
 
