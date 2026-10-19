@@ -106,6 +106,30 @@ class LintAgent(unittest.TestCase):
         ids = {f.rule for f in lint_text(text, role="agent")}
         self.assertNotIn("P018", ids)
 
+    def test_yaml_frontmatter_masked_with_preserved_line_numbers(self) -> None:
+        clean_with_fm = (
+            "---\n"
+            "name: progen\n"
+            "description: Enforces topic : comment (always, never) and is robust.\n"
+            "---\n"
+            "\n"
+            "status : passing.\n"
+        )
+        self.assertEqual(lint_text(clean_with_fm, role="agent"), [])
+
+        bad_after_fm = (
+            "---\n"
+            "name: progen\n"
+            "description: Enforces topic : comment (always, never) and is robust.\n"
+            "---\n"
+            "\n"
+            "status : is failing.\n"
+        )
+        findings = lint_text(bad_after_fm, role="agent")
+        self.assertEqual(len(findings), 1)
+        self.assertEqual(findings[0].rule, "P018")
+        self.assertEqual(findings[0].line, 6)
+
 
 class SpecSync(unittest.TestCase):
     def test_package_json_matches_spec(self) -> None:

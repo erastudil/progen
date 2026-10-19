@@ -12,7 +12,16 @@ _SENT_SPLIT = re.compile(r"(?<=[!?])\s+|(?<=\.)\s+(?=[A-Z\[])")
 
 def syntax_text(source: str) -> str:
     out: list[str] = []
-    for raw in source.splitlines():
+    lines = source.splitlines()
+    fm_end = 0
+    if lines and lines[0].strip() == "---":
+        for idx, ln in enumerate(lines[1:], start=1):
+            if ln.strip() == "---":
+                fm_end = idx + 1
+                break
+    if fm_end > 0:
+        out.extend(ln.rstrip() for ln in lines[:fm_end])
+    for raw in lines[fm_end:]:
         if not raw.strip():
             if out and out[-1] != "":
                 out.append("")
