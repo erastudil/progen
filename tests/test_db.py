@@ -131,6 +131,30 @@ class TestProgenDB(unittest.TestCase):
         self.assertEqual(len(results), 1)
         self.assertEqual(results[0].topic, "sqlite")
 
+    def test_ingest_keeps_bare_marks(self) -> None:
+        source = (
+            "! rotate keys\n"
+            "? check the gate\n"
+            "WHAT IS THE STATE OF THE BUILD\n"
+            "CMD,restart workers\n"
+            "hello from prose.\n"
+        )
+        first = self.db.ingest_text(source, uri="bare.md", role="slack")
+        again = self.db.ingest_text(source, uri="bare.md", role="slack")
+        units = self.db.query(source_uri="bare.md")
+        rendered = {u.to_markdown() for u in units}
+        self.assertEqual(first, len(units))
+        self.assertEqual(again, first)
+        self.assertEqual(
+            rendered,
+            {
+                "! rotate keys",
+                "? check the gate",
+                "WHAT IS THE STATE OF THE BUILD",
+                "CMD,restart workers",
+            },
+        )
+
     def test_transaction_rollback(self) -> None:
         try:
             with self.db.transaction():

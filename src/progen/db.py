@@ -58,10 +58,16 @@ class UnitRecord:
         if self.kind == "definition" or mark == "=":
             return f"{self.topic} = {self.comment}{asides_str}"
         if self.kind == "elevated" or mark == "!":
-            return f"! {self.topic} : {self.comment}{asides_str}"
+            if self.comment:
+                return f"! {self.topic} : {self.comment}{asides_str}"
+            return f"! {self.topic}{asides_str}"
         if self.kind == "test" or mark == "?":
-            return f"? {self.topic} : {self.comment}{asides_str}"
+            if self.comment:
+                return f"? {self.topic} : {self.comment}{asides_str}"
+            return f"? {self.topic}{asides_str}"
         if self.kind == "admin":
+            return f"{self.topic}{asides_str}"
+        if self.kind == "protocol" and not self.comment:
             return f"{self.topic}{asides_str}"
         return f"{self.topic} : {self.comment}{asides_str}"
 
@@ -544,13 +550,13 @@ class ProgenDB:
         content_hash = hashlib.sha256(source_text.encode("utf-8")).hexdigest()
 
         with self.transaction() as cur:
-            cur.execute("SELECT id, hash FROM sources WHERE uri = ?;", (uri,))
+            cur.execute("SELECT id, hash, unit_count FROM sources WHERE uri = ?;", (uri,))
             row = cur.fetchone()
             if row:
                 source_id = row["id"]
                 if row["hash"] == content_hash:
-                    # Idempotent skip if unchanged
-                    return len(doc.units)
+                    # Same bytes. Report the rows actually stored.
+                    return row["unit_count"]
                 cur.execute("DELETE FROM units WHERE source_id = ?;", (source_id,))
                 cur.execute(
                     "UPDATE sources SET hash = ?, role = ?, layer = ?, updated_at = ? WHERE id = ?;",
@@ -573,15 +579,23 @@ class ProgenDB:
             unit_count = 0
             for u in doc.units:
                 topic = u.topic or ""
-                comment = u.comment or u.text
+                comment = u.comment or u.text or ""
                 if not topic and ":" in comment and u.kind in {"elevated", "test", "admin", "protocol"}:
                     parts = comment.split(":", 1)
                     topic = parts[0].strip()
                     comment = parts[1].strip()
 
                 if not topic and u.kind == "prose":
-                    # skip unformatted blank prose if empty
+                    # prose has no topic. the store keeps marked units.
                     continue
+
+                if not topic:
+                    # bare !, ?, CAPSLOCK, and CMD lines have no colon to split.
+                    topic = (comment or u.text or "").strip()
+                    if not topic:
+                        continue
+                    if u.kind in {"elevated", "test", "admin", "protocol"}:
+                        comment = ""
 
                 line_no = u.span.line
                 unit_id = self.make_unit_id(uri, line_no, topic, comment)
