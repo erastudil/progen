@@ -131,6 +131,28 @@ class TestStreamingTokenizer(unittest.TestCase):
         self.assertEqual(events[0].topic, "deploy pipeline")
         self.assertEqual(events[0].comment, "restart workers now")
 
+    def test_frontmatter_skipped_in_parse_and_stream(self) -> None:
+        from progen.stream import StreamingProgenTokenizer, UnitType
+
+        source = (
+            "---\n"
+            "name: progen\n"
+            "description: Sovereign operational language.\n"
+            "---\n"
+            "\n"
+            "scope : operational language.\n"
+        )
+        doc = parse_text(source, Role.SYNTAX)
+        self.assertEqual(len(doc.units), 1)
+        self.assertEqual(doc.units[0].topic, "scope")
+        self.assertEqual(doc.units[0].span.line, 6)
+
+        tok = StreamingProgenTokenizer(role="syntax")
+        events = tok.feed(source) + tok.flush()
+        self.assertEqual(len(events), 1)
+        self.assertEqual(events[0].unit_type, UnitType.TOPIC_COMMENT)
+        self.assertEqual(events[0].topic, "scope")
+
 
 class TestProgenSearchIndex(unittest.TestCase):
     def test_bm25_ranking_and_kind_filter(self) -> None:

@@ -64,6 +64,20 @@ class Syntax(unittest.TestCase):
         src = "verification : tests are passing.\n"
         self.assertEqual(syntax_text(src), src)
 
+    def test_preserves_yaml_frontmatter(self) -> None:
+        src = (
+            "---\n"
+            "name: progen\n"
+            "description: Enforces topic : comment (always).\n"
+            "---\n"
+            "\n"
+            "status : is passing.\n"
+        )
+        out = syntax_text(src)
+        self.assertTrue(out.startswith("---\nname: progen\ndescription: Enforces topic : comment (always).\n---\n"))
+        self.assertIn("status : passing.\n", out)
+        self.assertEqual(lint_text(out, role="agent"), [])
+
 
 if __name__ == "__main__":
     unittest.main()

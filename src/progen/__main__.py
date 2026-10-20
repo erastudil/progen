@@ -23,6 +23,7 @@ _DOC_LINT = (
     "docs/FAILURES.md",
     "prompts/genome.md",
     "prompts/canon.md",
+    "prompts/warehouse.md",
     "README.md",
     "AGENTS.md",
     "COVENANT.md",
@@ -382,6 +383,20 @@ def _cmd_check() -> int:
         findings = lint_text("I'd be happy to help!", role="agent")
         if not any(f.rule == "P002" for f in findings):
             print("FAIL: linter failed to flag mush")
+            rc = 1
+        from .search import ProgenSearchIndex
+        from .stream import StreamingProgenTokenizer, UnitType
+
+        idx = ProgenSearchIndex()
+        idx.index_text("sqlite : embedded database engine.\n", doc_id="self-check")
+        hits = idx.search("sqlite database")
+        if not hits or hits[0].unit.topic != "sqlite":
+            print("FAIL: search index self-check failed")
+            rc = 1
+        tok = StreamingProgenTokenizer(role="syntax")
+        evs = tok.feed("status : passing.\n") + tok.flush()
+        if len(evs) != 1 or evs[0].unit_type != UnitType.TOPIC_COMMENT or evs[0].topic != "status":
+            print("FAIL: streaming tokenizer self-check failed")
             rc = 1
         if rc == 0:
             print("PASS (package self-check)")
