@@ -49,6 +49,7 @@ class StreamingProgenTokenizer:
         self.line_no = 0
         self.offset = 0
         self.in_code_block = False
+        self.in_frontmatter = False
         if role == "slack":
             self.topic_pattern = re.compile(r"^([^,]{1,40}?),\s+(\S.*)$")
         else:
@@ -92,6 +93,13 @@ class StreamingProgenTokenizer:
     def _process_line(self, raw: str, line_start: int, line_no: int) -> List[StreamEvent]:
         events: List[StreamEvent] = []
         stripped = raw.strip()
+        if line_no == 1 and stripped == "---":
+            self.in_frontmatter = True
+            return events
+        if self.in_frontmatter:
+            if stripped == "---":
+                self.in_frontmatter = False
+            return events
         if stripped.startswith("```"):
             self.in_code_block = not self.in_code_block
             return events

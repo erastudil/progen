@@ -61,14 +61,29 @@ _PROTOCOL = re.compile(r"^(LOOK|FORMAT):")
 _CMD = re.compile(r"^CMD,")
 
 
+def _frontmatter_end_line(source: str) -> int:
+    if not source.startswith("---"):
+        return 0
+    lines = source.splitlines()
+    if not lines or lines[0].strip() != "---":
+        return 0
+    for idx, line in enumerate(lines[1:], start=2):
+        if line.strip() == "---":
+            return idx
+    return 0
+
+
 def parse_text(source: str, role: Role | str = Role.SYNTAX) -> Document:
     role = Role(role)
     doc = Document(role=role, source=source)
+    fm_end = _frontmatter_end_line(source)
     offset = 0
     for line_no, line in enumerate(source.splitlines(keepends=True), start=1):
         raw = line.rstrip("\r\n")
         line_start = offset
         offset += len(line)
+        if line_no <= fm_end:
+            continue
         if not raw.strip():
             continue
         body, asides = _split_asides(raw, line_start, line_no)

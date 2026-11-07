@@ -29,7 +29,7 @@ class SearchHit:
 
 
 class ProgenSearchIndex:
-    """Zero-dependency in-memory BM25 search index over mandatory Unit fields."""
+    """Zero-dependency in-memory BM25 index over topic and comment."""
 
     def __init__(self, k1: float = 1.5, b: float = 0.75) -> None:
         self.k1 = k1
@@ -42,8 +42,12 @@ class ProgenSearchIndex:
         return len(self._units)
 
     def add_unit(self, unit: Unit, doc_id: Optional[str] = None) -> None:
-        fields = [unit.topic or "", unit.topic or "", unit.comment or "", unit.text or ""]
-        tokens = _tokenize(" ".join(fields))
+        # Count topic and comment once. The raw line repeats those words.
+        # Prose, admin, and protocol keep their words on text alone.
+        parts = [unit.topic or "", unit.comment or ""]
+        if not any(parts):
+            parts = [unit.text or ""]
+        tokens = _tokenize(" ".join(parts))
         tf: dict[str, int] = {}
         for tok in tokens:
             tf[tok] = tf.get(tok, 0) + 1

@@ -21,6 +21,7 @@ _DOCS = [
     "docs/FAILURES.md",
     "prompts/genome.md",
     "prompts/canon.md",
+    "prompts/warehouse.md",
     "README.md",
     "AGENTS.md",
     "COVENANT.md",

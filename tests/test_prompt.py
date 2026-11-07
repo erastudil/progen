@@ -19,8 +19,6 @@ class Prompts(unittest.TestCase):
         for token in ("human slack", "`:`", "`//`", "ERROR", "DONT_KNOW"):
             self.assertIn(token, text)
         self.assertIn("agents syntax", text)
-        if False:
-            self.assertIn(token, text)
 
     def test_canon_points_at_linter(self) -> None:
         text = load_prompt("canon")
@@ -30,6 +28,13 @@ class Prompts(unittest.TestCase):
     def test_unknown_prompt(self) -> None:
         with self.assertRaises(ValueError):
             load_prompt("house-pools")
+
+    def test_packaged_prompts_match_repo_prompts(self) -> None:
+        root = repo_root()
+        for name in ("genome.md", "canon.md", "warehouse.md"):
+            repo_bytes = (root / "prompts" / name).read_bytes()
+            pkg_bytes = (root / "src" / "progen" / "data" / "prompts" / name).read_bytes()
+            self.assertEqual(repo_bytes, pkg_bytes, msg=f"prompt drift in {name}")
 
     def test_machine_spec_matches_lint_ids(self) -> None:
         spec = json.loads((repo_root() / "spec" / "progen.v1.json").read_text(encoding="utf-8"))

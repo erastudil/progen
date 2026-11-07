@@ -145,6 +145,28 @@ class TestStreamingTokenizer(unittest.TestCase):
         self.assertEqual(events[0].topic, "deploy pipeline")
         self.assertEqual(events[0].comment, "restart workers now")
 
+    def test_frontmatter_skipped_in_parse_and_stream(self) -> None:
+        from progen.stream import StreamingProgenTokenizer, UnitType
+
+        source = (
+            "---\n"
+            "name: progen\n"
+            "description: Sovereign operational language.\n"
+            "---\n"
+            "\n"
+            "scope : operational language.\n"
+        )
+        doc = parse_text(source, Role.SYNTAX)
+        self.assertEqual(len(doc.units), 1)
+        self.assertEqual(doc.units[0].topic, "scope")
+        self.assertEqual(doc.units[0].span.line, 6)
+
+        tok = StreamingProgenTokenizer(role="syntax")
+        events = tok.feed(source) + tok.flush()
+        self.assertEqual(len(events), 1)
+        self.assertEqual(events[0].unit_type, UnitType.TOPIC_COMMENT)
+        self.assertEqual(events[0].topic, "scope")
+
 
 class TestProgenSearchIndex(unittest.TestCase):
     def test_bm25_ranking_and_kind_filter(self) -> None:
@@ -166,6 +188,25 @@ class TestProgenSearchIndex(unittest.TestCase):
         def_hits = idx.search("dialect agent", kind="definition")
         self.assertEqual(len(def_hits), 1)
         self.assertEqual(def_hits[0].unit.topic, "progen")
+
+    def test_topic_and_comment_share_one_count(self) -> None:
+        from progen.search import ProgenSearchIndex
+
+        idx = ProgenSearchIndex()
+        idx.index_text("alpha : beta.\ngamma : alpha.\n")
+        hits = idx.search("alpha")
+        self.assertEqual({h.unit.topic for h in hits}, {"alpha", "gamma"})
+        self.assertEqual(len(hits), 2)
+        self.assertEqual(hits[0].score, hits[1].score)
+
+    def test_prose_line_stays_searchable(self) -> None:
+        from progen.search import ProgenSearchIndex
+
+        idx = ProgenSearchIndex()
+        self.assertEqual(idx.index_text("plain prose about rust lifetimes.\n"), 1)
+        hits = idx.search("lifetimes")
+        self.assertEqual(len(hits), 1)
+        self.assertEqual(hits[0].unit.kind, "prose")
 
     def test_all_package_modules_compile(self) -> None:
         import py_compile

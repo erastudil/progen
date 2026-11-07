@@ -131,6 +131,30 @@ class TestProgenDB(unittest.TestCase):
         self.assertEqual(len(results), 1)
         self.assertEqual(results[0].topic, "sqlite")
 
+    def test_ingest_keeps_bare_marks(self) -> None:
+        source = (
+            "! rotate keys\n"
+            "? check the gate\n"
+            "WHAT IS THE STATE OF THE BUILD\n"
+            "CMD,restart workers\n"
+            "hello from prose.\n"
+        )
+        first = self.db.ingest_text(source, uri="bare.md", role="slack")
+        again = self.db.ingest_text(source, uri="bare.md", role="slack")
+        units = self.db.query(source_uri="bare.md")
+        rendered = {u.to_markdown() for u in units}
+        self.assertEqual(first, len(units))
+        self.assertEqual(again, first)
+        self.assertEqual(
+            rendered,
+            {
+                "! rotate keys",
+                "? check the gate",
+                "WHAT IS THE STATE OF THE BUILD",
+                "CMD,restart workers",
+            },
+        )
+
     def test_transaction_rollback(self) -> None:
         try:
             with self.db.transaction():
@@ -264,6 +288,38 @@ class TestProgenDBCLI(unittest.TestCase):
             with contextlib.redirect_stdout(io.StringIO()):
                 rc = main(["db", "--db", db_path, "put", "boiling point", "100 C.", "--fact"])
             self.assertEqual(rc, 1)
+
+    def test_cli_jsonl_export_honors_topic(self) -> None:
+        from progen.__main__ import main
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            db_path = str(Path(tmpdir) / "notes.db")
+            with contextlib.redirect_stdout(io.StringIO()):
+                self.assertEqual(
+                    main(["db", "--db", db_path, "put", "sqlite", "embedded engine."]),
+                    0,
+                )
+                self.assertEqual(
+                    main(["db", "--db", db_path, "put", "agent", "model runner."]),
+                    0,
+                )
+            buf = io.StringIO()
+            with contextlib.redirect_stdout(buf):
+                rc = main(
+                    [
+                        "db",
+                        "--db",
+                        db_path,
+                        "export",
+                        "--topic",
+                        "sqlite",
+                        "--format",
+                        "jsonl",
+                    ]
+                )
+            self.assertEqual(rc, 0)
+            rows = [json.loads(line) for line in buf.getvalue().splitlines() if line]
+            self.assertEqual([row["topic"] for row in rows], ["sqlite"])
 
     def test_cli_db_flag_follows_the_readme(self) -> None:
         from progen.__main__ import main

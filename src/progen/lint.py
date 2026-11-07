@@ -239,7 +239,20 @@ def _paren_allowed(inner: str, line: str) -> bool:
     return False
 
 
+def _mask_frontmatter(source: str) -> str:
+    if not source.startswith("---"):
+        return source
+    lines = source.splitlines(True)
+    if not lines or lines[0].strip() != "---":
+        return source
+    for i, line in enumerate(lines[1:], start=1):
+        if line.strip() == "---":
+            return "".join("\n" if ln.endswith("\n") else "" for ln in lines[: i + 1]) + "".join(lines[i + 1 :])
+    return source
+
+
 def _mask_fences(source: str) -> str:
+    source = _mask_frontmatter(source)
     lines = source.splitlines(True)
     out: list[str] = []
     fence = False
